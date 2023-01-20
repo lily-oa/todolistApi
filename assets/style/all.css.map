@@ -1,0 +1,1 @@
+{"version":3,"sources":["layout/_index.scss","all.css"],"names":[],"mappings":"AAAA;EACE,cAAa;EACb,eAAe;EACf,gBAAgB;ACClB","file":"all.css","sourcesContent":[".index__h1 {\n  color:#00cc99;\n  font-size: 20px;\n  font-weight: 400;\n}\n",".index__h1 {\n  color: #00cc99;\n  font-size: 20px;\n  font-weight: 400;\n}\n"]}
