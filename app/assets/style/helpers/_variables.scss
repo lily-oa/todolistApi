@@ -67,8 +67,8 @@ $colors: (
 // scss-docs-end colors-map
 
 // scss-docs-start theme-color-variables
-$primary:       #899e39; // $blue !default;
-$secondary:     $gray-600 !default;
+$primary:       #FCD370; // $blue !default;
+$secondary:     #333333 !default;
 $success:       $green !default;
 $info:          $cyan !default;
 $warning:       #f8d45a !default;
@@ -76,6 +76,8 @@ $danger:        $red !default;
 $light:         $gray-100 !default;
 $dark:          $gray-900 !default;
 $body:          #2a2a2a !default;
+$color_dark_gray: #9F9A91;
+$color_gray: #efefef;
 // scss-docs-end theme-color-variables
 
 // scss-docs-start theme-colors-map
@@ -88,6 +90,8 @@ $theme-colors: (
   "danger":     $danger,
   "light":      $light,
   "dark":       $dark,
+  "$color_dark_gray": #9F9A91,
+  "$color_gray": #efefef,
   "body":       $body,
 ) !default;
 // scss-docs-end theme-colors-map
