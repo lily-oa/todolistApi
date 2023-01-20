@@ -1,0 +1,13 @@
+a{
+  text-decoration: none;
+  vertical-align: middle;
+  &:hover{
+    color: $white;
+  }
+}
+
+body{
+  color: $body;
+  font-family: NotoSansCJKtc-Bold;
+  line-height: 1.5;
+}

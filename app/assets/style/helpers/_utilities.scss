@@ -1,0 +1,23 @@
+// stylelint-disable indentation
+
+// Utitilites
+$utilities: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$utilities: map-merge(
+  (
+    
+    "font-size": (
+      responsive: true,//new
+      rfs: false,
+      property: font-size,
+      class: fs,
+      values: $font-sizes
+    ),
+    "overflow": (
+    responsive: true,
+    property: overflow,
+    values: visible hidden scroll auto,
+    ),
+  ),
+  $utilities
+);
