@@ -2867,27 +2867,27 @@ progress {
 }
 
 .form-control::-webkit-input-placeholder {
-  color: #dee2e6;
+  color: #ced4da;
   opacity: 1;
 }
 
 .form-control::-moz-placeholder {
-  color: #dee2e6;
+  color: #ced4da;
   opacity: 1;
 }
 
 .form-control:-ms-input-placeholder {
-  color: #dee2e6;
+  color: #ced4da;
   opacity: 1;
 }
 
 .form-control::-ms-input-placeholder {
-  color: #dee2e6;
+  color: #ced4da;
   opacity: 1;
 }
 
 .form-control::placeholder {
-  color: #dee2e6;
+  color: #ced4da;
   opacity: 1;
 }
 
