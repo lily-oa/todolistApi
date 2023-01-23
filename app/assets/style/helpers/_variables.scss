@@ -258,17 +258,17 @@ $spacers: (
   0: 0,
   1: $spacer * .25,    //4
   2: $spacer * .5,     //8
-  2-1: $spacer * .875, //14
-  3: $spacer,          //16
-  4: $spacer * .125,    //18
-  5: $spacer * 1.25,   //20
-  6: $spacer * 1.5,    //24
-  7: $spacer * 1.75,   //28
-  8: $spacer * 2,      //32
-  9: $spacer * 2.25,   //36
-  10: $spacer * 2.5,   //40
-  11: $spacer * 3,     //48
-  12: $spacer * 5.45   //87.2
+  3: $spacer * .875, //14
+  4: $spacer,          //16
+  5: $spacer * .125,    //18
+  6: $spacer * 1.25,   //20
+  7: $spacer * 1.5,    //24
+  8: $spacer * 1.75,   //28
+  9: $spacer * 2,      //32
+  10: $spacer * 2.25,   //36
+  11: $spacer * 2.5,   //40
+  12: $spacer * 3,     //48
+  13: $spacer * 5.45   //87.2
 ) !default;
 
 $negative-spacers: if($enable-negative-margins, negativify-map($spacers), null) !default;
