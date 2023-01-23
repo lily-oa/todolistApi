@@ -1,5 +1,5 @@
 ---
-title: TODOLIST-API Index
+title: TODOLIST-API Login
 layout: ./app/layout.ejs
 engine: ejs
 current: index
@@ -22,12 +22,13 @@ current: index
               <form>
                 <div class="mb-3">
                   <label for="Email1" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="Email1" placeholder="請輸入Email" aria-describedby="emailHelp">
-                  <div id="emailHelp" class="text-warning fs-7 mt-1">此欄位不可為空</div>
+                  <input type="email" class="form-control py-14" id="Email1" placeholder="請輸入Email" aria-describedby="emailHelp">
+                  <div id="emailHelp" class="text-warning fs-7 mt-1 invalid-feedback">請輸入正確Email</div>
                 </div>
                 <div class="mb-3">
                   <label for="Password1" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="Password1" placeholder="請輸入密碼">
+                  <input type="password" class="form-control py-14" id="Password1" placeholder="請輸入密碼">
+                  <div id="password1" class="text-warning fs-7 mt-1 invalid-feedback">請正確輸入密碼</div>
                 </div>
                 
               </form>
