@@ -6996,6 +6996,9 @@ textarea.form-control-lg {
 .fs-6 {
   font-size: 1rem !important; }
 
+.fs-7 {
+  font-size: 0.875rem !important; }
+
 .fst-italic {
   font-style: italic !important; }
 
@@ -8007,6 +8010,8 @@ textarea.form-control-lg {
     font-size: 1.25rem !important; }
   .fs-sm-6 {
     font-size: 1rem !important; }
+  .fs-sm-7 {
+    font-size: 0.875rem !important; }
   .text-sm-start {
     text-align: left !important; }
   .text-sm-end {
@@ -8741,6 +8746,8 @@ textarea.form-control-lg {
     font-size: 1.25rem !important; }
   .fs-md-6 {
     font-size: 1rem !important; }
+  .fs-md-7 {
+    font-size: 0.875rem !important; }
   .text-md-start {
     text-align: left !important; }
   .text-md-end {
@@ -9475,6 +9482,8 @@ textarea.form-control-lg {
     font-size: 1.25rem !important; }
   .fs-lg-6 {
     font-size: 1rem !important; }
+  .fs-lg-7 {
+    font-size: 0.875rem !important; }
   .text-lg-start {
     text-align: left !important; }
   .text-lg-end {
@@ -10209,6 +10218,8 @@ textarea.form-control-lg {
     font-size: 1.25rem !important; }
   .fs-xl-6 {
     font-size: 1rem !important; }
+  .fs-xl-7 {
+    font-size: 0.875rem !important; }
   .text-xl-start {
     text-align: left !important; }
   .text-xl-end {
@@ -10943,6 +10954,8 @@ textarea.form-control-lg {
     font-size: 1.25rem !important; }
   .fs-xxl-6 {
     font-size: 1rem !important; }
+  .fs-xxl-7 {
+    font-size: 0.875rem !important; }
   .text-xxl-start {
     text-align: left !important; }
   .text-xxl-end {
