@@ -16605,8 +16605,10 @@ body {
 
 @media (min-width: 992px) {
   .addTodos {
-    background: linear-gradient 174deg, #ffd370 2%, #ffd370 46%, #fff 46%, #fff 100%, #e8e8e8 100%;
+    background: -o-linear-gradient(276deg, #ffd370 2%, #ffd370 46%, #fff 46%, #fff 100%, #e8e8e8 100%);
+    background: linear-gradient(174deg, #ffd370 2%, #ffd370 46%, #fff 46%, #fff 100%, #e8e8e8 100%);
     min-height: 100vh;
+    background-repeat: no-repeat;
   }
 }
 
