@@ -16595,13 +16595,19 @@ body {
 
 /*-- pages --*/
 .login,
-.signUp,
-.addTodos {
+.signUp {
   background: #FCD370;
 }
 
 .addTodos {
   background: #FCD370;
+}
+
+@media (min-width: 992px) {
+  .addTodos {
+    background: linear-gradient 174deg, #ffd370 2%, #ffd370 46%, #fff 46%, #fff 100%, #e8e8e8 100%;
+    min-height: 100vh;
+  }
 }
 
 /*# sourceMappingURL=all.css.map */
