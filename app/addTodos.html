@@ -6,7 +6,7 @@ current: addTodos
 ---
 
 <div class="addTodos">
-  <header>
+  <header class="py-6">
     <div class="container d-flex justify-content-around align-items-center justify-content-lg-between">
       <img src="./assets/images/logo-1.png" class="d-block d-lg-none" alt="logo">
       <img src="./assets/images/logo_lg-1.png" class="d-none d-lg-block" alt="logo">
@@ -19,7 +19,7 @@ current: addTodos
 
   <main>
     <div class="container">
-      <div class="row">
+      <div class="row justify-content-center">
         <div class="col-11 col-lg-6">
           <form class="card d-flex flex-row align-items-center shadow mb-4">
             <input type="text" placeholder="新增代辦事項" class="w-100 py-3 ps-3 border-0 rounded">
@@ -27,11 +27,13 @@ current: addTodos
               <img src="./assets/images/plus 1.png" alt="plus">
             </button>
           </form>
-          <!--如果沒有任何代辦事項顯示-->
-          <div class="empty text-center">
-            <h4 class="mb-4">目前尚無代辨事項</h4>
+          <!--如果沒有任何代辦事項顯示(375版型)-->
+          <div class="empty text-center pb-16">
+            <h4 class="my-6 fs-5 fs-lg-4 my-lg-11 text-secondary">目前尚無代辨事項</h4>
             <img src="./assets/images/empty.png" alt="empty">
           </div>
+          <!--如果沒有任何代辦事項顯示(lg版型)-->
+
         </div>
       </div>
     </div>
