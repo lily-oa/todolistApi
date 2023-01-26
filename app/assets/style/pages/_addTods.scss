@@ -1,4 +1,8 @@
 .addTodos
 {
   background: $primary;
+  @include media-breakpoint-up(lg) {
+    background: linear-gradient (174deg, #ffd370 2%, #ffd370 46%, #fff 46%, #fff 100%, #e8e8e8 100%);
+    min-height: 100vh;
+  }
 }
