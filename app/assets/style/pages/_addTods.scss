@@ -8,6 +8,45 @@
   }
 }
 
-.card{
+.card_list {
   margin-bottom: 8px;
+  box-shadow: 0 0 15px 0 rgba(0,0,0,0.15); 
+}
+
+.tab{
+  color: $gray;
+  text-align: center;
+  justify-content: space-around;
+  font-size: 14px;
+  @include media-breakpoint-up(lg) {
+    font-size: 16px;
+  }
+  li{
+    padding: 16px;
+    @include media-breakpoint-up(lg) {
+      padding: 20px;
+    }
+    width: 100%;
+    border-bottom: 2px solid $color_gray;
+    &.active{
+      border-bottom: 2px solid $secondary;
+      color: $secondary;
+    }
+  }
+}
+
+.card_content{
+  padding: 12px 20px 12px 12px;
+  @include media-breakpoint-up(lg) {
+    padding: 12px 24px 24px 24px;
+  }
+}
+
+//內容
+.list li{
+  position: relative;
+  padding-right: 0;
+  @include media-breakpoint-up(lg) {
+    padding-right: 32px;
+  }
 }
