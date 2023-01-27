@@ -61,7 +61,7 @@ $colors: (
   "teal":       $teal,
   "cyan":       $cyan,
   "white":      $white,
-  "gray":       $gray-600,
+  "gray":       #9F9A91,
   "gray-dark":  $gray-800
 ) !default;
 // scss-docs-end colors-map
@@ -76,7 +76,7 @@ $danger:        $red !default;
 $light:         $gray-100 !default;
 $dark:          $gray-900 !default;
 $body:          #2a2a2a !default;
-$color_dark_gray: #9F9A91;
+$gray: #9F9A91;
 $color_gray: #efefef;
 // scss-docs-end theme-color-variables
 
@@ -90,7 +90,7 @@ $theme-colors: (
   "danger":     $danger,
   "light":      $light,
   "dark":       $dark,
-  "$color_dark_gray": #9F9A91,
+  "gray": #9F9A91,
   "$color_gray": #efefef,
   "body":       $body,
 ) !default;
