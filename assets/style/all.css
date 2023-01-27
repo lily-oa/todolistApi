@@ -16613,8 +16613,62 @@ body {
   }
 }
 
-.card {
+.card_list {
   margin-bottom: 8px;
+  -webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.tab {
+  color: #9F9A91;
+  text-align: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  font-size: 14px;
+}
+
+@media (min-width: 992px) {
+  .tab {
+    font-size: 16px;
+  }
+}
+
+.tab li {
+  padding: 16px;
+  width: 100%;
+  border-bottom: 2px solid #efefef;
+}
+
+@media (min-width: 992px) {
+  .tab li {
+    padding: 20px;
+  }
+}
+
+.tab li.active {
+  border-bottom: 2px solid #333333;
+  color: #333333;
+}
+
+.card_content {
+  padding: 12px 20px 12px 12px;
+}
+
+@media (min-width: 992px) {
+  .card_content {
+    padding: 12px 24px 24px 24px;
+  }
+}
+
+.list li {
+  position: relative;
+  padding-right: 0;
+}
+
+@media (min-width: 992px) {
+  .list li {
+    padding-right: 32px;
+  }
 }
 
 /*# sourceMappingURL=all.css.map */
