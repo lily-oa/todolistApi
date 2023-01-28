@@ -1,3 +1,4 @@
+//背景設定 
 .addTodos
 {
   background: $primary;
@@ -7,7 +8,7 @@
     background-repeat: no-repeat;
   }
 }
-
+//有設定代辦事項的內容設定
 .card_list {
   margin-bottom: 8px;
   box-shadow: 0 0 15px 0 rgba(0,0,0,0.15); 
@@ -42,7 +43,7 @@
   }
 }
 
-//內容
+//代辦事項內容
 .list li{
   position: relative;
   padding-right: 0;
@@ -52,3 +53,23 @@
 }
 
 //delete 樣式設定
+.list li a.delete{
+  position: absolute;
+  opacity: 1;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  text-decoration: none;  //超連結的底線去除
+  color: $secondary;
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: #000;
+  background-image: url('https://i.imgur.com/7Q4RjFx.jpg');
+  background-size: contain;
+  @include media-breakpoint-up(lg) {
+    opacity: 1;
+    width: 16px;
+    height: 16px;
+  }
+}
