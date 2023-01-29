@@ -75,20 +75,24 @@
 
 .checkbox {
   position: relative;
-  user-select: none;  //禁止用戶選中
+  user-select: none; //禁止用戶選中
   width: 100%;
   display: block;
-  padding-left: 24px;
+  padding-left: 44px;
   cursor: pointer;
-  span{
+
+  span {
+    display: block;
     padding: 16px 0;
     border-bottom: 1px solid #eee;
     line-height: 1.5;
+
     @include media-breakpoint-up(lg) {
       padding-right: 0;
     }
   }
-  input{
+
+  input {
     position: absolute;
     top: 0;
     left: 0;
@@ -99,6 +103,54 @@
     width: 100%;
     margin: 0;
   }
+
+  // li 核取方框的設定位置
+  span::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%) scale(1);
+    height: 20px;
+    width: 20px;
+    border-radius: 5px;
+    border: 1px solid $secondary;
+    pointer-events: none;
+    transition: 0.3s ease;
+  }
+  //用 css 2D 做出打勾的動態圖案
+  span::after{
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 27%;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 8px;
+    border-radius: 1px;
+    border-bottom: 3px solid $primary;
+    border-right: 3px solid $primary;
+    pointer-events: none;
+    opacity: 0;
+    transition: 0.3s ease;
+  }
 }
 
+.checkbox input:checked ~ span{
+  color: $gray;
+  text-decoration: line-through;
+}
 
+// 在還沒checked之前，打勾圖案呈現透明，checked之後會呈現出來
+.checkbox input:checked ~ span::before{
+  border-color: transparent; //透明
+  //transform: translateY(-50%) scale(0);
+}
+
+.checkbox input:checked ~ span::after{
+  opacity: 1;
+}
+
+.footer_p{
+  padding: 24px 0 16px 8px;
+}
