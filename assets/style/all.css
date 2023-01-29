@@ -16694,4 +16694,40 @@ body {
   }
 }
 
+.checkbox {
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  width: 100%;
+  display: block;
+  padding-left: 24px;
+  cursor: pointer;
+}
+
+.checkbox span {
+  padding: 16px 0;
+  border-bottom: 1px solid #eee;
+  line-height: 1.5;
+}
+
+@media (min-width: 992px) {
+  .checkbox span {
+    padding-right: 0;
+  }
+}
+
+.checkbox input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
 /*# sourceMappingURL=all.css.map */
