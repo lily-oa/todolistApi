@@ -16776,6 +16776,9 @@ body {
 
 .checkbox input:checked ~ span::before {
   border-color: transparent;
+  -webkit-transform: translateY(-50%) scale(0);
+      -ms-transform: translateY(-50%) scale(0);
+          transform: translateY(-50%) scale(0);
 }
 
 .checkbox input:checked ~ span::after {
