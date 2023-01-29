@@ -144,7 +144,7 @@
 // 在還沒checked之前，打勾圖案呈現透明，checked之後會呈現出來
 .checkbox input:checked ~ span::before{
   border-color: transparent; //透明
-  //transform: translateY(-50%) scale(0);
+  transform: translateY(-50%) scale(0);
 }
 
 .checkbox input:checked ~ span::after{
