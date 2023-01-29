@@ -58,17 +58,33 @@
   opacity: 1;
   right: 0;
   top: 50%;
-  //transform: translateY(-50%);
+  transform: translateY(-50%);  //垂直置中對齊用
   //text-decoration: none;  //超連結的底線去除
   //color: $secondary;
-  //display: block;
+  display: block;
   width: 12px;
   height: 12px;
   background-image: url('https://i.imgur.com/7Q4RjFx.jpg');
-  background-size: contain;
+  background-size: contain; //使背景圖在尺寸大於內容元素的情況下，得以完整呈現
   @include media-breakpoint-up(lg) {
     opacity: 1;
     width: 16px;
     height: 16px;
+  }
+}
+
+.checkbox {
+  position: relative;
+  user-select: none;  //禁止用戶選中
+  width: 100%;
+  display: block;
+  cursor: pointer;
+  padding-left: 28px;
+  @include media-breakpoint-up(lg) {
+    padding-left: 36px;
+  }
+  &span{
+    display: block;
+    padding: 16px 0;
   }
 }
