@@ -16703,18 +16703,6 @@ body {
   width: 100%;
   display: block;
   cursor: pointer;
-  padding-left: 28px;
-}
-
-@media (min-width: 992px) {
-  .checkbox {
-    padding-left: 36px;
-  }
-}
-
-.checkboxspan {
-  display: block;
-  padding: 16px 0;
 }
 
 /*# sourceMappingURL=all.css.map */
