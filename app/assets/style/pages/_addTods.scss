@@ -73,3 +73,32 @@
   }
 }
 
+.checkbox {
+  position: relative;
+  user-select: none;  //禁止用戶選中
+  width: 100%;
+  display: block;
+  padding-left: 24px;
+  cursor: pointer;
+  span{
+    padding: 16px 0;
+    border-bottom: 1px solid #eee;
+    line-height: 1.5;
+    @include media-breakpoint-up(lg) {
+      padding-right: 0;
+    }
+  }
+  input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+  }
+}
+
+
