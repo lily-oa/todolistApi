@@ -123,7 +123,7 @@
     content: '';
     position: absolute;
     left: 14px;
-    top: 27%;
+    top: 35%;  //黃色勾勾的位置
     transform: rotate(45deg);
     height: 15px;
     width: 8px;
@@ -151,6 +151,10 @@
   opacity: 1;
 }
 
-.footer_p{
-  padding: 24px 0 16px 8px;
+.list_footer{
+  text-decoration: none;
+  padding: 24px 0px 16px 8px;
+  &:hover{
+    color: $secondary;
+  }
 }
