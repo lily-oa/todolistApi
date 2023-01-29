@@ -16702,11 +16702,12 @@ body {
           user-select: none;
   width: 100%;
   display: block;
-  padding-left: 24px;
+  padding-left: 44px;
   cursor: pointer;
 }
 
 .checkbox span {
+  display: block;
   padding: 16px 0;
   border-bottom: 1px solid #eee;
   line-height: 1.5;
@@ -16728,6 +16729,61 @@ body {
   height: 100%;
   width: 100%;
   margin: 0;
+}
+
+.checkbox span::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  -webkit-transform: translateY(-50%) scale(1);
+      -ms-transform: translateY(-50%) scale(1);
+          transform: translateY(-50%) scale(1);
+  height: 20px;
+  width: 20px;
+  border-radius: 5px;
+  border: 1px solid #333333;
+  pointer-events: none;
+  -webkit-transition: 0.3s ease;
+  -o-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+.checkbox span::after {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 27%;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+  height: 15px;
+  width: 8px;
+  border-radius: 1px;
+  border-bottom: 3px solid #FCD370;
+  border-right: 3px solid #FCD370;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: 0.3s ease;
+  -o-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+.checkbox input:checked ~ span {
+  color: #9F9A91;
+  text-decoration: line-through;
+}
+
+.checkbox input:checked ~ span::before {
+  border-color: transparent;
+}
+
+.checkbox input:checked ~ span::after {
+  opacity: 1;
+}
+
+.footer_p {
+  padding: 24px 0 16px 8px;
 }
 
 /*# sourceMappingURL=all.css.map */
