@@ -199,7 +199,7 @@ a {
   color: #FCD370;
   text-decoration: underline; }
   a:hover {
-    color: #504d49; }
+    color: #7e6a38; }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
   color: inherit;
@@ -3110,7 +3110,7 @@ textarea.form-control-lg {
   color: #FCD370;
   text-decoration: underline; }
   .btn-link:hover {
-    color: #504d49; }
+    color: #7e6a38; }
   .btn-link:disabled, .btn-link.disabled {
     color: #6c757d; }
 
@@ -3501,7 +3501,7 @@ textarea.form-control-lg {
     .nav-link {
       transition: none; } }
   .nav-link:hover, .nav-link:focus {
-    color: #504d49; }
+    color: #7e6a38; }
   .nav-link.disabled {
     color: #6c757d;
     pointer-events: none;
@@ -4197,12 +4197,12 @@ textarea.form-control-lg {
       transition: none; } }
   .page-link:hover {
     z-index: 2;
-    color: #504d49;
+    color: #7e6a38;
     background-color: #e9ecef;
     border-color: #dee2e6; }
   .page-link:focus {
     z-index: 3;
-    color: #504d49;
+    color: #7e6a38;
     background-color: #e9ecef;
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgba(252, 211, 112, 0.25); }
