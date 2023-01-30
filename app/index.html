@@ -50,7 +50,12 @@ current: index
                 <a href="./addTodos.html" class="login_btn text-white">登入</a>
               </button>
               -->
-              <button type="button" class="btn btn-dark p-2 px-10 mb-3 d-inline" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <button 
+                      type="button" 
+                      class="btn btn-dark p-2 px-10 mb-3 d-inline" 
+                      data-bs-toggle="modal" 
+                      data-bs-target="#login_modal"
+              >
                 登入
               </button>
               <a href="./signUp.html" class="text-dark text-center mb-16 mb-lg-15">註冊帳號</a>
@@ -63,7 +68,7 @@ current: index
   </div>
 
   <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="login_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -71,7 +76,7 @@ current: index
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <p class="alert_txt"></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
