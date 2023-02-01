@@ -16,6 +16,23 @@ var alert_txt = document.querySelector('.alert_txt');
 var status_txt = document.querySelector('.status_txt');
 var modal = document.querySelector('#login_modal');
 var loginModal = new bootstrap.Modal(modal, {});
+login_btn.addEventListener('click', function () {
+  var check_ok = check();
+  if (check_ok === true) {
+    input(email.value, password.value);
+  } else {
+    return;
+  }
+});
+function login(email, password) {
+  status_txt.textContent = '登入中請稍後 ...';
+  return axios.post("".concat(apiUrl, "/users/sign_in"), {
+    "user": {
+      "email": email,
+      "password": password
+    }
+  });
+}
 var input = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(mail, pwd) {
     var res;
@@ -31,16 +48,31 @@ var input = /*#__PURE__*/function () {
           axios.defaults.headers.common['Authorization'] = res.headers.Authorization;
           sessionStorage.setItem('token', res.headers.Authorization);
           sessionStorage.setItem('name', res.data.nickname);
-          _context.next = 11;
+          setTimeout(function () {
+            status_txt.textContent = '';
+            alert_txt.innerHTML = "\u767B\u5165\u6210\u529F ! \u6B61\u8FCE".concat(res.data.nickname, " \u56DE\u4F86 <br><br> \u5373\u5C07\u8DF3\u8F49\u5F85\u8FA6\u6E05\u55AE...");
+            loginModal.show();
+            reset();
+            setTimeout(function () {
+              document.location.href = './addTodos.html';
+            }, 2000);
+          }, 1000);
+          _context.next = 13;
           break;
-        case 9:
-          _context.prev = 9;
+        case 10:
+          _context.prev = 10;
           _context.t0 = _context["catch"](0);
-        case 11:
+          setTimeout(function () {
+            status_txt.textContent = '';
+            alert_txt.textContent = '登入失敗，您的Email或密碼有誤!';
+            loginModal.show();
+            reset();
+          }, 1000);
+        case 13:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 9]]);
+    }, _callee, null, [[0, 10]]);
   }));
   return function input(_x, _x2) {
     return _ref.apply(this, arguments);
