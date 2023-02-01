@@ -9,7 +9,19 @@ const modal = document.querySelector('#login_modal');
 const loginModal = new bootstrap.Modal(modal, {})
 
 
-const input = async
+const input = async(mail, pwd) => {
+  try{
+    const res = await login(mail, pwd);
+    //設置默認標頭的機制語法，該標頭將隨您發出的每個請求一起發送
+    axios.defaults.headers.common['Authorization'] = res.headers.Authorization
+    sessionStorage.setItem('token', res.headers.Authorization)
+    sessionStorage.setItem('name', res.data.nickname)
+    
+
+  }catch{
+
+  }
+}
 
 function check(){
   let isnull = false;
