@@ -72,7 +72,7 @@ function check(){
   }
   //email的輸入值字串必須有 @
   if(email.value.match('@') === null){
-    alert.text.textContent = '您的Email格式不正確!!!';
+    alert_txt.textContent = '您的Email格式不正確!!!';
     loginModal.show();
     reset();
     return;
