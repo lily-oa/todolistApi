@@ -84,3 +84,6 @@ function reset(){
   email.value = '';
   password.value = '';
 }
+
+//---------------------------------------------------------------signUp JS
+
