@@ -190,9 +190,9 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 var apiUrl = 'https://todoo.5xcamp.us';
 var allinput = document.querySelectorAll('input');
-var mail = document.querySelector('#signUpEmail');
-var nickname = document.querySelector('#signUpNickName');
-var first_pwd = document.querySelector('#signUpPassword');
+var mail = document.querySelector('#Email1');
+var nickname = document.querySelector('#nickname');
+var first_pwd = document.querySelector('#Password1');
 var confirm_pwd = document.querySelector('#signUpPassword2');
 var sign_btn = document.querySelector('.signup_btn');
 var signup_alert_txt = document.querySelector('.signup_alert_txt');
