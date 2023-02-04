@@ -1,9 +1,9 @@
 
 const apiUrl = 'https://todoo.5xcamp.us';
 const allinput = document.querySelectorAll('input');
-const mail = document.querySelector('#signUpEmail');
-const nickname = document.querySelector('#signUpNickName');
-const first_pwd = document.querySelector('#signUpPassword');
+const mail = document.querySelector('#Email1');
+const nickname = document.querySelector('#nickname');
+const first_pwd = document.querySelector('#Password1');
 const confirm_pwd = document.querySelector('#signUpPassword2');
 const sign_btn = document.querySelector('.signup_btn');
 const signup_alert_txt = document.querySelector('.signup_alert_txt');
