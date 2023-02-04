@@ -3,7 +3,7 @@ const apiUrl = 'https://todoo.5xcamp.us';
 const allinput = document.querySelectorAll('input');
 const mail = document.querySelector('#Email1');
 const nickname = document.querySelector('#nickname');
-const first_pwd = document.querySelector('#Password1');
+const password = document.querySelector('#Password1');
 const confirm_pwd = document.querySelector('#signUpPassword2');
 const sign_btn = document.querySelector('.signup_btn');
 const signup_alert_txt = document.querySelector('.signup_alert_txt');
@@ -22,6 +22,8 @@ sign_btn.addEventListener('click', () =>{
   }
   console.log(132);
 })
+
+function signup(email, nickname, passsword)
 
 function signup_check(){
   let isnull = false;
@@ -62,6 +64,6 @@ function signup_check(){
 function signup_reset(){
   mail.value = '';
   nickname.value = '';
-  first_pwd.value = '';
+  password.value = '';
   confirm_pwd.value = '';
 }
