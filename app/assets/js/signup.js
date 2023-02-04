@@ -44,17 +44,17 @@ function signup_check(){
     signup_reset();
     return;
   }
-  if(first_pwd.value.trim().length < 6){
+  if(password.value.trim().length < 6){
     signup_alert_txt.textContent = '密碼必須6個字以上喔 ! ';
     myModal.show();
-    first_pwd.value = '';
+    password.value = '';
     confirm_pwd.value = '';
     return;
   }
-  if(first_pwd.value !== confirm_pwd.value){
+  if(password.value !== confirm_pwd.value){
     signup_alert_txt.textContent = '兩次的密碼輸入不一致喔 ! ';
     myModal.show();
-    first_pwd.value = '';
+    password.value = '';
     confirm_pwd.value = '';
     return;
   }
