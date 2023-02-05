@@ -33,34 +33,6 @@ function login(email, password) {
     }
   });
 }
-
-// const input = async(mail, pwd) => {
-//   try{
-//     const res = await login(mail, pwd);
-//     //設置默認標頭的機制語法，該標頭將隨您發出的每個請求一起發送
-//     axios.defaults.headers.common['Authorization'] = res.headers.Authorization
-//     sessionStorage.setItem('token', res.headers.Authorization)
-//     sessionStorage.setItem('name', res.data.nickname)
-//     setTimeout(() =>{
-//       status_txt.textContent = '';
-//       alert_txt.innerHTML = `登入成功 ! 歡迎${res.data.nickname} 回來 <br><br> 即將跳轉待辦清單...`;
-//       loginModal.show();
-//       reset();
-//       setTimeout(() =>{
-//         document.location.href='./addTodos.html';
-//       }, 2000);
-//     }, 1000);
-
-//   }catch(error){
-//     setTimeout(() =>{
-//       status_txt.textContent = '';
-//       alert_txt.textContent = '登入失敗，您的Email或密碼有誤!'
-//       loginModal.show()
-//       reset();
-//     }, 1000);
-//   }
-// }
-
 var input = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(mail, pwd) {
     var res;
@@ -72,16 +44,17 @@ var input = /*#__PURE__*/function () {
           return login(mail, pwd);
         case 3:
           res = _context.sent;
+          //設置默認標頭的機制語法，該標頭將隨您發出的每個請求一起發送
           axios.defaults.headers.common['Authorization'] = res.headers.authorization;
           sessionStorage.setItem('token', res.headers.authorization);
           sessionStorage.setItem('name', res.data.nickname);
           setTimeout(function () {
             status_txt.textContent = '';
-            alert_txt.innerHTML = "\u767B\u5165\u6210\u529F ! \u6B61\u8FCE ".concat(res.data.nickname, " \u56DE\u4F86 <br><br> \u5373\u5C07\u8DF3\u8F49\u5F85\u8FA6\u6E05\u55AE ...");
+            alert_txt.innerHTML = "\u767B\u5165\u6210\u529F ! \u6B61\u8FCE".concat(res.data.nickname, " \u56DE\u4F86 <br><br> \u5373\u5C07\u8DF3\u8F49\u5F85\u8FA6\u6E05\u55AE...");
             loginModal.show();
             reset();
             setTimeout(function () {
-              document.location.href = './list.html';
+              document.location.href = './addTodos.html';
             }, 2000);
           }, 1000);
           _context.next = 13;
@@ -91,7 +64,7 @@ var input = /*#__PURE__*/function () {
           _context.t0 = _context["catch"](0);
           setTimeout(function () {
             status_txt.textContent = '';
-            alert_txt.textContent = '登入失敗，您的Email或密碼有誤 !  ';
+            alert_txt.textContent = '登入失敗，您的Email或密碼有誤!';
             loginModal.show();
             reset();
           }, 1000);
