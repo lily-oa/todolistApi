@@ -1,7 +1,7 @@
 const apiUrl = 'https://todoo.5xcamp.us';
 const allinput = document.querySelectorAll('input');
 const mail = document.querySelector('#Email1');
-const nickname = document.querySelector('#nickname');
+const nickname = document.querySelector('.nickname');
 const password = document.querySelector('#Password1');
 const confirm_pwd = document.querySelector('#signUpPassword2');
 const sign_btn = document.querySelector('.signup_btn');
@@ -10,7 +10,7 @@ const signup_modal = document.querySelector('.signup_modal');
 const signup_status_txt = document.querySelector('.signup_status_txt');
 const myModal = new bootstrap.Modal(modal, {})
 
-signup_reset();
+reset();
 
 sign_btn.addEventListener('click', () => {
   const format_isok = signup_check();
@@ -36,7 +36,7 @@ function signup(email, nickname, passsword) {
       setTimeout(() => {
         alert_txt.innerHTML = `註冊成功 ! 歡迎${res.data.nickname}光臨本網站 <br><br> 頁面即將在3秒後跳轉至登入畫面 ...`;
         myModal.show();
-        signup_reset();
+        reset();
         setTimeout(() => {
           document.location.href = './index.html'
         }, 20000)
@@ -48,7 +48,7 @@ function signup(email, nickname, passsword) {
         alert_txt.innerHTML = `很抱歉 ! 您的${error.response.data.error[0]} 請重新註冊`;
         myModal.show();
         status_txt.textContent = '';
-        signup_reset();
+        reset();
       }, 1000);
     })
 }
@@ -69,7 +69,7 @@ function signup_check() {
   if (signUpEmail.value.match('@') === null) {
     signup_alert_txt.textContent = 'Email 格式不正確';
     myModal.show();
-    signup_reset();
+    reset();
     return;
   }
   if (password.value.trim().length < 6) {
@@ -89,7 +89,7 @@ function signup_check() {
   return true;
 }
 
-function signup_reset() {
+function reset() {
   mail.value = '';
   nickname.value = '';
   password.value = '';
