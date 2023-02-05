@@ -191,7 +191,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 var apiUrl = 'https://todoo.5xcamp.us';
 var allinput = document.querySelectorAll('input');
 var mail = document.querySelector('#Email1');
-var nickname = document.querySelector('#nickname');
+var nickname = document.querySelector('.nickname');
 var password = document.querySelector('#Password1');
 var confirm_pwd = document.querySelector('#signUpPassword2');
 var sign_btn = document.querySelector('.signup_btn');
@@ -199,7 +199,7 @@ var signup_alert_txt = document.querySelector('.signup_alert_txt');
 var signup_modal = document.querySelector('.signup_modal');
 var signup_status_txt = document.querySelector('.signup_status_txt');
 var myModal = new bootstrap.Modal(modal, {});
-signup_reset();
+reset();
 sign_btn.addEventListener('click', function () {
   var format_isok = signup_check();
   if (format_isok === true) {
@@ -221,7 +221,7 @@ function signup(email, nickname, passsword) {
     setTimeout(function () {
       alert_txt.innerHTML = "\u8A3B\u518A\u6210\u529F ! \u6B61\u8FCE".concat(res.data.nickname, "\u5149\u81E8\u672C\u7DB2\u7AD9 <br><br> \u9801\u9762\u5373\u5C07\u57283\u79D2\u5F8C\u8DF3\u8F49\u81F3\u767B\u5165\u756B\u9762 ...");
       myModal.show();
-      signup_reset();
+      reset();
       setTimeout(function () {
         document.location.href = './index.html';
       }, 20000);
@@ -232,7 +232,7 @@ function signup(email, nickname, passsword) {
       alert_txt.innerHTML = "\u5F88\u62B1\u6B49 ! \u60A8\u7684".concat(error.response.data.error[0], " \u8ACB\u91CD\u65B0\u8A3B\u518A");
       myModal.show();
       status_txt.textContent = '';
-      signup_reset();
+      reset();
     }, 1000);
   });
 }
@@ -260,7 +260,7 @@ function signup_check() {
   if (signUpEmail.value.match('@') === null) {
     signup_alert_txt.textContent = 'Email 格式不正確';
     myModal.show();
-    signup_reset();
+    reset();
     return;
   }
   if (password.value.trim().length < 6) {
@@ -279,7 +279,7 @@ function signup_check() {
   }
   return true;
 }
-function signup_reset() {
+function reset() {
   mail.value = '';
   nickname.value = '';
   password.value = '';
