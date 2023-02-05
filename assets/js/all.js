@@ -33,6 +33,34 @@ function login(email, password) {
     }
   });
 }
+
+// const input = async(mail, pwd) => {
+//   try{
+//     const res = await login(mail, pwd);
+//     //設置默認標頭的機制語法，該標頭將隨您發出的每個請求一起發送
+//     axios.defaults.headers.common['Authorization'] = res.headers.Authorization
+//     sessionStorage.setItem('token', res.headers.Authorization)
+//     sessionStorage.setItem('name', res.data.nickname)
+//     setTimeout(() =>{
+//       status_txt.textContent = '';
+//       alert_txt.innerHTML = `登入成功 ! 歡迎${res.data.nickname} 回來 <br><br> 即將跳轉待辦清單...`;
+//       loginModal.show();
+//       reset();
+//       setTimeout(() =>{
+//         document.location.href='./addTodos.html';
+//       }, 2000);
+//     }, 1000);
+
+//   }catch(error){
+//     setTimeout(() =>{
+//       status_txt.textContent = '';
+//       alert_txt.textContent = '登入失敗，您的Email或密碼有誤!'
+//       loginModal.show()
+//       reset();
+//     }, 1000);
+//   }
+// }
+
 var input = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(mail, pwd) {
     var res;
@@ -44,17 +72,16 @@ var input = /*#__PURE__*/function () {
           return login(mail, pwd);
         case 3:
           res = _context.sent;
-          //設置默認標頭的機制語法，該標頭將隨您發出的每個請求一起發送
-          axios.defaults.headers.common['Authorization'] = res.headers.Authorization;
-          sessionStorage.setItem('token', res.headers.Authorization);
+          axios.defaults.headers.common['Authorization'] = res.headers.authorization;
+          sessionStorage.setItem('token', res.headers.authorization);
           sessionStorage.setItem('name', res.data.nickname);
           setTimeout(function () {
             status_txt.textContent = '';
-            alert_txt.innerHTML = "\u767B\u5165\u6210\u529F ! \u6B61\u8FCE".concat(res.data.nickname, " \u56DE\u4F86 <br><br> \u5373\u5C07\u8DF3\u8F49\u5F85\u8FA6\u6E05\u55AE...");
+            alert_txt.innerHTML = "\u767B\u5165\u6210\u529F ! \u6B61\u8FCE ".concat(res.data.nickname, " \u56DE\u4F86 <br><br> \u5373\u5C07\u8DF3\u8F49\u5F85\u8FA6\u6E05\u55AE ...");
             loginModal.show();
             reset();
             setTimeout(function () {
-              document.location.href = './addTodos.html';
+              document.location.href = './list.html';
             }, 2000);
           }, 1000);
           _context.next = 13;
@@ -64,7 +91,7 @@ var input = /*#__PURE__*/function () {
           _context.t0 = _context["catch"](0);
           setTimeout(function () {
             status_txt.textContent = '';
-            alert_txt.textContent = '登入失敗，您的Email或密碼有誤!';
+            alert_txt.textContent = '登入失敗，您的Email或密碼有誤 !  ';
             loginModal.show();
             reset();
           }, 1000);
@@ -114,75 +141,6 @@ function reset() {
   email.value = '';
   password.value = '';
 }
-
-//---------------------------------------------------------------signUp JS
-
-//共用 apiUrl、 allinput
-
-// const mail = document.querySelector('#signUpEmail');
-// const nickname = document.querySelector('#signUpNickName');
-// const first_pwd = document.querySelector('#signUpPassword');
-// const confirm_pwd = document.querySelector('#signUpPassword2');
-// const sign_btn = document.querySelector('.signup_btn');
-// const signup_alert_txt = document.querySelector('.signup_alert_txt');
-// const signup_modal = document.querySelector('.signup_modal');
-// const signup_status_txt = document.querySelector('.signup_status_txt');
-// const myModal = new bootstrap.Modal(modal, {})
-
-// signup_reset();
-
-// sign_btn.addEventListener('click', () =>{
-//   const format_isok = signup_check();
-//   if(format_isok === true){
-//     signup(mail, nickname, password)
-//   }else{
-//     return
-//   }
-//   console.log(132);
-// })
-
-// function signup_check(){
-//   let isnull = false;
-
-//   for(const item of allinput){
-//     if(item.value === ''){
-//       isnull = true;
-//       break;
-//     }
-//   }
-//   if(isnull === true){
-//     signup_alert_txt.textContent = '您還有欄位尚未填寫';
-//     myModal.show();
-//   }
-//   if(signUpEmail.value.match('@') === null){
-//     signup_alert_txt.textContent = 'Email 格式不正確';
-//     myModal.show();
-//     signup_reset();
-//     return;
-//   }
-//   if(first_pwd.value.trim().length < 6){
-//     signup_alert_txt.textContent = '密碼必須6個字以上喔 ! ';
-//     myModal.show();
-//     first_pwd.value = '';
-//     confirm_pwd.value = '';
-//     return;
-//   }
-//   if(first_pwd.value !== confirm_pwd.value){
-//     signup_alert_txt.textContent = '兩次的密碼輸入不一致喔 ! ';
-//     myModal.show();
-//     first_pwd.value = '';
-//     confirm_pwd.value = '';
-//     return;
-//   }
-//   return true;
-// }
-
-// function signup_reset(){
-//   mail.value = '';
-//   nickname.value = '';
-//   first_pwd.value = '';
-//   confirm_pwd.value = '';
-// }
 "use strict";
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
@@ -191,7 +149,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 var apiUrl = 'https://todoo.5xcamp.us';
 var allinput = document.querySelectorAll('input');
 var mail = document.querySelector('#Email1');
-var nickname = document.querySelector('.nickname');
+var nickname = document.querySelector('#nickname');
 var password = document.querySelector('#Password1');
 var confirm_pwd = document.querySelector('#signUpPassword2');
 var sign_btn = document.querySelector('.signup_btn');
