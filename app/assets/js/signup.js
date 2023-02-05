@@ -1,4 +1,3 @@
-
 const apiUrl = 'https://todoo.5xcamp.us';
 const allinput = document.querySelectorAll('input');
 const mail = document.querySelector('#Email1');
@@ -13,47 +12,74 @@ const myModal = new bootstrap.Modal(modal, {})
 
 signup_reset();
 
-sign_btn.addEventListener('click', () =>{
+sign_btn.addEventListener('click', () => {
   const format_isok = signup_check();
-  if(format_isok === true){
+  if (format_isok === true) {
     signup(mail, nickname, password)
-  }else{
+  } else {
     return
   }
   console.log(132);
 })
 
-function signup(email, nickname, passsword){
-  
+function signup(email, nickname, passsword) {
+  status_txt.textContent = '註冊中請稍後 ... ';
+  axios.post(`${apiUrl}/users`, {
+    "user": {
+      "email": email.value,
+      "nickname": nickname.value,
+      "password": passsword.value
+    }
+  }
+  )
+    .then(res => {
+      setTimeout(() => {
+        alert_txt.innerHTML = `註冊成功 ! 歡迎${res.data.nickname}光臨本網站 <br><br> 頁面即將在3秒後跳轉至登入畫面 ...`;
+        myModal.show();
+        signup_reset();
+        setTimeout(() => {
+          document.location.href = './index.html'
+        }, 20000)
+      }, 10000)
+    })
+    .catch(error => {
+      console.log(error.response);
+      setTimeout(() => {
+        alert_txt.innerHTML = `很抱歉 ! 您的${error.response.data.error[0]} 請重新註冊`;
+        myModal.show();
+        status_txt.textContent = '';
+        signup_reset();
+      }, 1000);
+    })
 }
 
-function signup_check(){
+function signup_check() {
   let isnull = false;
 
-  for(const item of allinput){
-    if(item.value === ''){
+  for (const item of allinput) {
+    if (item.value === '') {
       isnull = true;
       break;
     }
   }
-  if(isnull === true){
+  if (isnull === true) {
     signup_alert_txt.textContent = '您還有欄位尚未填寫';
     myModal.show();
   }
-  if(signUpEmail.value.match('@') === null){
+  if (signUpEmail.value.match('@') === null) {
     signup_alert_txt.textContent = 'Email 格式不正確';
     myModal.show();
     signup_reset();
     return;
   }
-  if(password.value.trim().length < 6){
+  if (password.value.trim().length < 6) {
     signup_alert_txt.textContent = '密碼必須6個字以上喔 ! ';
     myModal.show();
     password.value = '';
     confirm_pwd.value = '';
     return;
   }
-  if(password.value !== confirm_pwd.value){
+  if (password.value !== confirm_pwd.value) {
     signup_alert_txt.textContent = '兩次的密碼輸入不一致喔 ! ';
     myModal.show();
     password.value = '';
@@ -63,7 +89,7 @@ function signup_check(){
   return true;
 }
 
-function signup_reset(){
+function signup_reset() {
   mail.value = '';
   nickname.value = '';
   password.value = '';
