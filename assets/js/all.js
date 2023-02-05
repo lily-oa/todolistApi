@@ -120,19 +120,19 @@ function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 var apiUrl = 'https://todoo.5xcamp.us';
-var allinput = document.querySelectorAll('input');
 var mail = document.querySelector('#Email1');
 var nickname = document.querySelector('#nickname');
 var password = document.querySelector('#Password1');
-var confirm_pwd = document.querySelector('#signUpPassword2');
+var confirm_pwd = document.querySelector('#Password2');
 var sign_btn = document.querySelector('.signup_btn');
-var signup_alert_txt = document.querySelector('.signup_alert_txt');
-var signup_modal = document.querySelector('.signup_modal');
-var signup_status_txt = document.querySelector('.signup_status_txt');
+var allinput = document.querySelectorAll('input');
+var alert_txt = document.querySelector('.signup_alert_txt');
+var modal = document.querySelector('.signup_modal');
+var status_txt = document.querySelector('.signup_status_txt');
 var myModal = new bootstrap.Modal(modal, {});
 reset();
 sign_btn.addEventListener('click', function () {
-  var format_isok = signup_check();
+  var format_isok = check();
   if (format_isok === true) {
     signup(mail, nickname, password);
   } else {
@@ -140,13 +140,13 @@ sign_btn.addEventListener('click', function () {
   }
   console.log(132);
 });
-function signup(email, nickname, passsword) {
+function signup(email, nickname, password) {
   status_txt.textContent = '註冊中請稍後 ... ';
   axios.post("".concat(apiUrl, "/users"), {
     "user": {
       "email": email.value,
       "nickname": nickname.value,
-      "password": passsword.value
+      "password": password.value
     }
   }).then(function (res) {
     setTimeout(function () {
@@ -155,8 +155,8 @@ function signup(email, nickname, passsword) {
       reset();
       setTimeout(function () {
         document.location.href = './index.html';
-      }, 20000);
-    }, 10000);
+      }, 2000);
+    }, 1000);
   })["catch"](function (error) {
     console.log(error.response);
     setTimeout(function () {
@@ -167,14 +167,14 @@ function signup(email, nickname, passsword) {
     }, 1000);
   });
 }
-function signup_check() {
+function check() {
   var isnull = false;
   var _iterator = _createForOfIteratorHelper(allinput),
     _step;
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
       var item = _step.value;
-      if (item.value === '') {
+      if (item.value == '') {
         isnull = true;
         break;
       }
@@ -185,24 +185,25 @@ function signup_check() {
     _iterator.f();
   }
   if (isnull === true) {
-    signup_alert_txt.textContent = '您還有欄位尚未填寫';
+    alert_txt.textContent = '您還有欄位尚未填寫';
     myModal.show();
+    return;
   }
-  if (signUpEmail.value.match('@') === null) {
-    signup_alert_txt.textContent = 'Email 格式不正確';
+  if (mail.value.match('@') === null) {
+    alert_txt.textContent = 'Email 格式不正確';
     myModal.show();
     reset();
     return;
   }
   if (password.value.trim().length < 6) {
-    signup_alert_txt.textContent = '密碼必須6個字以上喔 ! ';
+    alert_txt.textContent = '密碼必須6個字以上喔 ! ';
     myModal.show();
     password.value = '';
     confirm_pwd.value = '';
     return;
   }
   if (password.value !== confirm_pwd.value) {
-    signup_alert_txt.textContent = '兩次的密碼輸入不一致喔 ! ';
+    alert_txt.textContent = '兩次的密碼輸入不一致喔 ! ';
     myModal.show();
     password.value = '';
     confirm_pwd.value = '';
