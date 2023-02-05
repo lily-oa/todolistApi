@@ -23,7 +23,9 @@ sign_btn.addEventListener('click', () =>{
   console.log(132);
 })
 
-function signup(email, nickname, passsword)
+function signup(email, nickname, passsword){
+  
+}
 
 function signup_check(){
   let isnull = false;
