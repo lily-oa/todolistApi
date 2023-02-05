@@ -192,7 +192,7 @@ var apiUrl = 'https://todoo.5xcamp.us';
 var allinput = document.querySelectorAll('input');
 var mail = document.querySelector('#Email1');
 var nickname = document.querySelector('#nickname');
-var first_pwd = document.querySelector('#Password1');
+var password = document.querySelector('#Password1');
 var confirm_pwd = document.querySelector('#signUpPassword2');
 var sign_btn = document.querySelector('.signup_btn');
 var signup_alert_txt = document.querySelector('.signup_alert_txt');
@@ -209,6 +209,7 @@ sign_btn.addEventListener('click', function () {
   }
   console.log(132);
 });
+function signup(email, nickname, passsword) {}
 function signup_check() {
   var isnull = false;
   var _iterator = _createForOfIteratorHelper(allinput),
@@ -236,17 +237,17 @@ function signup_check() {
     signup_reset();
     return;
   }
-  if (first_pwd.value.trim().length < 6) {
+  if (password.value.trim().length < 6) {
     signup_alert_txt.textContent = '密碼必須6個字以上喔 ! ';
     myModal.show();
-    first_pwd.value = '';
+    password.value = '';
     confirm_pwd.value = '';
     return;
   }
-  if (first_pwd.value !== confirm_pwd.value) {
+  if (password.value !== confirm_pwd.value) {
     signup_alert_txt.textContent = '兩次的密碼輸入不一致喔 ! ';
     myModal.show();
-    first_pwd.value = '';
+    password.value = '';
     confirm_pwd.value = '';
     return;
   }
@@ -255,7 +256,7 @@ function signup_check() {
 function signup_reset() {
   mail.value = '';
   nickname.value = '';
-  first_pwd.value = '';
+  password.value = '';
   confirm_pwd.value = '';
 }
 //# sourceMappingURL=all.js.map
