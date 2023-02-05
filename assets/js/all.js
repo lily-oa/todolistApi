@@ -209,7 +209,33 @@ sign_btn.addEventListener('click', function () {
   }
   console.log(132);
 });
-function signup(email, nickname, passsword) {}
+function signup(email, nickname, passsword) {
+  status_txt.textContent = '註冊中請稍後 ... ';
+  axios.post("".concat(apiUrl, "/users"), {
+    "user": {
+      "email": email.value,
+      "nickname": nickname.value,
+      "password": passsword.value
+    }
+  }).then(function (res) {
+    setTimeout(function () {
+      alert_txt.innerHTML = "\u8A3B\u518A\u6210\u529F ! \u6B61\u8FCE".concat(res.data.nickname, "\u5149\u81E8\u672C\u7DB2\u7AD9 <br><br> \u9801\u9762\u5373\u5C07\u57283\u79D2\u5F8C\u8DF3\u8F49\u81F3\u767B\u5165\u756B\u9762 ...");
+      myModal.show();
+      signup_reset();
+      setTimeout(function () {
+        document.location.href = './index.html';
+      }, 20000);
+    }, 10000);
+  })["catch"](function (error) {
+    console.log(error.response);
+    setTimeout(function () {
+      alert_txt.innerHTML = "\u5F88\u62B1\u6B49 ! \u60A8\u7684".concat(error.response.data.error[0], " \u8ACB\u91CD\u65B0\u8A3B\u518A");
+      myModal.show();
+      status_txt.textContent = '';
+      signup_reset();
+    }, 1000);
+  });
+}
 function signup_check() {
   var isnull = false;
   var _iterator = _createForOfIteratorHelper(allinput),
