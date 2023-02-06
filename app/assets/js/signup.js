@@ -17,7 +17,7 @@ sign_btn.addEventListener('click', () => {
   if (format_isok === true) {
     signup(mail, nickname, password)
   } else {
-    return
+    return;
   }
   console.log(132);
 })
