@@ -1,14 +1,14 @@
-const apiUrl = 'https://todoo.5xcamp.us';
-const mail = document.querySelector('#Email1');
+//const apiUrl = 'https://todoo.5xcamp.us';
+//onst mail = document.querySelector('#Email1');
 const nickname = document.querySelector('#nickname');
-const password = document.querySelector('#Password1');
+//const password = document.querySelector('#Password1');
 const confirm_pwd = document.querySelector('#Password2');
 const sign_btn = document.querySelector('.signup_btn');
-const allinput = document.querySelectorAll('input');
-const alert_txt = document.querySelector('.signup_alert_txt');
-const modal = document.querySelector('.signup_modal');
-const status_txt = document.querySelector('.signup_status_txt');
-const myModal = new bootstrap.Modal(modal, {})
+//const allinput = document.querySelectorAll('input');
+const signup_alert_txt = document.querySelector('.signup_alert_txt');
+const signup_modal = document.querySelector('.signup_modal');
+const signup_status_txt = document.querySelector('.signup_status_txt');
+const signup_myModal = new bootstrap.Modal(modal, {})
 
 reset();
 
@@ -23,7 +23,7 @@ sign_btn.addEventListener('click', () => {
 })
 
 function signup(email, nickname, password) {
-  status_txt.textContent = '註冊中請稍後 ... ';
+  signup_status_txt.textContent = '註冊中請稍後 ... ';
   axios.post(`${apiUrl}/users`, 
   {
     "user": {
@@ -35,8 +35,8 @@ function signup(email, nickname, password) {
   )
     .then(res => {
       setTimeout(() => {
-        alert_txt.innerHTML = `註冊成功 ! 歡迎${res.data.nickname}光臨本網站 <br><br> 頁面即將在3秒後跳轉至登入畫面 ...`;
-        myModal.show();
+        signup_alert_txt.innerHTML = `註冊成功 ! 歡迎${res.data.nickname}光臨本網站 <br><br> 頁面即將在3秒後跳轉至登入畫面 ...`;
+        signup_myModal.show();
         reset();
         setTimeout(() => {
           document.location.href = './index.html'
@@ -46,9 +46,9 @@ function signup(email, nickname, password) {
     .catch(error => {
       console.log(error.response);
       setTimeout(() => {
-        alert_txt.innerHTML = `很抱歉 ! 您的${error.response.data.error[0]} 請重新註冊`;
-        myModal.show();
-        status_txt.textContent = '';
+        signup_alert_txt.innerHTML = `很抱歉 ! 您的${error.response.data.error[0]} 請重新註冊`;
+        signup_myModal.show();
+        signup_status_txt.textContent = '';
         reset();
       }, 1000);
     })
@@ -64,26 +64,26 @@ function check() {
     }
   }
   if (isnull === true) {
-    alert_txt.textContent = '您還有欄位尚未填寫';
-    myModal.show();
+    signup_alert_txt.textContent = '您還有欄位尚未填寫';
+    signup_myModal.show();
     return;
   }
   if (mail.value.match('@') === null) {
-    alert_txt.textContent = 'Email 格式不正確';
-    myModal.show();
+    signup_alert_txt.textContent = 'Email 格式不正確';
+    signup_myModal.show();
     reset();
     return;
   }
   if (password.value.trim().length < 6) {
-    alert_txt.textContent = '密碼必須6個字以上喔 ! ';
-    myModal.show();
+    signup_alert_txt.textContent = '密碼必須6個字以上喔 ! ';
+    signup_myModal.show();
     password.value = '';
     confirm_pwd.value = '';
     return;
   }
   if (password.value !== confirm_pwd.value) {
-    alert_txt.textContent = '兩次的密碼輸入不一致喔 ! ';
-    myModal.show();
+    signup_alert_txt.textContent = '兩次的密碼輸入不一致喔 ! ';
+    signup_myModal.show();
     password.value = '';
     confirm_pwd.value = '';
     return;
