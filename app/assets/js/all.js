@@ -103,14 +103,13 @@ function loginReset(){
 
 signupReset();
 
-signup_btn.addEventListener('click', () => {
+signUpBtn.addEventListener('click', () => {
   const format_isok = signupCheck();
   if (format_isok === true) {
     signup(mail, nickname, password)
   } else {
     return;
   }
-  console.log(132);
 })
 
 function signup(email, nickname, password) {
@@ -183,8 +182,8 @@ function signupCheck() {
 }
 
 function signupReset() {
-  mail.value = '';
-  nickname.value = '';
-  password.value = '';
-  confirm_pwd.value = '';
+  signUpEmail.vlaue = '';
+  signUpNickname.value = '';
+  signUpPassword.value = '';
+  signUpPassword2.value = '';
 }
