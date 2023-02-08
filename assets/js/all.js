@@ -15,9 +15,10 @@ var loginPassword = document.querySelector('#login-password');
 var login_btn = document.querySelector('.login_btn');
 var login_alert_txt = document.querySelector('.login_alert_txt');
 var login_status_txt = document.querySelector('.login_status_txt');
-var callModal = document.querySelector('#login_modal');
-var loginModal = new bootstrap.Modal(callModal, {});
+var callModal = document.querySelector('#show_modal');
+var showModal = new bootstrap.Modal(callModal, {});
 //signup---------------------------------------
+var signUpInput = document.querySelector('.signUpInput');
 var signUpEmail = document.querySelector('#signUpEmail');
 var signUpNickname = document.querySelector('#signUpNickname');
 var signUpPassword = document.querySelector('#signUpPassword');
@@ -25,8 +26,9 @@ var signUpPassword2 = document.querySelector('#signUpPassword2');
 var signUpBtn = document.querySelector('.signup_btn');
 var signup_alert_txt = document.querySelector('.signup_alert_txt');
 var signup_status_txt = document.querySelector('.signup_status_txt');
-var signup_modal = document.querySelector('.signup_modal');
-var signup_myModal = new bootstrap.Modal(signup_modal, {});
+
+//const signup_modal = document.querySelector('.signup_modal');
+//const signup_myModal = new bootstrap.Modal(signup_modal, {})
 
 //login 設定------------------------------
 login_btn.addEventListener('click', function () {
@@ -64,7 +66,7 @@ var input = /*#__PURE__*/function () {
           setTimeout(function () {
             login_status_txt.textContent = '';
             login_alert_txt.innerHTML = "\u767B\u5165\u6210\u529F ! \u6B61\u8FCE".concat(res.data.nickname, " \u56DE\u4F86 <br><br> \u5373\u5C07\u8DF3\u8F49\u5F85\u8FA6\u6E05\u55AE...");
-            loginModal.show();
+            showModal.show();
             loginReset();
             setTimeout(function () {
               document.location.href = './addTodos.html';
@@ -78,7 +80,7 @@ var input = /*#__PURE__*/function () {
           setTimeout(function () {
             login_status_txt.textContent = '';
             login_alert_txt.textContent = '登入失敗，您的Email或密碼有誤!';
-            loginModal.show();
+            showModal.show();
             loginReset();
           }, 1000);
         case 13:
@@ -110,14 +112,14 @@ function loginCheck() {
   }
   if (isnull === true) {
     login_alert_txt.textContent = '您還有欄位尚未填寫喔!!';
-    loginModal.show();
+    showModal.show();
     loginReset();
     return;
   }
   //email的輸入值字串必須有 @
   if (loginEmail.value.match('@') === null) {
     login_alert_txt.textContent = '您的Email格式不正確!!!';
-    loginModal.show();
+    showModal.show();
     loginReset();
     return;
   }
@@ -132,25 +134,25 @@ function loginReset() {
 
 signupReset();
 signUpBtn.addEventListener('click', function () {
-  var format_isok = signupCheck();
-  if (format_isok === true) {
-    signup(mail, nickname, password);
+  var format_isOk = signupCheck();
+  if (format_isOk === true) {
+    signup(signUpEmail, signUpNickname, signUpPassword);
   } else {
     return;
   }
 });
-function signup(email, nickname, password) {
+function signup(signUpEmail, signUpNickname, signUpPassword) {
   signup_status_txt.textContent = '註冊中請稍後 ... ';
   axios.post("".concat(apiUrl, "/users"), {
     "user": {
-      "email": email.value,
-      "nickname": nickname.value,
-      "password": password.value
+      "email": signUpEmail.value,
+      "nickname": signUpNickname.value,
+      "password": signUpPassword.value
     }
   }).then(function (res) {
     setTimeout(function () {
       signup_alert_txt.innerHTML = "\u8A3B\u518A\u6210\u529F ! \u6B61\u8FCE".concat(res.data.nickname, "\u5149\u81E8\u672C\u7DB2\u7AD9 <br><br> \u9801\u9762\u5373\u5C07\u57283\u79D2\u5F8C\u8DF3\u8F49\u81F3\u767B\u5165\u756B\u9762 ...");
-      signup_myModal.show();
+      showModal.show();
       signupReset();
       setTimeout(function () {
         document.location.href = './index.html';
@@ -160,7 +162,7 @@ function signup(email, nickname, password) {
     console.log(error.response);
     setTimeout(function () {
       signup_alert_txt.innerHTML = "\u5F88\u62B1\u6B49 ! \u60A8\u7684".concat(error.response.data.error[0], " \u8ACB\u91CD\u65B0\u8A3B\u518A");
-      signup_myModal.show();
+      showModal.show();
       signup_status_txt.textContent = '';
       signupReset();
     }, 1000);
@@ -168,7 +170,7 @@ function signup(email, nickname, password) {
 }
 function signupCheck() {
   var isnull = false;
-  var _iterator2 = _createForOfIteratorHelper(allinput),
+  var _iterator2 = _createForOfIteratorHelper(signUpInput),
     _step2;
   try {
     for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
@@ -185,33 +187,33 @@ function signupCheck() {
   }
   if (isnull === true) {
     signup_alert_txt.textContent = '您還有欄位尚未填寫';
-    signup_myModal.show();
+    showModal.show();
     return;
   }
-  if (mail.value.match('@') === null) {
+  if (signUpEmail.value.match('@') === null) {
     signup_alert_txt.textContent = 'Email 格式不正確';
-    signup_myModal.show();
+    showModal.show();
     signupReset();
     return;
   }
-  if (password.value.trim().length < 6) {
+  if (signUpPassword.value.trim().length < 6) {
     signup_alert_txt.textContent = '密碼必須6個字以上喔 ! ';
-    signup_myModal.show();
-    password.value = '';
-    confirm_pwd.value = '';
+    showModal.show();
+    signUpPassword.value = '';
+    signUpPassword2.value = '';
     return;
   }
-  if (password.value !== confirm_pwd.value) {
+  if (signUpPassword.value !== signUpPassword2.value) {
     signup_alert_txt.textContent = '兩次的密碼輸入不一致喔 ! ';
-    signup_myModal.show();
-    password.value = '';
-    confirm_pwd.value = '';
+    showModal.show();
+    signUpPassword.value = '';
+    signUpPassword2.value = '';
     return;
   }
   return true;
 }
 function signupReset() {
-  signUpEmail.vlaue = '';
+  signUpEmail.value = '';
   signUpNickname.value = '';
   signUpPassword.value = '';
   signUpPassword2.value = '';
