@@ -126,7 +126,7 @@ function signup(signUpEmail, signUpNickname, signUpPassword) {
   })
     .then(res => {
       setTimeout(() => {
-        signup_alert_txt.innerHTML = `註冊成功 ! 歡迎${res.data.signUpNickname}光臨本網站 <br><br> 頁面即將在3秒後跳轉至登入畫面 ...`;
+        signup_alert_txt.innerHTML = `註冊成功 ! 歡迎${res.data.nickname}光臨本網站 <br><br> 頁面即將在3秒後跳轉至登入畫面 ...`;
         showModal.show();
         signupReset();
         setTimeout(() => {
