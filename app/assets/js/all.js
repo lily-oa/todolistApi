@@ -7,9 +7,10 @@ const loginPassword = document.querySelector('#login-password');
 const login_btn = document.querySelector('.login_btn');
 const login_alert_txt = document.querySelector('.login_alert_txt');
 const login_status_txt = document.querySelector('.login_status_txt');
-const callModal = document.querySelector('#login_modal');
-const loginModal = new bootstrap.Modal(callModal, {})
+const callModal = document.querySelector('#show_modal');
+const showModal = new bootstrap.Modal(callModal, {})
 //signup---------------------------------------
+const signUpInput = document.querySelector('.signUpInput')
 const signUpEmail = document.querySelector('#signUpEmail');
 const signUpNickname = document.querySelector('#signUpNickname');
 const signUpPassword = document.querySelector('#signUpPassword');
@@ -17,8 +18,9 @@ const signUpPassword2 = document.querySelector('#signUpPassword2');
 const signUpBtn = document.querySelector('.signup_btn');
 const signup_alert_txt = document.querySelector('.signup_alert_txt');
 const signup_status_txt = document.querySelector('.signup_status_txt');
-const signup_modal = document.querySelector('.signup_modal');
-const signup_myModal = new bootstrap.Modal(signup_modal, {})
+
+//const signup_modal = document.querySelector('.signup_modal');
+//const signup_myModal = new bootstrap.Modal(signup_modal, {})
 
 //login 設定------------------------------
 login_btn.addEventListener('click', () => {
@@ -52,7 +54,7 @@ const input = async(mail, pwd) => {
     setTimeout(() =>{
       login_status_txt.textContent = '';
       login_alert_txt.innerHTML = `登入成功 ! 歡迎${res.data.nickname} 回來 <br><br> 即將跳轉待辦清單...`;
-      loginModal.show();
+      showModal.show();
       loginReset();
       setTimeout(() =>{
         document.location.href='./addTodos.html';
@@ -63,7 +65,7 @@ const input = async(mail, pwd) => {
     setTimeout(() =>{
       login_status_txt.textContent = '';
       login_alert_txt.textContent = '登入失敗，您的Email或密碼有誤!'
-      loginModal.show()
+      showModal.show()
       loginReset();
     }, 1000);
   }
@@ -79,14 +81,14 @@ function loginCheck(){
   }
   if (isnull === true){
     login_alert_txt.textContent = '您還有欄位尚未填寫喔!!';
-    loginModal.show();
+    showModal.show();
     loginReset();
     return;
   }
   //email的輸入值字串必須有 @
   if(loginEmail.value.match('@') === null){
     login_alert_txt.textContent = '您的Email格式不正確!!!';
-    loginModal.show();
+    showModal.show();
     loginReset();
     return;
   }
@@ -104,29 +106,28 @@ function loginReset(){
 signupReset();
 
 signUpBtn.addEventListener('click', () => {
-  const format_isok = signupCheck();
-  if (format_isok === true) {
-    signup(mail, nickname, password)
+  const format_isOk = signupCheck();
+  if (format_isOk === true) {
+    signup(signUpEmail, signUpNickname, signUpPassword)
   } else {
     return;
   }
 })
 
-function signup(email, nickname, password) {
+function signup(signUpEmail, signUpNickname, signUpPassword) {
   signup_status_txt.textContent = '註冊中請稍後 ... ';
   axios.post(`${apiUrl}/users`, 
   {
     "user": {
-      "email": email.value,
-      "nickname": nickname.value,
-      "password": password.value
+      "email": signUpEmail.value,
+      "nickname": signUpNickname.value,
+      "password": signUpPassword.value
     }
-  }
-  )
+  })
     .then(res => {
       setTimeout(() => {
-        signup_alert_txt.innerHTML = `註冊成功 ! 歡迎${res.data.nickname}光臨本網站 <br><br> 頁面即將在3秒後跳轉至登入畫面 ...`;
-        signup_myModal.show();
+        signup_alert_txt.innerHTML = `註冊成功 ! 歡迎${res.data.signUpNickname}光臨本網站 <br><br> 頁面即將在3秒後跳轉至登入畫面 ...`;
+        showModal.show();
         signupReset();
         setTimeout(() => {
           document.location.href = './index.html'
@@ -137,7 +138,7 @@ function signup(email, nickname, password) {
       console.log(error.response);
       setTimeout(() => {
         signup_alert_txt.innerHTML = `很抱歉 ! 您的${error.response.data.error[0]} 請重新註冊`;
-        signup_myModal.show();
+        showModal.show();
         signup_status_txt.textContent = '';
         signupReset();
       }, 1000);
@@ -147,7 +148,7 @@ function signup(email, nickname, password) {
 function signupCheck() {
   let isnull = false;
 
-  for (const item of allinput) {
+  for (const item of signUpInput) {
     if (item.value == '') {
       isnull = true;
       break;
@@ -155,34 +156,34 @@ function signupCheck() {
   }
   if (isnull === true) {
     signup_alert_txt.textContent = '您還有欄位尚未填寫';
-    signup_myModal.show();
+    showModal.show();
     return;
   }
-  if (mail.value.match('@') === null) {
+  if (signUpEmail.value.match('@') === null) {
     signup_alert_txt.textContent = 'Email 格式不正確';
-    signup_myModal.show();
+    showModal.show();
     signupReset();
     return;
   }
-  if (password.value.trim().length < 6) {
+  if (signUpPassword.value.trim().length < 6) {
     signup_alert_txt.textContent = '密碼必須6個字以上喔 ! ';
-    signup_myModal.show();
-    password.value = '';
-    confirm_pwd.value = '';
+    showModal.show();
+    signUpPassword.value = '';
+    signUpPassword2.value = '';
     return;
   }
-  if (password.value !== confirm_pwd.value) {
+  if (signUpPassword.value !== signUpPassword2.value) {
     signup_alert_txt.textContent = '兩次的密碼輸入不一致喔 ! ';
-    signup_myModal.show();
-    password.value = '';
-    confirm_pwd.value = '';
+    showModal.show();
+    signUpPassword.value = '';
+    signUpPassword2.value = '';
     return;
   }
   return true;
 }
 
 function signupReset() {
-  signUpEmail.vlaue = '';
+  signUpEmail.value = '';
   signUpNickname.value = '';
   signUpPassword.value = '';
   signUpPassword2.value = '';
