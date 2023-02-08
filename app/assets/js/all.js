@@ -19,6 +19,7 @@ const signUpBtn = document.querySelector('.signup_btn');
 const signup_alert_txt = document.querySelector('.signup_alert_txt');
 const signup_status_txt = document.querySelector('.signup_status_txt');
 
+//將modal的動元素名稱設為一樣 
 //const signup_modal = document.querySelector('.signup_modal');
 //const signup_myModal = new bootstrap.Modal(signup_modal, {})
 
