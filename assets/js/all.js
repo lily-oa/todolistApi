@@ -131,14 +131,13 @@ function loginReset() {
 //signup 設定------------------------------
 
 signupReset();
-signup_btn.addEventListener('click', function () {
+signUpBtn.addEventListener('click', function () {
   var format_isok = signupCheck();
   if (format_isok === true) {
     signup(mail, nickname, password);
   } else {
     return;
   }
-  console.log(132);
 });
 function signup(email, nickname, password) {
   signup_status_txt.textContent = '註冊中請稍後 ... ';
@@ -212,9 +211,9 @@ function signupCheck() {
   return true;
 }
 function signupReset() {
-  mail.value = '';
-  nickname.value = '';
-  password.value = '';
-  confirm_pwd.value = '';
+  signUpEmail.vlaue = '';
+  signUpNickname.value = '';
+  signUpPassword.value = '';
+  signUpPassword2.value = '';
 }
 //# sourceMappingURL=all.js.map
