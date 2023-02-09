@@ -55,7 +55,7 @@ const input = async(mail, pwd) => {
     setTimeout(() =>{
       login_status_txt.textContent = '';
       login_alert_txt.innerHTML = `登入成功 ! 歡迎${res.data.nickname} 回來 <br><br> 即將跳轉待辦清單...`;
-      showModal.show();
+      //showModal.show();
       loginReset();
       setTimeout(() =>{
         document.location.href='./addTodos.html';
@@ -66,7 +66,7 @@ const input = async(mail, pwd) => {
     setTimeout(() =>{
       login_status_txt.textContent = '';
       login_alert_txt.textContent = '登入失敗，您的Email或密碼有誤!'
-      showModal.show()
+      //showModal.show()
       loginReset();
     }, 1000);
   }
@@ -82,14 +82,14 @@ function loginCheck(){
   }
   if (isnull === true){
     login_alert_txt.textContent = '您還有欄位尚未填寫喔!!';
-    showModal.show();
+    //showModal.show();
     loginReset();
     return;
   }
   //email的輸入值字串必須有 @
   if(loginEmail.value.match('@') === null){
     login_alert_txt.textContent = '您的Email格式不正確!!!';
-    showModal.show();
+    //showModal.show();
     loginReset();
     return;
   }
@@ -128,7 +128,7 @@ function signup(signUpEmail, signUpNickname, signUpPassword) {
     .then(res => {
       setTimeout(() => {
         signup_alert_txt.innerHTML = `註冊成功 ! 歡迎${res.data.nickname}光臨本網站 <br><br> 頁面即將在3秒後跳轉至登入畫面 ...`;
-        showModal.show();
+        //showModal.show();
         signupReset();
         setTimeout(() => {
           document.location.href = './index.html'
@@ -139,7 +139,7 @@ function signup(signUpEmail, signUpNickname, signUpPassword) {
       console.log(error.response);
       setTimeout(() => {
         signup_alert_txt.innerHTML = `很抱歉 ! 您的${error.response.data.error[0]} 請重新註冊`;
-        showModal.show();
+        //showModal.show();
         signup_status_txt.textContent = '';
         signupReset();
       }, 1000);
@@ -157,25 +157,25 @@ function signupCheck() {
   }
   if (isnull === true) {
     signup_alert_txt.textContent = '您還有欄位尚未填寫';
-    showModal.show();
+    //showModal.show();
     return;
   }
   if (signUpEmail.value.match('@') === null) {
     signup_alert_txt.textContent = 'Email 格式不正確';
-    showModal.show();
+    //showModal.show();
     signupReset();
     return;
   }
   if (signUpPassword.value.trim().length < 6) {
     signup_alert_txt.textContent = '密碼必須6個字以上喔 ! ';
-    showModal.show();
+    //showModal.show();
     signUpPassword.value = '';
     signUpPassword2.value = '';
     return;
   }
   if (signUpPassword.value !== signUpPassword2.value) {
     signup_alert_txt.textContent = '兩次的密碼輸入不一致喔 ! ';
-    showModal.show();
+    //showModal.show();
     signUpPassword.value = '';
     signUpPassword2.value = '';
     return;
