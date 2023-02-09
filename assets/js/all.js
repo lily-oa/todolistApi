@@ -67,7 +67,7 @@ var input = /*#__PURE__*/function () {
           setTimeout(function () {
             login_status_txt.textContent = '';
             login_alert_txt.innerHTML = "\u767B\u5165\u6210\u529F ! \u6B61\u8FCE".concat(res.data.nickname, " \u56DE\u4F86 <br><br> \u5373\u5C07\u8DF3\u8F49\u5F85\u8FA6\u6E05\u55AE...");
-            showModal.show();
+            //showModal.show();
             loginReset();
             setTimeout(function () {
               document.location.href = './addTodos.html';
@@ -81,7 +81,7 @@ var input = /*#__PURE__*/function () {
           setTimeout(function () {
             login_status_txt.textContent = '';
             login_alert_txt.textContent = '登入失敗，您的Email或密碼有誤!';
-            showModal.show();
+            //showModal.show()
             loginReset();
           }, 1000);
         case 13:
@@ -113,14 +113,14 @@ function loginCheck() {
   }
   if (isnull === true) {
     login_alert_txt.textContent = '您還有欄位尚未填寫喔!!';
-    showModal.show();
+    //showModal.show();
     loginReset();
     return;
   }
   //email的輸入值字串必須有 @
   if (loginEmail.value.match('@') === null) {
     login_alert_txt.textContent = '您的Email格式不正確!!!';
-    showModal.show();
+    //showModal.show();
     loginReset();
     return;
   }
@@ -153,7 +153,7 @@ function signup(signUpEmail, signUpNickname, signUpPassword) {
   }).then(function (res) {
     setTimeout(function () {
       signup_alert_txt.innerHTML = "\u8A3B\u518A\u6210\u529F ! \u6B61\u8FCE".concat(res.data.nickname, "\u5149\u81E8\u672C\u7DB2\u7AD9 <br><br> \u9801\u9762\u5373\u5C07\u57283\u79D2\u5F8C\u8DF3\u8F49\u81F3\u767B\u5165\u756B\u9762 ...");
-      showModal.show();
+      //showModal.show();
       signupReset();
       setTimeout(function () {
         document.location.href = './index.html';
@@ -163,7 +163,7 @@ function signup(signUpEmail, signUpNickname, signUpPassword) {
     console.log(error.response);
     setTimeout(function () {
       signup_alert_txt.innerHTML = "\u5F88\u62B1\u6B49 ! \u60A8\u7684".concat(error.response.data.error[0], " \u8ACB\u91CD\u65B0\u8A3B\u518A");
-      showModal.show();
+      //showModal.show();
       signup_status_txt.textContent = '';
       signupReset();
     }, 1000);
@@ -188,25 +188,25 @@ function signupCheck() {
   }
   if (isnull === true) {
     signup_alert_txt.textContent = '您還有欄位尚未填寫';
-    showModal.show();
+    //showModal.show();
     return;
   }
   if (signUpEmail.value.match('@') === null) {
     signup_alert_txt.textContent = 'Email 格式不正確';
-    showModal.show();
+    //showModal.show();
     signupReset();
     return;
   }
   if (signUpPassword.value.trim().length < 6) {
     signup_alert_txt.textContent = '密碼必須6個字以上喔 ! ';
-    showModal.show();
+    //showModal.show();
     signUpPassword.value = '';
     signUpPassword2.value = '';
     return;
   }
   if (signUpPassword.value !== signUpPassword2.value) {
     signup_alert_txt.textContent = '兩次的密碼輸入不一致喔 ! ';
-    showModal.show();
+    //showModal.show();
     signUpPassword.value = '';
     signUpPassword2.value = '';
     return;
