@@ -10,9 +10,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var apiUrl = 'https://todoo.5xcamp.us';
 //login-------------------------------------
 var loginInput = document.querySelectorAll('.login-input');
-var loginEmail = document.querySelector('#login-email');
-var loginPassword = document.querySelector('#login-password');
-var login_btn = document.querySelector('.login_btn');
+var login_btn = document.querySelector('#login_btn');
 var login_alert_txt = document.querySelector('.login_alert_txt');
 var login_status_txt = document.querySelector('.login_status_txt');
 // const callModal = document.querySelector('#show_modal');
@@ -118,6 +116,8 @@ function loginCheck() {
   return true;
 }
 function loginReset() {
+  var loginEmail = document.querySelector('#login-email');
+  var loginPassword = document.querySelector('#login-password');
   loginEmail.value = '';
   loginPassword.value = '';
 }
@@ -128,10 +128,6 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 //signup---------------------------------------
 var signUpInput = document.querySelector('.signUpInput');
-var signUpEmail = document.querySelector('#signUpEmail');
-var signUpNickname = document.querySelector('#signUpNickname');
-var signUpPassword = document.querySelector('#signUpPassword');
-var signUpPassword2 = document.querySelector('#signUpPassword2');
 var signUpBtn = document.querySelector('.signup_btn');
 var signup_alert_txt = document.querySelector('.signup_alert_txt');
 var signup_status_txt = document.querySelector('.signup_status_txt');
@@ -219,6 +215,10 @@ function signupCheck() {
   return true;
 }
 function signupReset() {
+  var signUpEmail = document.querySelector('#signUpEmail');
+  var signUpNickname = document.querySelector('#signUpNickname');
+  var signUpPassword = document.querySelector('#signUpPassword');
+  var signUpPassword2 = document.querySelector('#signUpPassword2');
   signUpEmail.value = '';
   signUpNickname.value = '';
   signUpPassword.value = '';
