@@ -51,26 +51,43 @@
         <div id="Password1Help" class="text-warning fs-7 mt-1 invalid-feedback">請設定6碼以上</div>
       </div>
       <div class="mb-3">
-        <label for="Password2" class="form-label">請再次輸入密碼</label>
-        <input type="password" class="signUpInput form-control py-14" id="Password2" placeholder="請再次輸入密碼" aria-describedby="Password2Help">
+        <label for="signUpPassword2" class="form-label">請再次輸入密碼</label>
+        <input type="password" class="signUpInput form-control py-14" id="signUpPassword2" placeholder="請再次輸入密碼" aria-describedby="Password2Help">
         <div id="Password2Help" class="text-warning fs-7 mt-1 invalid-feedback">密碼不一致</div>
       </div>
     </form>
       <div class="d-flex flex-column justify-content-center">
         <button type="submit" class="signup_btn btn btn-dark py-14 mx-auto px-12 mb-7 mt-7">註冊帳號</button>
         <a href="./index.html" class="text-dark text-center mb-16 mb-lg-15">登入</a>
-        <span class="text-danger" class="signup_status_txt"></span>
+        <span class="text-danger signup_status_txt"></span>
       </div>
   </div>
 </div>
-              
-<!--modal-->
-<!--
-<div class="modal fade" id="show_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <!--modal-->
+<!--loginModal-->
+<div class="modal fade js-login-modal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">系統提示</h5>
+        <h5 class="modal-title" id="loginModalLabel">系統提示</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="login_alert_txt"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--signupModal-->
+<div class="modal fade js-signup-modal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="signupModalLabel">系統提示</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -82,8 +99,7 @@
     </div>
   </div>
 </div>
--->
-
+              
             </div>
           </div>
         </div>
