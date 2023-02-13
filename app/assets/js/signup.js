@@ -1,9 +1,5 @@
 //signup---------------------------------------
 const signUpInput = document.querySelector('.signUpInput')
-const signUpEmail = document.querySelector('#signUpEmail');
-const signUpNickname = document.querySelector('#signUpNickname');
-const signUpPassword = document.querySelector('#signUpPassword');
-const signUpPassword2 = document.querySelector('#signUpPassword2');
 const signUpBtn = document.querySelector('.signup_btn');
 const signup_alert_txt = document.querySelector('.signup_alert_txt');
 const signup_status_txt = document.querySelector('.signup_status_txt');
@@ -90,6 +86,11 @@ function signupCheck() {
 }
 
 function signupReset() {
+  const signUpEmail = document.querySelector('#signUpEmail');
+  const signUpNickname = document.querySelector('#signUpNickname');
+  const signUpPassword = document.querySelector('#signUpPassword');
+  const signUpPassword2 = document.querySelector('#signUpPassword2');
+
   signUpEmail.value = '';
   signUpNickname.value = '';
   signUpPassword.value = '';

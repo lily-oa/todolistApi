@@ -2,9 +2,7 @@
 const apiUrl = 'https://todoo.5xcamp.us';
 //login-------------------------------------
 const loginInput = document.querySelectorAll('.login-input');
-const loginEmail = document.querySelector('#login-email');
-const loginPassword = document.querySelector('#login-password');
-const login_btn = document.querySelector('.login_btn');
+const login_btn = document.querySelector('#login_btn');
 const login_alert_txt = document.querySelector('.login_alert_txt');
 const login_status_txt = document.querySelector('.login_status_txt');
 // const callModal = document.querySelector('#show_modal');
@@ -89,6 +87,9 @@ function loginCheck(){
 }
 
 function loginReset(){
+  const loginEmail = document.querySelector('#login-email');
+  const loginPassword = document.querySelector('#login-password');
+
   loginEmail.value = '';
   loginPassword.value = '';
 }
