@@ -1,58 +1,12 @@
 ---
 title: TODOLIST-API signUp
-layout: ./app/layout.ejs
+layout: ./app/signUp.ejs
 engine: ejs
 current: signUp
 ---
 
-<div class="signUp">
-  <div class="container">
-    <div class="row justify-content-center align-items-lg-start">
-      <div class="col-12 col-lg-6 text-center d-flex flex-column align-items-center">
-        <img src="./assets/images/logo-1.png" alt="logo" class="d-black d-lg-none mt-11">
-        <img src="./assets/images/logo_lg-1.png" alt="logo_lg" class="d-none d-lg-block mt-lg-13 mb-6">
-        <img src="./assets/images/done.png" alt="done" class="d-none d-lg-block mb-13">
-      </div>
-      <div class="col-12 col-md-9 col-lg-6">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col col-md-10">
-              <h1 class="fs-4 mt-4 mt-lg-12 fw-bold text-center text-lg-start mb-9 mb-lg-7">註冊帳號</h1>
-              <form>
-                <div class="mb-3">
-                  <label for="signUpEmail" class="form-label">Email</label>
-                  <input type="email" class="signUpInput form-control py-14" id="signUpEmail" placeholder="請輸入Email" aria-describedby="emailHelp">
-                  <div id="emailHelp" class="text-warning fs-7 mt-1 invalid-feedback">請輸入正確Email</div>
-                </div>
-                <div class="mb-3">
-                  <label for="signUpNickname" class="form-label">暱稱</label>
-                  <input type="email" class="signUpInput form-control py-14" id="signUpNickname" placeholder="請輸入暱稱" aria-describedby="nickHelp">
-                  <div id="nickHelp" class="text-warning fs-7 mt-1 invalid-feedback">請輸入暱稱</div>
-                </div>
-                <div class="mb-3">
-                  <label for="signUpPassword" class="form-label">Password</label>
-                  <input type="password" class="signUpInput form-control py-14" id="signUpPassword" placeholder="請輸入密碼" aria-describedby="Password1Help">
-                  <div id="Password1Help" class="text-warning fs-7 mt-1 invalid-feedback">請設定6碼以上</div>
-                </div>
-                <div class="mb-3">
-                  <label for="Password2" class="form-label">請再次輸入密碼</label>
-                  <input type="password" class="signUpInput form-control py-14" id="Password2" placeholder="請再次輸入密碼" aria-describedby="Password2Help">
-                  <div id="Password2Help" class="text-warning fs-7 mt-1 invalid-feedback">密碼不一致</div>
-                </div>
-              </form>
-                <div class="d-flex flex-column justify-content-center">
-                  <button type="submit" class="signup_btn btn btn-dark py-14 mx-auto px-12 mb-7 mt-7">註冊帳號</button>
-                  <a href="./index.html" class="text-dark text-center mb-16 mb-lg-15">登入</a>
-                  <span class="text-danger" class="signup_status_txt"></span>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
 <!--modal-->
+<!--
 <div class="modal fade" id="show_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -69,6 +23,4 @@ current: signUp
     </div>
   </div>
 </div>
-
-
-</div>
+-->
