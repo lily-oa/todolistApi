@@ -26,7 +26,7 @@ if (login_btn) {
     }
   })
 }
-
+//-------------------------以上為之前發出錯誤時少寫的程式碼
 
 function login(loginEmail, loginPassword) {
   login_status_txt.textContent = '登入中請稍後 ...';
