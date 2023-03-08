@@ -14,7 +14,7 @@ var loginInput = document.querySelectorAll('.login-input');
 var login_btn = document.querySelector('#login_btn');
 var loginEmail = document.querySelector('#login-email');
 var loginPassword = document.querySelector('#login-password');
-var login_alert_txt = document.querySelector('.login_alert_txt');
+var login_alert_txt = document.querySelector('.login_alert_txt'); //在 loginModal 上
 var login_status_txt = document.querySelector('.login_status_txt');
 var loginModal = new bootstrap.Modal('.js-login-modal');
 
@@ -34,6 +34,8 @@ if (login_btn) {
     }
   });
 }
+//-------------------------以上為之前發出錯誤時少寫的程式碼
+
 function login(loginEmail, loginPassword) {
   login_status_txt.textContent = '登入中請稍後 ...';
   return axios.post("".concat(apiUrl, "/users/sign_in"), {
