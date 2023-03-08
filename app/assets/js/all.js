@@ -5,7 +5,7 @@ const loginInput = document.querySelectorAll('.login-input');
 const login_btn = document.querySelector('#login_btn');
 const loginEmail = document.querySelector('#login-email');
 const loginPassword = document.querySelector('#login-password');
-const login_alert_txt = document.querySelector('.login_alert_txt');
+const login_alert_txt = document.querySelector('.login_alert_txt');  //在 loginModal 上
 const login_status_txt = document.querySelector('.login_status_txt');
 const loginModal = new bootstrap.Modal('.js-login-modal');
 
