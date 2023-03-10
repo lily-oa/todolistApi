@@ -1,5 +1,5 @@
 todolist-api版本
 
-github: 
+github: https://github.com/lily-oa/todolistApi
 
-pages:
+pages: https://lily-oa.github.io/todolistApi/
