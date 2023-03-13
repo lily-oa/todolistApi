@@ -85,17 +85,19 @@ function signupCheck() {
   if (signUpPassword.value.trim().length < 6) {
     signup_alert_txt.textContent = '密碼必須6個字以上喔 ! ';
     signupModal.show();
-    // 為何以下這兩個程式碼不能用 ignupReset(); 去取代 
-    signUpPassword.value = '';
-    signUpPassword2.value = '';
+    signupReset();
+    // 為何以下這兩個程式碼不能用 signupReset(); 去取代 
+    // signUpPassword.value = '';
+    // signUpPassword2.value = '';
     return;
   }
   if (signUpPassword.value !== signUpPassword2.value) {
     signup_alert_txt.textContent = '兩次的密碼輸入不一致喔 ! ';
     signupModal.show();
-    // 為何以下這兩個程式碼不能用 ignupReset(); 去取代 
-    signUpPassword.value = '';
-    signUpPassword2.value = '';
+    signupReset();
+    // 為何以下這兩個程式碼不能用 signupReset(); 去取代 
+    // signUpPassword.value = '';
+    // signUpPassword2.value = '';
     return;
   }
   return true;
