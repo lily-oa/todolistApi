@@ -12,7 +12,10 @@ function init_token_render() {
   if (sessionStorage.getItem('token')) {
     var user_name = sessionStorage.getItem('name');
     header_logout.innerHTML = "\n    <span class=\"d-none d-lg-block me-7 username\">".concat(user_name, "\u7684\u4EE3\u8FA6\u4E8B\u9805</span>\n    <a href=\"#\" class=\"text-dark fs-7 fs-lg-6 logoutBtn\">\u767B\u51FA</a>\n    ");
-  } else {}
+    logout_btn = document.querySelector('.logoutBtn');
+  } else {
+    header_logout.innerHTML = "\n      \n  ";
+  }
 }
 "use strict";
 
