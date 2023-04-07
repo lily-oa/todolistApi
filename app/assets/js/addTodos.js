@@ -13,14 +13,16 @@ init_token_render();
 function init_token_render() {
   if (sessionStorage.getItem('token')) {
     const user_name = sessionStorage.getItem('name')
-    header_logout.innerHTML = `
+    header_logout.innerHTML=`
     <span class="d-none d-lg-block me-7 username">${user_name}的代辦事項</span>
-    <a href="#" class="text-dark fs-7 fs-lg-6 logoutBtn">登出</a>
+    <a href="#" class="text-dark fs-7 fs-lg-6 logout">登出</a>
     `
-    logout_btn = document.querySelector('.logoutBtn');
+    logout_btn = document.querySelector('.logout');
   } else {
-    header_logout.innerHTML = `
-      
+    header_logout.innerHTML=`
+      <a href="./index.html">登入</a>
+      <a href="./signUp.html" class="signup_btn btn btn-dark py-14 mx-auto px-12 mb-7 mt-7">註冊帳號</a>
   `
   }
 }
+
