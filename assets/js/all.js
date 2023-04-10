@@ -2,7 +2,6 @@
 
 var user = document.querySelector('.username');
 var header_logout = document.querySelector('.header_logout');
-var logout_btn;
 
 // init start
 
@@ -13,13 +12,15 @@ window.onload = function () {
   function init_token_render() {
     if (sessionStorage.getItem('token')) {
       var user_name = sessionStorage.getItem('name');
-      header_logout.innerHTML = "\n    <span class=\"d-none d-lg-block me-7 username\">".concat(user_name, "\u7684\u4EE3\u8FA6\u4E8B\u9805</span>\n    <a href=\"#\" class=\"text-dark fs-7 fs-lg-6 logout\">\u767B\u51FA</a>\n    ");
-      logout_btn = document.querySelector('.logout');
+      header_logout.innerHTML = "\n    <span class=\"d-none d-lg-block me-7 username\">".concat(user_name, "\u7684\u4EE3\u8FA6\u4E8B\u9805</span>\n    <a href=\"#\" class=\"text-dark fs-7 fs-lg-6 logoutBtn\">\u767B\u51FA</a>\n    ");
     } else {
-      header_logout.innerHTML = "\n      <a href=\"./index.html\">\u767B\u5165</a>\n      <a href=\"./signUp.html\" class=\"signup_btn btn btn-dark py-14 mx-auto px-12 mb-7 mt-7\">\u8A3B\u518A\u5E33\u865F</a>\n  ";
+      document.location.href = "index.html";
     }
   }
 };
+
+// 登出
+var logoutBtn = document.querySelector('.log');
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
