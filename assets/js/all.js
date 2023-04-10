@@ -31,6 +31,7 @@ if (logoutBtn) {
     }).then(function (res) {
       Swal.fire("".concat(res.data.message), "已登出!", "success").then(function (result) {
         if (result.isConfirmed) {
+          init_token_render();
           window.location.assign("index.html");
         }
       })["catch"](function (err) {
@@ -131,6 +132,7 @@ var input = /*#__PURE__*/function () {
   };
 }();
 function loginCheck() {
+  var loginModal = new bootstrap.Modal('.js-login-modal');
   var isnull = false;
   var _iterator = _createForOfIteratorHelper(loginInput),
     _step;
@@ -227,6 +229,7 @@ function signup(signUpEmail, signUpNickname, signUpPassword) {
   });
 }
 function signupCheck() {
+  var signupModal = new bootstrap.Modal('.js-signup-modal');
   var isnull = false;
   var _iterator = _createForOfIteratorHelper(signUpInput),
     _step;
