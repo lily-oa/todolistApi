@@ -7,7 +7,7 @@ const loginEmail = document.querySelector('#login-email');
 const loginPassword = document.querySelector('#login-password');
 const login_alert_txt = document.querySelector('.login_alert_txt');  //在 loginModal 上
 const login_status_txt = document.querySelector('.login_status_txt');
-const loginModal = new bootstrap.Modal('.js-login-modal');
+
 
 
 //login 設定------------------------------
@@ -41,6 +41,7 @@ function login(loginEmail, loginPassword) {
 }
 
 const input = async(mail, pwd) => {
+  const loginModal = new bootstrap.Modal('.js-login-modal');
   try{
     const res = await login(mail, pwd);
     //設置默認標頭的機制語法，該標頭將隨您發出的每個請求一起發送

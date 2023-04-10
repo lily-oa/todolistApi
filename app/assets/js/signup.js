@@ -7,7 +7,7 @@ const signUpPassword = document.querySelector('#signUpPassword');
 const signUpPassword2 = document.querySelector('#signUpPassword2');
 const signup_alert_txt = document.querySelector('.signup_alert_txt');
 const signup_status_txt = document.querySelector('.signup_status_txt');
-const signupModal = new bootstrap.Modal('.js-signup-modal');
+
 //-----------------------------------
 
 if (signUpBtn) {
@@ -33,6 +33,7 @@ if (signUpBtn) {
 
 function signup(signUpEmail, signUpNickname, signUpPassword) {
   signup_status_txt.textContent = `註冊中請稍後 ... `;
+  const signupModal = new bootstrap.Modal('.js-signup-modal');
   return axios.post(`${apiUrl}/users`, 
   {
     "user": {
