@@ -16,7 +16,7 @@ const header_logout = document.querySelector('.header_logout');
     <a href="#" class="text-dark fs-7 fs-lg-6 logoutBtn">登出</a>
     `
       } else {
-        window.location.assign("index.html");
+        return;
       }
     }
   
@@ -25,26 +25,26 @@ const header_logout = document.querySelector('.header_logout');
 
 
 //登出
-const logoutBtn = document.querySelector('.logoutBtn');
-if (logoutBtn) {
-  logoutBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    axios.delete(`${apiUrl}/users/sign_out`, {
-        headers: {
-          Authorization: localStorage.token,
-        },
-      })
-      .then((res) => {
-        Swal.fire(
-            `${res.data.message}`,
-            "已登出!",
-            "success"
-          ).then((result) => {
-            if (result.isConfirmed) {
-              window.location.assign("index.html");
-            }
-          })
-          .catch((err) => console.log(err.response));
-      })
-  })
-}
+// const logoutBtn = document.querySelector('.logoutBtn');
+// if (logoutBtn) {
+//   logoutBtn.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     axios.delete(`${apiUrl}/users/sign_out`, {
+//         headers: {
+//           Authorization: localStorage.token,
+//         },
+//       })
+//       .then((res) => {
+//         Swal.fire(
+//             `${res.data.message}`,
+//             "已登出!",
+//             "success"
+//           ).then((result) => {
+//             if (result.isConfirmed) {
+//               window.location.assign("index.html");
+//             }
+//           })
+//           .catch((err) => console.log(err.response));
+//       })
+//   })
+// }
