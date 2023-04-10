@@ -40,9 +40,9 @@ if (logoutBtn) {
             "success"
           ).then((result) => {
             if (result.isConfirmed) {
-              init_token_render();
-              window.location.assign("index.html");
               
+              window.location.assign("index.html");
+              init_token_render();
             }
           })
           .catch((err) => console.log(err.response));
