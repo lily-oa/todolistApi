@@ -64,6 +64,7 @@ function signup(signUpEmail, signUpNickname, signUpPassword) {
 }
 
 function signupCheck() {
+  const signupModal = new bootstrap.Modal('.js-signup-modal');
   let isnull = false;
 
   for (const item of signUpInput) {

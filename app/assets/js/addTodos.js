@@ -19,7 +19,7 @@ window.onload = function () {
         return;
       }
     }
-}
+  }
 
 
 // 登出
@@ -40,10 +40,12 @@ if (logoutBtn) {
             "success"
           ).then((result) => {
             if (result.isConfirmed) {
+              init_token_render();
               window.location.assign("index.html");
             }
           })
           .catch((err) => console.log(err.response));
       })
+        
   })
 }

@@ -69,6 +69,7 @@ const input = async(mail, pwd) => {
 }
 
 function loginCheck(){
+  const loginModal = new bootstrap.Modal('.js-login-modal');
   let isnull = false;
   for(const item of loginInput){
     if(item.value === ''){
