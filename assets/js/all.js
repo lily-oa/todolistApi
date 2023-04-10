@@ -12,30 +12,34 @@ function init_token_render() {
     var user_name = sessionStorage.getItem('name');
     header_logout.innerHTML = "\n    <span class=\"d-none d-lg-block me-7 username\">".concat(user_name, "\u7684\u4EE3\u8FA6\u4E8B\u9805</span>\n    <a href=\"#\" class=\"text-dark fs-7 fs-lg-6 logoutBtn\">\u767B\u51FA</a>\n    ");
   } else {
-    window.location.assign("index.html");
+    return;
   }
 }
 
 //登出
-var logoutBtn = document.querySelector('.logoutBtn');
-if (logoutBtn) {
-  logoutBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    axios["delete"]("".concat(apiUrl, "/users/sign_out"), {
-      headers: {
-        Authorization: localStorage.token
-      }
-    }).then(function (res) {
-      Swal.fire("".concat(res.data.message), "已登出!", "success").then(function (result) {
-        if (result.isConfirmed) {
-          window.location.assign("index.html");
-        }
-      })["catch"](function (err) {
-        return console.log(err.response);
-      });
-    });
-  });
-}
+// const logoutBtn = document.querySelector('.logoutBtn');
+// if (logoutBtn) {
+//   logoutBtn.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     axios.delete(`${apiUrl}/users/sign_out`, {
+//         headers: {
+//           Authorization: localStorage.token,
+//         },
+//       })
+//       .then((res) => {
+//         Swal.fire(
+//             `${res.data.message}`,
+//             "已登出!",
+//             "success"
+//           ).then((result) => {
+//             if (result.isConfirmed) {
+//               window.location.assign("index.html");
+//             }
+//           })
+//           .catch((err) => console.log(err.response));
+//       })
+//   })
+// }
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
