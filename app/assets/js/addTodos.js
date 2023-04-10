@@ -5,7 +5,7 @@ const header_logout = document.querySelector('.header_logout');
 // init start
 // 檢查有無token，若無token 不顯示登入後畫面
 
-window.onload = function () {
+
     init_token_render();
 
     function init_token_render() {
@@ -19,7 +19,7 @@ window.onload = function () {
         return;
       }
     }
-  }
+  
 
 
 // 登出
@@ -42,6 +42,7 @@ if (logoutBtn) {
             if (result.isConfirmed) {
               init_token_render();
               window.location.assign("index.html");
+              
             }
           })
           .catch((err) => console.log(err.response));
