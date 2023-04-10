@@ -47,6 +47,5 @@ if (logoutBtn) {
           })
           .catch((err) => console.log(err.response));
       })
-        
   })
 }
