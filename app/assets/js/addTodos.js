@@ -8,9 +8,11 @@ let logout_btn;
 // init start
 
 // 檢查有無token，若無token 不顯示登入後畫面
-init_token_render();
 
-function init_token_render() {
+
+  window.onload = function(){
+      init_token_render();
+  function init_token_render() {
   if (sessionStorage.getItem('token')) {
     const user_name = sessionStorage.getItem('name')
     header_logout.innerHTML=`
@@ -26,3 +28,4 @@ function init_token_render() {
   }
 }
 
+}
