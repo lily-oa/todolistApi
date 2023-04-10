@@ -4,7 +4,6 @@ var user = document.querySelector('.username');
 var header_logout = document.querySelector('.header_logout');
 
 // init start
-
 // 檢查有無token，若無token 不顯示登入後畫面
 
 window.onload = function () {
@@ -19,19 +18,23 @@ window.onload = function () {
   }
 };
 
-// 登出
+//登出
 var logoutBtn = document.querySelector('.logoutBtn');
 if (logoutBtn) {
   logoutBtn.addEventListener('click', function (e) {
     e.preventDefault();
-    axios["delete"]("".concat(apiUrl, "/users/sign_out"));
-  }).then(function (res) {
-    Swal.fire("".concat(res.data.message), "已登出!", "success").then(function (result) {
-      if (result.isConfirmed) {
-        window.location.assign("index.html");
+    axios["delete"]("".concat(apiUrl, "/users/sign_out"), {
+      headers: {
+        Authorization: localStorage.token
       }
-    })["catch"](function (err) {
-      return console.log(err.response);
+    }).then(function (res) {
+      Swal.fire("".concat(res.data.message), "已登出!", "success").then(function (result) {
+        if (result.isConfirmed) {
+          window.location.assign("index.html");
+        }
+      })["catch"](function (err) {
+        return console.log(err.response);
+      });
     });
   });
 }
@@ -52,7 +55,6 @@ var loginEmail = document.querySelector('#login-email');
 var loginPassword = document.querySelector('#login-password');
 var login_alert_txt = document.querySelector('.login_alert_txt'); //在 loginModal 上
 var login_status_txt = document.querySelector('.login_status_txt');
-var loginModal = new bootstrap.Modal('.js-login-modal');
 
 //login 設定------------------------------
 if (login_btn) {
@@ -83,14 +85,15 @@ function login(loginEmail, loginPassword) {
 }
 var input = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(mail, pwd) {
-    var res;
+    var loginModal, res;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          _context.prev = 0;
-          _context.next = 3;
+          loginModal = new bootstrap.Modal('.js-login-modal');
+          _context.prev = 1;
+          _context.next = 4;
           return login(mail, pwd);
-        case 3:
+        case 4:
           res = _context.sent;
           //設置默認標頭的機制語法，該標頭將隨您發出的每個請求一起發送
           axios.defaults.headers.common['Authorization'] = res.headers.authorization;
@@ -105,22 +108,22 @@ var input = /*#__PURE__*/function () {
               document.location.href = './addTodos.html';
             }, 2000);
           }, 1000);
-          _context.next = 13;
+          _context.next = 14;
           break;
-        case 10:
-          _context.prev = 10;
-          _context.t0 = _context["catch"](0);
+        case 11:
+          _context.prev = 11;
+          _context.t0 = _context["catch"](1);
           setTimeout(function () {
             login_status_txt.textContent = '';
             login_alert_txt.textContent = '登入失敗，您的Email或密碼有誤!';
             loginModal.show();
             loginReset();
           }, 1000);
-        case 13:
+        case 14:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 10]]);
+    }, _callee, null, [[1, 11]]);
   }));
   return function input(_x, _x2) {
     return _ref.apply(this, arguments);
@@ -176,7 +179,7 @@ var signUpPassword = document.querySelector('#signUpPassword');
 var signUpPassword2 = document.querySelector('#signUpPassword2');
 var signup_alert_txt = document.querySelector('.signup_alert_txt');
 var signup_status_txt = document.querySelector('.signup_status_txt');
-var signupModal = new bootstrap.Modal('.js-signup-modal');
+
 //-----------------------------------
 
 if (signUpBtn) {
@@ -196,6 +199,7 @@ if (signUpBtn) {
 }
 function signup(signUpEmail, signUpNickname, signUpPassword) {
   signup_status_txt.textContent = "\u8A3B\u518A\u4E2D\u8ACB\u7A0D\u5F8C ... ";
+  var signupModal = new bootstrap.Modal('.js-signup-modal');
   return axios.post("".concat(apiUrl, "/users"), {
     "user": {
       "email": signUpEmail.value,
