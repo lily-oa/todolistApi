@@ -6,17 +6,15 @@ var header_logout = document.querySelector('.header_logout');
 // init start
 // 檢查有無token，若無token 不顯示登入後畫面
 
-window.onload = function () {
-  init_token_render();
-  function init_token_render() {
-    if (sessionStorage.getItem('token')) {
-      var user_name = sessionStorage.getItem('name');
-      header_logout.innerHTML = "\n    <span class=\"d-none d-lg-block me-7 username\">".concat(user_name, "\u7684\u4EE3\u8FA6\u4E8B\u9805</span>\n    <a href=\"#\" class=\"text-dark fs-7 fs-lg-6 logoutBtn\">\u767B\u51FA</a>\n    ");
-    } else {
-      return;
-    }
+init_token_render();
+function init_token_render() {
+  if (sessionStorage.getItem('token')) {
+    var user_name = sessionStorage.getItem('name');
+    header_logout.innerHTML = "\n    <span class=\"d-none d-lg-block me-7 username\">".concat(user_name, "\u7684\u4EE3\u8FA6\u4E8B\u9805</span>\n    <a href=\"#\" class=\"text-dark fs-7 fs-lg-6 logoutBtn\">\u767B\u51FA</a>\n    ");
+  } else {
+    return;
   }
-};
+}
 
 // 登出
 var logoutBtn = document.querySelector('.logoutBtn');
@@ -31,8 +29,8 @@ if (logoutBtn) {
     }).then(function (res) {
       Swal.fire("".concat(res.data.message), "已登出!", "success").then(function (result) {
         if (result.isConfirmed) {
-          init_token_render();
           window.location.assign("index.html");
+          init_token_render();
         }
       })["catch"](function (err) {
         return console.log(err.response);
