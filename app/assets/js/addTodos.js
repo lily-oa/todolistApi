@@ -42,7 +42,6 @@ if (logoutBtn) {
             if (result.isConfirmed) {
               
               window.location.assign("index.html");
-              init_token_render();
             }
           })
           .catch((err) => console.log(err.response));
