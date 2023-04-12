@@ -18,16 +18,15 @@ function init_token_render() {
 
 // 登出
 var logoutBtn = document.querySelector('.logoutBtn');
+// if(logoutBtn){
+//   logoutBtn.addEventListener('click', function(e){
+//     if(header_logout == null || header_logout == ''){
+//       return;
+//     }
+//   })
+// }
 if (logoutBtn) {
   logoutBtn.addEventListener('click', function (e) {
-    if (header_logout == null || header_logout == '') {
-      return;
-    }
-  });
-}
-if (logoutBtn) {
-  logoutBtn.addEventListener('click', function (e) {
-    console.log(logoutBtn);
     e.preventDefault();
     axios["delete"]("".concat(apiUrl, "/users/sign_out"), {
       headers: {
@@ -35,8 +34,9 @@ if (logoutBtn) {
       }
     }).then(function (res) {
       Swal.fire("".concat(res.data.message), "已登出!", "success").then(function (result) {
-        if (result.isConfirmed) {
+        if (result.isConfirmed && header_logout == null) {
           window.location.assign("index.html");
+          return;
         }
       })["catch"](function (err) {
         return console.log(err.response);
