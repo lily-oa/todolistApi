@@ -45,10 +45,10 @@ if (logoutBtn) {
             "已登出!",
             "success"
           ).then((result) => {
-            if (result.isConfirmed && header_logout == null ) {
+            if (result.isConfirmed) {
               
               window.location.assign("index.html");
-              return;
+              
             }
           })
           .catch((err) => console.log(err.response));
