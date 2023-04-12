@@ -24,16 +24,15 @@ const header_logout = document.querySelector('.header_logout');
 
 // 登出
 const logoutBtn = document.querySelector('.logoutBtn');
-if(logoutBtn){
-  logoutBtn.addEventListener('click', function(e){
-    if(header_logout == null || header_logout == ''){
-      return;
-    }
-  })
-}
+// if(logoutBtn){
+//   logoutBtn.addEventListener('click', function(e){
+//     if(header_logout == null || header_logout == ''){
+//       return;
+//     }
+//   })
+// }
 if (logoutBtn) {
   logoutBtn.addEventListener('click', function (e) {
-    console.log(logoutBtn);
     e.preventDefault();
     axios.delete(`${apiUrl}/users/sign_out`, {
         headers: {
@@ -46,10 +45,10 @@ if (logoutBtn) {
             "已登出!",
             "success"
           ).then((result) => {
-            if (result.isConfirmed) {
+            if (result.isConfirmed && header_logout == null ) {
               
               window.location.assign("index.html");
-              
+              return;
             }
           })
           .catch((err) => console.log(err.response));
