@@ -42,6 +42,7 @@ if (logoutBtn) {
             if (result.isConfirmed) {
               
               window.location.assign("index.html");
+              return;
             }
           })
           .catch((err) => console.log(err.response));
