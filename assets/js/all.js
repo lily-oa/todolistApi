@@ -18,13 +18,6 @@ function init_token_render() {
 
 // 登出
 var logoutBtn = document.querySelector('.logoutBtn');
-// if(logoutBtn){
-//   logoutBtn.addEventListener('click', function(e){
-//     if(header_logout == null || header_logout == ''){
-//       return;
-//     }
-//   })
-// }
 if (logoutBtn) {
   logoutBtn.addEventListener('click', function (e) {
     e.preventDefault();
