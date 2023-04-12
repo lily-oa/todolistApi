@@ -54,7 +54,6 @@ var loginEmail = document.querySelector('#login-email');
 var loginPassword = document.querySelector('#login-password');
 var login_alert_txt = document.querySelector('.login_alert_txt'); //在 loginModal 上
 var login_status_txt = document.querySelector('.login_status_txt');
-var header_logout = document.querySelector('.header_logout');
 
 //login 設定------------------------------
 if (login_btn) {
