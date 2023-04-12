@@ -20,6 +20,13 @@ function init_token_render() {
 var logoutBtn = document.querySelector('.logoutBtn');
 if (logoutBtn) {
   logoutBtn.addEventListener('click', function (e) {
+    if (header_logout == null || header_logout == '') {
+      return;
+    }
+  });
+}
+if (logoutBtn) {
+  logoutBtn.addEventListener('click', function (e) {
     console.log(logoutBtn);
     e.preventDefault();
     axios["delete"]("".concat(apiUrl, "/users/sign_out"), {
