@@ -7,7 +7,7 @@ const loginEmail = document.querySelector('#login-email');
 const loginPassword = document.querySelector('#login-password');
 const login_alert_txt = document.querySelector('.login_alert_txt');  //在 loginModal 上
 const login_status_txt = document.querySelector('.login_status_txt');
-const header_logout = document.querySelector('.header_logout');
+
 
 
 //login 設定------------------------------
