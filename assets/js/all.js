@@ -30,6 +30,7 @@ if (logoutBtn) {
       Swal.fire("".concat(res.data.message), "已登出!", "success").then(function (result) {
         if (result.isConfirmed) {
           window.location.assign("index.html");
+          return;
         }
       })["catch"](function (err) {
         return console.log(err.response);
