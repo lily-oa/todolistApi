@@ -34,9 +34,8 @@ if (logoutBtn) {
       }
     }).then(function (res) {
       Swal.fire("".concat(res.data.message), "已登出!", "success").then(function (result) {
-        if (result.isConfirmed && header_logout == null) {
+        if (result.isConfirmed) {
           window.location.assign("index.html");
-          return;
         }
       })["catch"](function (err) {
         return console.log(err.response);
