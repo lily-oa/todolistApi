@@ -2,13 +2,16 @@
 
 var user = document.querySelector('.username');
 var header_logout = document.querySelector('.header_logout');
+var nonList = document.querySelector('.none-list');
+var listBlock = document.querySelector('.list-block');
 
-// init start
-// 檢查有無token，若無token 不顯示登入後畫面
-
+// 登入成功後呈現使用者名稱
+// 檢查.header_logout 是否有值，若有才執行init_token_render
 if (header_logout) {
   init_token_render();
 }
+
+// 檢查有無token，若無token 不顯示登入後畫面
 function init_token_render() {
   if (sessionStorage.getItem('token')) {
     var user_name = sessionStorage.getItem('name');
