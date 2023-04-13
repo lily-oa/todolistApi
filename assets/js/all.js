@@ -1,9 +1,14 @@
 "use strict";
 
+var list = document.querySelector('.list');
+var inputBlock = document.querySelector('.input-block');
 var user = document.querySelector('.username');
 var header_logout = document.querySelector('.header_logout');
+var inputText = document.querySelector('.input-text');
+var enterBtn = document.querySelector('.enter-btn');
 var nonList = document.querySelector('.none-list');
 var listBlock = document.querySelector('.list-block');
+var data = [];
 
 // 登入成功後呈現使用者名稱
 // 檢查.header_logout 是否有值，若有才執行init_token_render
@@ -41,6 +46,8 @@ if (logoutBtn) {
     });
   });
 }
+
+//渲染畫面
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
