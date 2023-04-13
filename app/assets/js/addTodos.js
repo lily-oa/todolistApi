@@ -5,9 +5,10 @@ const header_logout = document.querySelector('.header_logout');
 // init start
 // 檢查有無token，若無token 不顯示登入後畫面
 
-
-    init_token_render();
-
+    if(header_logout){
+      init_token_render();
+    }
+    
     function init_token_render() {
       if (sessionStorage.getItem('token')) {
         const user_name = sessionStorage.getItem('name')
@@ -39,9 +40,7 @@ if (logoutBtn) {
             "success"
           ).then((result) => {
             if (result.isConfirmed) {
-              
               window.location.assign("index.html");
-              
             }
           })
           .catch((err) => console.log(err.response));
