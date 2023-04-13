@@ -1,9 +1,13 @@
+const list = document.querySelector('.list');
+const inputBlock = document.querySelector('.input-block')
 const user = document.querySelector('.username');
 const header_logout = document.querySelector('.header_logout');
+const inputText = document.querySelector('.input-text');
+const enterBtn = document.querySelector('.enter-btn');
 const nonList = document.querySelector('.none-list');
 const listBlock = document.querySelector('.list-block');
 
-
+let data = [];
 
 
 
@@ -51,3 +55,4 @@ const listBlock = document.querySelector('.list-block');
       })
     }
 
+//渲染畫面
