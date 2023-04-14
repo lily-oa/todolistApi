@@ -64,7 +64,10 @@ function renderData(arr){
       <input type="checkbox" class="form-check-input">
       <span class="ps-4">${item.content}</span>
     </label>
-    <a href="#" class="delete"></a>
+    <a href="#" class="delete "></a>
   </li>`;
   });
+  nonList.setAtrribute('class', 'd-none');
+  listBlock.setAtrribute('class', 'd-block');
+  list.innerHtml = str;
 }
