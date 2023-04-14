@@ -48,6 +48,12 @@ if (logoutBtn) {
 }
 
 //渲染畫面
+function renderData(arr) {
+  var str = '';
+  arr.forEach(function (item) {
+    str += "<li data-id=\"".concat(item.id, "\">\n    <label for=\"\" class=\"checkbox\">\n      <input type=\"checkbox\" class=\"form-check-input\">\n      <span class=\"ps-4\">").concat(item.content, "</span>\n    </label>\n    <a href=\"#\" class=\"delete\"></a>\n  </li>");
+  });
+}
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
