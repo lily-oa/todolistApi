@@ -56,3 +56,15 @@ let data = [];
     }
 
 //渲染畫面
+function renderData(arr){
+  let str = '';
+  arr.forEach((item) => {
+    str += `<li data-id="${item.id}">
+    <label for="" class="checkbox">
+      <input type="checkbox" class="form-check-input">
+      <span class="ps-4">${item.content}</span>
+    </label>
+    <a href="#" class="delete"></a>
+  </li>`;
+  });
+}
