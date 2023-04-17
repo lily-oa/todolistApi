@@ -56,8 +56,6 @@ let data = [];
       })
     }
 
-// 
-
 
 //渲染畫面
 function renderData(arr){
@@ -84,3 +82,6 @@ function removeAll(){
     nonList.removeAttribute('class', 'd-none');
   }
 }
+
+//新增代碼
+
