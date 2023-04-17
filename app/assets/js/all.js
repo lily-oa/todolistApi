@@ -9,7 +9,6 @@ const login_alert_txt = document.querySelector('.login_alert_txt');  //在 login
 const login_status_txt = document.querySelector('.login_status_txt');
 
 
-
 //login 設定------------------------------
 if (login_btn) {
   login_btn.addEventListener('click', function (e) {
