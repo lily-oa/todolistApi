@@ -10,8 +10,9 @@ var nonList = document.querySelector('.none-list');
 var listBlock = document.querySelector('.list-block');
 var data = [];
 
-// 登入成功後呈現使用者名稱
+// 登入成功後顯示使用者名稱
 // 檢查.header_logout 是否有值，若有才執行init_token_render
+// (因為init_token_render只在addtoTods.html頁面才有，避免在別的頁面產生錯誤)
 if (header_logout) {
   init_token_render();
 }
@@ -36,7 +37,7 @@ if (logoutBtn) {
         Authorization: sessionStorage.token
       }
     }).then(function (res) {
-      Swal.fire("".concat(res.data.message), "已登出!", "success").then(function (result) {
+      Swal.fire("".concat(res.data.message), "已登出，下次見!!!", "success").then(function (result) {
         if (result.isConfirmed) {
           window.location.assign("index.html");
         }
@@ -47,15 +48,26 @@ if (logoutBtn) {
   });
 }
 
+// 
+
 //渲染畫面
 function renderData(arr) {
   var str = '';
   arr.forEach(function (item) {
-    str += "<li data-id=\"".concat(item.id, "\">\n    <label for=\"\" class=\"checkbox\">\n      <input type=\"checkbox\" class=\"form-check-input\">\n      <span class=\"ps-4\">").concat(item.content, "</span>\n    </label>\n    <a href=\"#\" class=\"delete \"></a>\n  </li>");
+    str += "<li data-id=\"".concat(item.id, "\">\n    <label for=\"\" class=\"checkbox\">\n      <input type=\"checkbox\" class=\"form-check-input\">\n      <span class=\"ps-4\">").concat(item.content, "</span>\n    </label>\n    <a href=\"#\" class=\"delete\"></a>\n  </li>");
   });
-  nonList.setAtrribute('class', 'd-none');
-  listBlock.setAtrribute('class', 'd-block');
+  nonList.setAttribute('class', 'd-none');
+  listBlock.setAttribute('class', 'd-block');
   list.innerHtml = str;
+  removeAll();
+}
+
+// clear All
+function removeAll() {
+  if (data.length === 0) {
+    listBlock.setAttribute('class', 'd-none');
+    nonList.removeAttribute('class', 'd-none');
+  }
 }
 "use strict";
 
