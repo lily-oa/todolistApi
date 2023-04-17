@@ -58,7 +58,7 @@ let data = [];
 
 
 //渲染畫面
-function renderData(arr){
+function renderData(arr) {
   let str = '';
   arr.forEach((item) => {
     str += `<li data-id="${item.id}">
@@ -69,15 +69,15 @@ function renderData(arr){
     <a href="#" class="delete"></a>
   </li>`;
   });
-  nonList.setAttribute('class', 'd-none');
+  nonList.setAttribute("class", "d-none");
   listBlock.setAttribute('class', 'd-block');
   list.innerHtml = str;
   removeAll();
 }
 
 // clear All
-function removeAll(){
-  if(data.length === 0){
+function removeAll() {
+  if (data.length === 0) {
     listBlock.setAttribute('class', 'd-none');
     nonList.removeAttribute('class', 'd-none');
   }
