@@ -11,8 +11,9 @@ let data = [];
 
 
 
-// 登入成功後呈現使用者名稱
+// 登入成功後顯示使用者名稱
 // 檢查.header_logout 是否有值，若有才執行init_token_render
+// (因為init_token_render只在addtoTods.html頁面才有，避免在別的頁面產生錯誤)
     if (header_logout) {
       init_token_render();
     }
@@ -43,7 +44,7 @@ let data = [];
           .then((res) => {
             Swal.fire(
                 `${res.data.message}`,
-                "已登出!",
+                "已登出，下次見!!!",
                 "success"
               ).then((result) => {
                 if (result.isConfirmed) {
@@ -55,6 +56,9 @@ let data = [];
       })
     }
 
+// 
+
+
 //渲染畫面
 function renderData(arr){
   let str = '';
@@ -64,10 +68,19 @@ function renderData(arr){
       <input type="checkbox" class="form-check-input">
       <span class="ps-4">${item.content}</span>
     </label>
-    <a href="#" class="delete "></a>
+    <a href="#" class="delete"></a>
   </li>`;
   });
-  nonList.setAtrribute('class', 'd-none');
-  listBlock.setAtrribute('class', 'd-block');
+  nonList.setAttribute('class', 'd-none');
+  listBlock.setAttribute('class', 'd-block');
   list.innerHtml = str;
+  removeAll();
+}
+
+// clear All
+function removeAll(){
+  if(data.length === 0){
+    listBlock.setAttribute('class', 'd-none');
+    nonList.removeAttribute('class', 'd-none');
+  }
 }
