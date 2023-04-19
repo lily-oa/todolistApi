@@ -84,3 +84,10 @@ function removeAll() {
 }
 
 //新增代碼
+if(enterBtn) {
+  enterBtn.addEventListener('click', addTodo);
+}
+
+function addTodo(){
+  
+}
