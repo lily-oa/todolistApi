@@ -32,7 +32,7 @@ var logoutBtn = document.querySelector('.logoutBtn');
 if (logoutBtn) {
   logoutBtn.addEventListener('click', function (e) {
     e.preventDefault();
-    axios["delete"]("".concat(apiUrl, "/users/sign_out"), {
+    return axios["delete"]("".concat(apiUrl, "/users/sign_out"), {
       headers: {
         Authorization: sessionStorage.getItem('token')
       }
@@ -47,6 +47,8 @@ if (logoutBtn) {
     });
   });
 }
+
+//------------------------------------------------------------渲染
 
 //渲染畫面
 function renderData(arr) {
@@ -68,7 +70,7 @@ function removeAll() {
   }
 }
 function getTodo() {
-  axios.get("".concat(apiUrl, "/todos"), {
+  return axios.get("".concat(apiUrl, "/todos"), {
     headers: {
       Authorization: sessionStorage.getItem('token')
     }
@@ -81,6 +83,8 @@ function getTodo() {
   });
 }
 
+//-----------------------------------------------------------------新增
+
 //新增代碼
 if (enterBtn) {
   enterBtn.addEventListener('click', addTodo);
@@ -89,7 +93,7 @@ function addTodo() {
   if (inputText.value === '') {
     return;
   }
-  axios.post("".concat(apiUrl, "/todos"), {
+  return axios.post("".concat(apiUrl, "/todos"), {
     todo: {
       content: inputText.value
     }
