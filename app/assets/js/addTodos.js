@@ -89,5 +89,16 @@ if(enterBtn) {
 }
 
 function addTodo(){
+  if(inputText.value === '') {
+    Swal.fire(
+      `請輸入代號`,
+      "代號空空是不行的",
+      "warning"
+    )
+    return;
+  }
   
 }
+  
+
+
