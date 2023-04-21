@@ -34,7 +34,7 @@ if (logoutBtn) {
     e.preventDefault();
     axios["delete"]("".concat(apiUrl, "/users/sign_out"), {
       headers: {
-        Authorization: sessionStorage.token
+        Authorization: sessionStorage.getItem('token')
       }
     }).then(function (res) {
       Swal.fire("".concat(res.data.message), "已登出，下次見!!!", "success").then(function (result) {
@@ -70,7 +70,7 @@ function removeAll() {
 function getTodo() {
   axios.get("".concat(apiUrl, "/todos"), {
     headers: {
-      Authorization: sessionStorage.token
+      Authorization: sessionStorage.getItem('token')
     }
   }).then(function (res) {
     // 推入陣列前做清空，避免重複寫入出現渲柒問題
@@ -95,7 +95,7 @@ function addTodo() {
     }
   }, {
     headers: {
-      Authorization: sessionStorage.token
+      Authorization: sessionStorage.getItem('token')
     }
   }).then(function (res) {
     getTodo();
