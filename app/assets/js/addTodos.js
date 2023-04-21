@@ -36,7 +36,7 @@ let data = [];
     if (logoutBtn) {
       logoutBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        axios.delete(`${apiUrl}/users/sign_out`, {
+        return axios.delete(`${apiUrl}/users/sign_out`, {
             headers: {
               Authorization: sessionStorage.getItem('token')
             },
@@ -55,6 +55,8 @@ let data = [];
           })
       })
     }
+
+//------------------------------------------------------------渲染
 
 
 //渲染畫面
@@ -84,7 +86,7 @@ function removeAll() {
 }
 
 function getTodo(){
-  axios.get(`${apiUrl}/todos`,{
+  return axios.get(`${apiUrl}/todos`,{
       headers:{
         Authorization: sessionStorage.getItem('token')
       },
@@ -103,6 +105,7 @@ function getTodo(){
     );
 }
 
+//-----------------------------------------------------------------新增
 
 //新增代碼
 if(enterBtn) {
@@ -113,7 +116,7 @@ function addTodo(){
   if(inputText.value === '') {
     return;
   }
-    axios.post(`${apiUrl}/todos`,
+  return axios.post(`${apiUrl}/todos`,
     {
       todo: {
         content: inputText.value,
