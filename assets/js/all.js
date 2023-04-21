@@ -72,7 +72,12 @@ function removeAll() {
 if (enterBtn) {
   enterBtn.addEventListener('click', addTodo);
 }
-function addTodo() {}
+function addTodo() {
+  if (inputText.value === '') {
+    Swal.fire("\u8ACB\u8F38\u5165\u4EE3\u865F", "代號空空是不行的", "warning");
+    return;
+  }
+}
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
