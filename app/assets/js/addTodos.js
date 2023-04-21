@@ -38,7 +38,7 @@ let data = [];
         e.preventDefault();
         axios.delete(`${apiUrl}/users/sign_out`, {
             headers: {
-              Authorization: sessionStorage.token,
+              Authorization: sessionStorage.getItem('token')
             },
           })
           .then((res) => {
@@ -86,7 +86,7 @@ function removeAll() {
 function getTodo(){
   axios.get(`${apiUrl}/todos`,{
       headers:{
-        Authorization: sessionStorage.token
+        Authorization: sessionStorage.getItem('token')
       },
     })
     .then((res) => {
@@ -121,7 +121,7 @@ function addTodo(){
     },
     {
       headers: {
-        Authorization: sessionStorage.token
+        Authorization: sessionStorage.getItem('token')
       }
     }
   )
