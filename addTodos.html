@@ -51,9 +51,9 @@
         <!--如果有任何代辦事項顯示-->
         <div class="card card_list list-block d-none">
           <ul class="tab d-flex">
-            <li class="active" data-tab="all">全部</li>
-            <li data-tab="undo">待完成</li>
-            <li data-tab="done">已完成</li>
+            <li class="active tabs-active" data-status="all">全部</li>
+            <li data-status="undo">待完成</li>
+            <li data-status="done">已完成</li>
           </ul>
           <div class="card_content">
             <ul class="list">
@@ -67,7 +67,7 @@
             </ul>
               <div class="list_footer d-flex justify-content-between">
                 <p class="footer_p">
-                  <span class="todoLength">0</span> 個待完成項目
+                  <span class="undo-num">0</span> 個待完成項目
                 </p>
                 <a href="#" class="btn_clear clear-all">清除已完成項目</a>
               </div>

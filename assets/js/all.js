@@ -67,6 +67,19 @@ function removeAll() {
     nonList.removeAttribute('class', 'd-none');
   }
 }
+function getTodo() {
+  axios.get("".concat(apiUrl, "/todos"), {
+    headers: {
+      Authorization: sessionStorage.token
+    }
+  }).then(function (res) {
+    // 推入陣列前做清空，避免重複寫入出現渲柒問題
+    data.splice(0, data.length);
+    data = res.data.todos;
+  })["catch"](function (err) {
+    return Swal.fire("".concat(err.response), '出現了一些錯誤', 'warning');
+  });
+}
 
 //新增代碼
 if (enterBtn) {
@@ -74,9 +87,72 @@ if (enterBtn) {
 }
 function addTodo() {
   if (inputText.value === '') {
-    Swal.fire("\u8ACB\u8F38\u5165\u4EE3\u865F", "代號空空是不行的", "warning");
     return;
   }
+  axios.post("".concat(apiUrl, "/todos"), {
+    todo: {
+      content: inputText.value
+    }
+  }, {
+    headers: {
+      Authorization: sessionStorage.token
+    }
+  }).then(function (res) {
+    getTodo();
+    var obj = {};
+    obj.content = inputText.value;
+    obj.check = '';
+    data.unshift(obj);
+    inputText.value = '';
+    updateList();
+  })["catch"](function (err) {
+    return console.log(err.response);
+  });
+}
+
+// 按鈕輸入
+if (inputBlock) {
+  inputBlock.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      addTodo();
+    }
+  });
+}
+
+// 切換畫面
+var tab = document.querySelector('.tab');
+var tabStatus = 'all';
+if (tab) {
+  tab.addEventListener('click', function (e) {
+    tabStatus = e.target.dataset.status;
+    var tabs = document.querySelectorAll('.tab li');
+    tabs.forEach(function (i) {
+      i.classList.remove('tabs-active');
+    });
+    e.target.classList.add('tabs-active');
+    updateList();
+  });
+}
+var undoNum = document.querySelector('.undo-num');
+function updateList() {
+  var showData = [];
+  if (tabStatus === 'all') {
+    showData = data;
+  } else if (tabStatus === 'undo') {
+    showData = data.filter(function (i) {
+      return i.completed_at === null;
+    });
+  } else if (tabStatus === 'done') {
+    showData = data.filter(function (i) {
+      return i.completed_at !== null;
+    });
+  }
+  var todoLength = data.filter(function (i) {
+    return i.completed_at === null;
+  });
+  var str = "".concat(todoLength.length, " \u500B\u5F85\u5B8C\u6210\u9805\u76EE");
+  undoNum.innerHTML = str;
+  renderData(showData);
 }
 "use strict";
 
