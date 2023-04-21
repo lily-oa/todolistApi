@@ -83,6 +83,27 @@ function removeAll() {
   }
 }
 
+function getTodo(){
+  axios.get(`${apiUrl}/todos`,{
+      headers:{
+        Authorization: sessionStorage.token
+      },
+    })
+    .then((res) => {
+// 推入陣列前做清空，避免重複寫入出現渲柒問題
+      data.splice(0, data.length);
+      data = res.data.todos;
+    })
+    .catch((err) => 
+      Swal.fire(
+        `${err.response}`,
+        '出現了一些錯誤',
+        'warning'
+      )
+    );
+}
+
+
 //新增代碼
 if(enterBtn) {
   enterBtn.addEventListener('click', addTodo);
@@ -90,15 +111,72 @@ if(enterBtn) {
 
 function addTodo(){
   if(inputText.value === '') {
-    Swal.fire(
-      `請輸入代號`,
-      "代號空空是不行的",
-      "warning"
-    )
     return;
   }
-  
+    axios.post(`${apiUrl}/todos`,
+    {
+      todo: {
+        content: inputText.value,
+      },
+    },
+    {
+      headers: {
+        Authorization: sessionStorage.token
+      }
+    }
+  )
+  .then((res) => {
+    getTodo();
+    let obj = {};
+    obj.content = inputText.value;
+    obj.check = '';
+    data.unshift(obj);
+    inputText.value = '';
+    updateList();
+  })
+  .catch((err) => console.log(err.response));
 }
   
+// 按鈕輸入
+if(inputBlock){
+  inputBlock.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){
+      addTodo();
+    }
+  })
+}
 
+// 切換畫面
+const tab = document.querySelector('.tab');
+let tabStatus = 'all';
+if(tab){
+  tab.addEventListener('click', function(e){
+    tabStatus = e.target.dataset.status;
+    let tabs = document.querySelectorAll('.tab li');
+    tabs.forEach((i) => {
+      i.classList.remove('tabs-active');
+    });
+    e.target.classList.add('tabs-active');
+    updateList();
+  });
+}
+
+let undoNum = document.querySelector('.undo-num');
+function updateList(){
+  let showData = [];
+
+  if(tabStatus === 'all'){
+    showData = data;
+  }else if(tabStatus === 'undo'){
+    showData = data.filter((i) => i.completed_at === null);
+  }else if(tabStatus === 'done'){
+    showData = data.filter((i) => i.completed_at !== null);
+  }
+
+  let todoLength = data.filter((i) => i.completed_at === null);
+  let str = `${todoLength.length} 個待完成項目`;
+  undoNum.innerHTML = str;
+
+  renderData(showData);
+}
 
