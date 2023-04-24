@@ -95,6 +95,7 @@ function getTodo() {
       // 推入陣列前做清空，避免重複寫入出現渲柒問題
       //data.splice(0, data.length);
       data = res.data.todos;
+      console.log(data);
       // updateList();
     })
     .catch((err) =>
