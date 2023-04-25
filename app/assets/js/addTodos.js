@@ -114,10 +114,11 @@ if(enterBtn) {
   enterBtn.addEventListener('click', addTodo);
 }
 
-function addTodo() {
+function addTodo(e) {
   if (inputText.value === '') {
     return;
   }
+  e.preventDefault();
   return axios.post(`${apiUrl}/todos`, {
       headers: {
         Authorization: sessionStorage.getItem('token')
