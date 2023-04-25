@@ -115,10 +115,10 @@ if(enterBtn) {
 }
 
 function addTodo(e) {
+  e.preventDefault();
   if (inputText.value === '') {
     return;
   }
-  e.preventDefault();
   return axios.post(`${apiUrl}/todos`, {
       headers: {
         Authorization: sessionStorage.getItem('token')
