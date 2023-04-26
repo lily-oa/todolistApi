@@ -51,31 +51,24 @@ if (logoutBtn) {
 //------------------------------------------------------------渲染
 
 //渲染畫面
-// function renderData(arr) {
-//   let str = '';
-//   arr.forEach((item) => {
-//     str += `<li data-id="${item.id}">
-//     <label for="" class="checkbox">
-//       <input type="checkbox" class="form-check-input">
-//       <span class="ps-4">${item.content}</span>
-//     </label>
-//     <a href="#" class="delete"></a>
-//   </li>`;
-//   });
-//   nonList.setAttribute("class", "d-none");
-//   listBlock.setAttribute('class', 'd-block');
-//   list.innerHtml = str;
-//   removeAll();
-// }
+function renderData(arr) {
+  var str = '';
+  arr.forEach(function (item) {
+    str += "<li data-id=\"".concat(item.id, "\">\n    <label for=\"\" class=\"checkbox\">\n      <input type=\"checkbox\" class=\"form-check-input\">\n      <span class=\"ps-4\">").concat(item.content, "</span>\n    </label>\n    <a href=\"#\" class=\"delete\"></a>\n  </li>");
+  });
+  nonList.setAttribute("class", "d-none");
+  listBlock.setAttribute('class', 'd-block');
+  list.innerHtml = str;
+  removeAll();
+}
 
 // clear All
-// function removeAll() {
-//   if (data.length === 0) {
-//     listBlock.setAttribute('class', 'd-none');
-//     nonList.removeAttribute('class', 'd-none');
-//   }
-// }
-
+function removeAll() {
+  if (data.length === 0) {
+    listBlock.setAttribute('class', 'd-none');
+    nonList.removeAttribute('class', 'd-none');
+  }
+}
 function getTodo() {
   return axios.get("".concat(apiUrl, "/todos"), {
     headers: {
@@ -99,10 +92,10 @@ if (enterBtn) {
   enterBtn.addEventListener('click', addTodo);
 }
 function addTodo(e) {
+  e.preventDefault();
   if (inputText.value === '') {
     return;
   }
-  e.preventDefault();
   return axios.post("".concat(apiUrl, "/todos"), {
     headers: {
       Authorization: sessionStorage.getItem('token')
@@ -119,55 +112,57 @@ function addTodo(e) {
     obj.check = '';
     data.unshift(obj);
     console.log(inputText.value);
-    //inputText.value = '';
-    //updateList();
+    inputText.value = '';
+    updateList();
   })["catch"](function (err) {
     return console.log(err.response);
   });
 }
 
 // 按鈕輸入
-// if(inputBlock){
-//   inputBlock.addEventListener('keydown', function(e){
-//     if(e.key === 'Enter'){
-//       addTodo();
-//     }
-//   })
-// }
+if (inputBlock) {
+  inputBlock.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      addTodo();
+    }
+  });
+}
 
-// 切換畫面
-// const tab = document.querySelector('.tab');
-// let tabStatus = 'all';
-// if(tab){
-//   tab.addEventListener('click', function(e){
-//     tabStatus = e.target.dataset.status;
-//     let tabs = document.querySelectorAll('.tab li');
-//     tabs.forEach((i) => {
-//       i.classList.remove('tabs-active');
-//     });
-//     e.target.classList.add('tabs-active');
-//     updateList();
-//   });
-// }
-
-// let undoNum = document.querySelector('.undo-num');
-// function updateList(){
-//   let showData = [];
-
-//   if(tabStatus === 'all'){
-//     showData = data;
-//   }else if(tabStatus === 'undo'){
-//     showData = data.filter((i) => i.completed_at === null);
-//   }else if(tabStatus === 'done'){
-//     showData = data.filter((i) => i.completed_at !== null);
-//   }
-
-//   let todoLength = data.filter((i) => i.completed_at === null);
-//   let str = `${todoLength.length} 個待完成項目`;
-//   undoNum.innerHTML = str;
-
-//   renderData(showData);
-// }
+//切換畫面
+var tab = document.querySelector('.tab');
+var tabStatus = 'all';
+if (tab) {
+  tab.addEventListener('click', function (e) {
+    tabStatus = e.target.dataset.status;
+    var tabs = document.querySelectorAll('.tab li');
+    tabs.forEach(function (i) {
+      i.classList.remove('tabs-active');
+    });
+    e.target.classList.add('tabs-active');
+    updateList();
+  });
+}
+var undoNum = document.querySelector('.undo-num');
+function updateList() {
+  var showData = [];
+  if (tabStatus === 'all') {
+    showData = data;
+  } else if (tabStatus === 'undo') {
+    showData = data.filter(function (i) {
+      return i.completed_at === null;
+    });
+  } else if (tabStatus === 'done') {
+    showData = data.filter(function (i) {
+      return i.completed_at !== null;
+    });
+  }
+  var todoLength = data.filter(function (i) {
+    return i.completed_at === null;
+  });
+  var str = "".concat(todoLength.length, " \u500B\u5F85\u5B8C\u6210\u9805\u76EE");
+  undoNum.innerHTML = str;
+  renderData(showData);
+}
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
