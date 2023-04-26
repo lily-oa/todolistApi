@@ -89,10 +89,11 @@ function getTodo() {
 //-----------------------------------------------------------------新增
 
 //新增代碼
-if (enterBtn) {
-  enterBtn.addEventListener('click', addTodo);
-}
-function addTodo(e) {
+document.querySelector('[data-todo-form]').addEventListener('submit', function (e) {
+  e.preventDefault();
+  addTodo();
+});
+function addTodo() {
   e.preventDefault();
   if (inputText.value === '') {
     return;
