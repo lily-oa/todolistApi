@@ -129,7 +129,6 @@ function addTodo(e) {
       },
     })
     .then((res) => {
-      console.log(res);
       getTodo();
       let obj = {};
       obj.content = inputText.value;
