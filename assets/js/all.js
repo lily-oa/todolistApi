@@ -51,16 +51,22 @@ if (logoutBtn) {
 //------------------------------------------------------------渲染
 
 //渲染畫面
-function renderData(arr) {
-  var str = '';
-  arr.forEach(function (item) {
-    str += "<li data-id=\"".concat(item.id, "\">\n    <label for=\"\" class=\"checkbox\">\n      <input type=\"checkbox\" class=\"form-check-input\">\n      <span class=\"ps-4\">").concat(item.content, "</span>\n    </label>\n    <a href=\"#\" class=\"delete\"></a>\n  </li>");
-  });
-  nonList.setAttribute("class", "d-none");
-  listBlock.setAttribute('class', 'd-block');
-  list.innerHtml = str;
-  //removeAll();
-}
+// function renderData(arr) {
+//   let str = '';
+//   arr.forEach((item) => {
+//     str += `<li data-id="${item.id}">
+//     <label for="" class="checkbox">
+//       <input type="checkbox" class="form-check-input">
+//       <span class="ps-4">${item.content}</span>
+//     </label>
+//     <a href="#" class="delete"></a>
+//   </li>`;
+//   });
+//   nonList.setAttribute("class", "d-none");
+//   listBlock.setAttribute('class', 'd-block');
+//   list.innerHtml = str;
+//   removeAll();
+// }
 
 // clear All
 // function removeAll() {
@@ -89,11 +95,10 @@ function getTodo() {
 //-----------------------------------------------------------------新增
 
 //新增代碼
-document.querySelector('[data-todo-form]').addEventListener('submit', function (e) {
-  e.preventDefault();
-  addTodo();
-});
-function addTodo() {
+if (enterBtn) {
+  enterBtn.addEventListener('click', addTodo);
+}
+function addTodo(e) {
   e.preventDefault();
   if (inputText.value === '') {
     return;
