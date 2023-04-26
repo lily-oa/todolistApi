@@ -74,16 +74,16 @@ function renderData(arr) {
   nonList.setAttribute("class", "d-none");
   listBlock.setAttribute('class', 'd-block');
   list.innerHtml = str;
-  removeAll();
+  //removeAll();
 }
 
 // clear All
-function removeAll() {
-  if (data.length === 0) {
-    listBlock.setAttribute('class', 'd-none');
-    nonList.removeAttribute('class', 'd-none');
-  }
-}
+// function removeAll() {
+//   if (data.length === 0) {
+//     listBlock.setAttribute('class', 'd-none');
+//     nonList.removeAttribute('class', 'd-none');
+//   }
+// }
 
 function getTodo() {
   return axios.get(`${apiUrl}/todos`, {
@@ -137,51 +137,51 @@ function addTodo(e) {
       data.unshift(obj);
       console.log(inputText.value);
       inputText.value = '';
-      updateList();
+      //updateList();
     })
     .catch((err) => console.log(err.response));
 }
 
 // 按鈕輸入
-if(inputBlock){
-  inputBlock.addEventListener('keydown', function(e){
-    if(e.key === 'Enter'){
-      addTodo();
-    }
-  })
-}
+// if(inputBlock){
+//   inputBlock.addEventListener('keydown', function(e){
+//     if(e.key === 'Enter'){
+//       addTodo();
+//     }
+//   })
+// }
 
 //切換畫面
-const tab = document.querySelector('.tab');
-let tabStatus = 'all';
-if(tab){
-  tab.addEventListener('click', function(e){
-    tabStatus = e.target.dataset.status;
-    let tabs = document.querySelectorAll('.tab li');
-    tabs.forEach((i) => {
-      i.classList.remove('tabs-active');
-    });
-    e.target.classList.add('tabs-active');
-    updateList();
-  });
-}
+// const tab = document.querySelector('.tab');
+// let tabStatus = 'all';
+// if(tab){
+//   tab.addEventListener('click', function(e){
+//     tabStatus = e.target.dataset.status;
+//     let tabs = document.querySelectorAll('.tab li');
+//     tabs.forEach((i) => {
+//       i.classList.remove('tabs-active');
+//     });
+//     e.target.classList.add('tabs-active');
+//     updateList();
+//   });
+// }
 
-let undoNum = document.querySelector('.undo-num');
-function updateList(){
-  let showData = [];
+// let undoNum = document.querySelector('.undo-num');
+// function updateList(){
+//   let showData = [];
 
-  if(tabStatus === 'all'){
-    showData = data;
-  }else if(tabStatus === 'undo'){
-    showData = data.filter((i) => i.completed_at === null);
-  }else if(tabStatus === 'done'){
-    showData = data.filter((i) => i.completed_at !== null);
-  }
+//   if(tabStatus === 'all'){
+//     showData = data;
+//   }else if(tabStatus === 'undo'){
+//     showData = data.filter((i) => i.completed_at === null);
+//   }else if(tabStatus === 'done'){
+//     showData = data.filter((i) => i.completed_at !== null);
+//   }
 
-  let todoLength = data.filter((i) => i.completed_at === null);
-  let str = `${todoLength.length} 個待完成項目`;
-  undoNum.innerHTML = str;
+//   let todoLength = data.filter((i) => i.completed_at === null);
+//   let str = `${todoLength.length} 個待完成項目`;
+//   undoNum.innerHTML = str;
 
-  renderData(showData);
-}
+//   renderData(showData);
+// }
 
