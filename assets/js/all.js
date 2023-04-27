@@ -58,16 +58,17 @@ function renderData(arr) {
   nonList.setAttribute("class", "d-none");
   listBlock.setAttribute('class', 'd-block');
   list.innerHtml = str;
-  removeAll();
+  //removeAll();
 }
 
 // clear All
-function removeAll() {
-  if (data.length === 0) {
-    listBlock.setAttribute('class', 'd-none');
-    nonList.removeAttribute('class', 'd-none');
-  }
-}
+// function removeAll() {
+//   if (data.length === 0) {
+//     listBlock.setAttribute('class', 'd-none');
+//     nonList.removeAttribute('class', 'd-none');
+//   }
+// }
+
 function getTodo() {
   return axios.get("".concat(apiUrl, "/todos"), {
     headers: {
