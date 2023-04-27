@@ -104,15 +104,14 @@ function addTodo(e) {
     return;
   }
   return axios.post("".concat(apiUrl, "/todos"), {
-    headers: {
-      Authorization: sessionStorage.getItem('token')
-    }
-  }, {
     todo: {
       content: inputText.value
     }
+  }, {
+    headers: {
+      Authorization: sessionStorage.getItem('token')
+    }
   }).then(function (res) {
-    console.log(res);
     getTodo();
     var obj = {};
     obj.content = inputText.value;
