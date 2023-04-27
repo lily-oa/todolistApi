@@ -142,13 +142,13 @@ function addTodo(e) {
 }
 
 // 按鈕輸入
-// if(inputBlock){
-//   inputBlock.addEventListener('keydown', function(e){
-//     if(e.key === 'Enter'){
-//       addTodo();
-//     }
-//   })
-// }
+if(inputBlock){
+  inputBlock.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){
+      addTodo();
+    }
+  })
+}
 
 //切換畫面
 // const tab = document.querySelector('.tab');
