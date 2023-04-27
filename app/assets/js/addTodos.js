@@ -120,13 +120,13 @@ function addTodo(e) {
     return;
   }
   return axios.post(`${apiUrl}/todos`, {
-      headers: {
-        Authorization: sessionStorage.getItem('token')
-      }
-    }, {
       todo: {
         content: inputText.value,
       },
+    }, {
+      headers: {
+        Authorization: sessionStorage.getItem('token')
+      }
     })
     .then((res) => {
       getTodo();
