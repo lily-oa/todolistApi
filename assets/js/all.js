@@ -53,7 +53,7 @@ if (logoutBtn) {
 function renderData(arr) {
   var str = '';
   arr.forEach(function (item) {
-    str += "<li data-id=\"".concat(item.id, "\">\n    <label for=\"\" class=\"checkbox\">\n      <input type=\"checkbox\" class=\"form-check-input\">\n      <span class=\"ps-4\">").concat(item.content, "</span>\n    </label>\n    <a href=\"#\" class=\"delete\"></a>\n  </li>");
+    str += "<li data-id=\"".concat(item.id, "\">\n    <label for=\"\" class=\"checkbox\">\n      <input type=\"checkbox\" class=\"form-check-input\"\n      \n    >\n      <span class=\"ps-4\">").concat(item.content, "</span>\n    </label>\n    <a href=\"#\" class=\"delete\"></a>\n  </li>");
   });
   nonList.setAttribute("class", "d-none");
   listBlock.setAttribute('class', 'd-block');
@@ -92,7 +92,7 @@ if (enterBtn) {
 }
 function addTodo() {
   if (inputText.value === '') {
-    Swal.fire("\u8ACB\u8F38\u5165\u4EE3\u8FA8\u4E8B\u9805", "你確定沒有事要做嗎？", "warning");
+    Swal.fire("\u8ACB\u8F38\u5165\u4EE3\u8FA8\u4E8B\u9805", "你忘記輸入事項了喔!!", "warning");
     return;
   }
   return axios.post("".concat(apiUrl, "/todos"), {
@@ -111,7 +111,7 @@ function addTodo() {
     data.unshift(obj);
     console.log(inputText.value);
     inputText.value = '';
-    //updateList();
+    updateList();
   })["catch"](function (err) {
     return console.log(err.response);
   });
