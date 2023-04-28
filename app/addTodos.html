@@ -25,13 +25,13 @@ current: addTodos
         
         <!--如果有任何代辦事項顯示-->
         <div class="card card_list list-block d-none">
-          <ul class="tab d-flex">
-            <li class="active tabs-active" data-status="all">全部</li>
-            <li data-status="undo">待完成</li>
-            <li data-status="done">已完成</li>
-          </ul>
-          <div class="card_content">
-            
+          <div class="card_content list-shadow">
+            <ul class="tab d-flex">
+              <li class="active tabs-active" data-status="all">全部</li>
+              <li data-status="undo">待完成</li>
+              <li data-status="done">已完成</li>
+            </ul>
+
             <ul class="list">
               <!--
               <li>
@@ -44,14 +44,16 @@ current: addTodos
               -->
             </ul>
 
-              <div class="list_footer d-flex justify-content-between">
-                <p class="footer_p">
-                  <span class="undo-num">0 個待完成項目</span> 
-                </p>
-                <a href="#" class="btn_clear clear-all">清除已完成項目</a>
-              </div>
+            <div class="list_footer d-flex justify-content-between">
+              <p class="footer_p">
+                <span class="undo-num">0 個待完成項目</span>
+              </p>
+              <a href="#" class="btn_clear clear-all">清除已完成項目</a>
+            </div>
           </div>
-        </div><!--card_list end-->
+        </div>
+        <!--card_list end-->
+
       </div>
     </div>
   </div>
