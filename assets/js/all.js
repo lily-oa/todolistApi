@@ -90,8 +90,7 @@ function getTodo() {
 if (enterBtn) {
   enterBtn.addEventListener('click', addTodo);
 }
-function addTodo(e) {
-  e.preventDefault();
+function addTodo() {
   if (inputText.value === '') {
     Swal.fire("\u8ACB\u8F38\u5165\u4EE3\u8FA8\u4E8B\u9805", "你確定沒有事要做嗎？", "warning");
     return;
