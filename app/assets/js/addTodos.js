@@ -63,7 +63,9 @@ function renderData(arr) {
   arr.forEach((item) => {
     str += `<li data-id="${item.id}">
     <label for="" class="checkbox">
-      <input type="checkbox" class="form-check-input">
+      <input type="checkbox" class="form-check-input"
+      
+    >
       <span class="ps-4">${item.content}</span>
     </label>
     <a href="#" class="delete"></a>
@@ -110,12 +112,11 @@ function getTodo() {
 if(enterBtn) {
   enterBtn.addEventListener('click', addTodo);
 }
-
 function addTodo() {
   if (inputText.value === '') {
     Swal.fire(
       `請輸入代辨事項`,
-      "你確定沒有事要做嗎？",
+      "你忘記輸入事項了喔!!",
       "warning"
     )
     return;
@@ -137,7 +138,7 @@ function addTodo() {
       data.unshift(obj);
       console.log(inputText.value);
       inputText.value = '';
-      //updateList();
+      updateList();
     })
     .catch((err) => console.log(err.response));
 }
@@ -168,6 +169,7 @@ if(tab){
 }
 
 let undoNum = document.querySelector('.undo-num');
+
 function updateList(){
   let showData = [];
 
