@@ -111,8 +111,7 @@ if(enterBtn) {
   enterBtn.addEventListener('click', addTodo);
 }
 
-function addTodo(e) {
-  e.preventDefault();
+function addTodo() {
   if (inputText.value === '') {
     Swal.fire(
       `請輸入代辨事項`,
