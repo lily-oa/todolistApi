@@ -32,6 +32,8 @@ let data = [];
     }
 
     //---------------------------------------------------- 登出
+renderData();
+
     const logoutBtn = document.querySelector('.logoutBtn');
     if (logoutBtn) {
       logoutBtn.addEventListener('click', function (e) {
@@ -63,9 +65,9 @@ function renderData(arr) {
   arr.forEach((item) => {
     str += `<li data-id="${item.id}">
     <label for="" class="checkbox">
-      < <input class="form-check-input me-3" type="checkbox" ${
-        item.completed_at === null ? "" : "checked"
-      }>
+      <input type="checkbox" class="form-check-input"
+      
+    >
       <span class="ps-4">${item.content}</span>
     </label>
     <a href="#" class="delete"></a>
@@ -171,6 +173,7 @@ if(tab){
 let undoNum = document.querySelector('.undo-num');
 
 function updateList(){
+  
   let showData = [];
 
   if(tabStatus === 'all'){
