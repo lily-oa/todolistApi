@@ -28,6 +28,7 @@ function init_token_render() {
 }
 
 //---------------------------------------------------- 登出
+renderData();
 var logoutBtn = document.querySelector('.logoutBtn');
 if (logoutBtn) {
   logoutBtn.addEventListener('click', function (e) {
@@ -53,7 +54,7 @@ if (logoutBtn) {
 function renderData(arr) {
   var str = '';
   arr.forEach(function (item) {
-    str += "<li data-id=\"".concat(item.id, "\">\n    <label for=\"\" class=\"checkbox\">\n      < <input class=\"form-check-input me-3\" type=\"checkbox\" ").concat(item.completed_at === null ? "" : "checked", ">\n      <span class=\"ps-4\">").concat(item.content, "</span>\n    </label>\n    <a href=\"#\" class=\"delete\"></a>\n  </li>");
+    str += "<li data-id=\"".concat(item.id, "\">\n    <label for=\"\" class=\"checkbox\">\n      <input type=\"checkbox\" class=\"form-check-input\"\n      \n    >\n      <span class=\"ps-4\">").concat(item.content, "</span>\n    </label>\n    <a href=\"#\" class=\"delete\"></a>\n  </li>");
   });
   nonList.setAttribute("class", "d-none");
   listBlock.setAttribute('class', 'd-block');
