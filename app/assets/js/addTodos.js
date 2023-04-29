@@ -63,9 +63,9 @@ function renderData(arr) {
   arr.forEach((item) => {
     str += `<li data-id="${item.id}">
     <label for="" class="checkbox">
-      <input type="checkbox" class="form-check-input"
-      
-    >
+      < <input class="form-check-input me-3" type="checkbox" ${
+        item.completed_at === null ? "" : "checked"
+      }>
       <span class="ps-4">${item.content}</span>
     </label>
     <a href="#" class="delete"></a>
