@@ -9,8 +9,6 @@ const listBlock = document.querySelector('.list-block');
 
 let data = [];
 
-
-
 // 登入成功後顯示使用者名稱
 // 檢查.header_logout 是否有值，若有才執行init_token_render
 // (因為init_token_render只在addtoTods.html頁面才有，避免在別的頁面產生錯誤)
@@ -32,8 +30,6 @@ let data = [];
     }
 
     //---------------------------------------------------- 登出
-renderData();
-
     const logoutBtn = document.querySelector('.logoutBtn');
     if (logoutBtn) {
       logoutBtn.addEventListener('click', function (e) {
@@ -66,7 +62,9 @@ function renderData(arr) {
     str += `<li data-id="${item.id}">
     <label for="" class="checkbox">
       <input type="checkbox" class="form-check-input"
-      
+      ${
+        item.completed_at === null ? "" : "checked"
+      }
     >
       <span class="ps-4">${item.content}</span>
     </label>
@@ -187,7 +185,6 @@ function updateList(){
   let todoLength = data.filter((i) => i.completed_at === null);
   let str = `${todoLength.length} 個待完成項目`;
   undoNum.innerHTML = str;
-
   renderData(showData);
 }
 
