@@ -58,17 +58,16 @@ function renderData(arr) {
   nonList.setAttribute("class", "d-none");
   listBlock.setAttribute('class', 'd-block');
   list.innerHTML = str;
-  //removeAll();
+  removeAll();
 }
 
 // clear All
-// function removeAll() {
-//   if (data.length === 0) {
-//     listBlock.setAttribute('class', 'd-none');
-//     nonList.removeAttribute('class', 'd-none');
-//   }
-// }
-
+function removeAll() {
+  if (data.length === 0) {
+    listBlock.setAttribute('class', 'd-none');
+    nonList.removeAttribute('class', 'd-none');
+  }
+}
 function getTodo() {
   return axios.get("".concat(apiUrl, "/todos"), {
     headers: {
@@ -109,7 +108,7 @@ function addTodo() {
     obj.content = inputText.value;
     obj.check = '';
     data.unshift(obj);
-    console.log(inputText.value);
+    //console.log(inputText.value);
     inputText.value = '';
     updateList();
   })["catch"](function (err) {
@@ -119,8 +118,8 @@ function addTodo() {
 
 // 按鈕輸入
 if (inputBlock) {
-  inputBlock.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
+  inputBlock.addEventListener('keyup', function (e) {
+    if (e.key === "Enter") {
       addTodo();
     }
   });

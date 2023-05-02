@@ -16764,8 +16764,8 @@ body {
   height: 15px;
   width: 8px;
   border-radius: 1px;
-  border-bottom: 3px solid #9F9A91;
-  border-right: 3px solid #9F9A91;
+  border-bottom: 3px solid #FCD370;
+  border-right: 3px solid #FCD370;
   pointer-events: none;
   opacity: 0;
   -webkit-transition: 0.3s ease;
