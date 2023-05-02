@@ -73,7 +73,7 @@ function renderData(arr) {
   });
   nonList.setAttribute("class", "d-none");
   listBlock.setAttribute('class', 'd-block');
-  list.innerHtml = str;
+  list.innerHTML = str;
   //removeAll();
 }
 
