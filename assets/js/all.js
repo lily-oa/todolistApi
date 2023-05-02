@@ -53,7 +53,7 @@ if (logoutBtn) {
 function renderData(arr) {
   var str = '';
   arr.forEach(function (item) {
-    str += "<li data-id=\"".concat(item.id, "\">\n    <label for=\"\" class=\"checkbox\">\n      <input type=\"checkbox\" class=\"form-check-input\"\n      ").concat(item.completed_at === null ? "" : "checked", "\n    >\n      <span class=\"ps-4\">").concat(item.content, "</span>\n    </label>\n    <a href=\"#\" class=\"delete\"></a>\n  </li>");
+    str += "<li data-id=\"".concat(item.id, "\">\n    <label class=\"checkbox\">\n      <input type=\"checkbox\" class=\"form-check-input\"\n      ").concat(item.completed_at === null ? "" : "checked", "\n    >\n      <span class=\"ps-4\">").concat(item.content, "</span>\n    </label>\n    <a href=\"#\" class=\"delete\"></a>\n  </li>");
   });
   nonList.setAttribute("class", "d-none");
   listBlock.setAttribute('class', 'd-block');
@@ -118,7 +118,7 @@ function addTodo() {
 
 // 按鈕輸入
 if (inputBlock) {
-  inputBlock.addEventListener('keyup', function (e) {
+  inputBlock.addEventListener("keyup", function (e) {
     if (e.key === "Enter") {
       addTodo();
     }
