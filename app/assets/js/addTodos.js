@@ -60,7 +60,7 @@ function renderData(arr) {
   let str = '';
   arr.forEach((item) => {
     str += `<li data-id="${item.id}">
-    <label for="" class="checkbox">
+    <label class="checkbox">
       <input type="checkbox" class="form-check-input"
       ${
         item.completed_at === null ? "" : "checked"
@@ -113,6 +113,7 @@ function getTodo() {
 if(enterBtn) {
   enterBtn.addEventListener('click', addTodo);
 }
+
 function addTodo() {
   if (inputText.value === '') {
     Swal.fire(
@@ -146,11 +147,11 @@ function addTodo() {
 
 // 按鈕輸入
 if(inputBlock){
-  inputBlock.addEventListener('keyup', function(e){
+  inputBlock.addEventListener("keyup", function(e){
     if(e.key === "Enter"){
       addTodo();
     }
-  })
+  });
 }
 
 //--------------------------------------------------------更新
@@ -177,8 +178,10 @@ function updateList(){
 
   if(tabStatus === 'all'){
     showData = data;
+
   }else if(tabStatus === 'undo'){
     showData = data.filter((i) => i.completed_at === null);
+
   }else if(tabStatus === 'done'){
     showData = data.filter((i) => i.completed_at !== null);
   }
@@ -186,6 +189,7 @@ function updateList(){
   let todoLength = data.filter((i) => i.completed_at === null);
   let str = `${todoLength.length} 個待完成項目`;
   undoNum.innerHTML = str;
+
   renderData(showData);
 }
 
