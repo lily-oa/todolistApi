@@ -85,6 +85,31 @@ function getTodo() {
 }
 
 //----------------------------------------------------新增
+
+//----------------
+//檢查重覆 
+function check_same(add_item) {
+  var addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
+  axios.get("".concat(apiUrl, "/todos"), {
+    headers: {
+      Authorization: sessionStorage.getItem('token')
+    }
+  }).then(function (res) {
+    var check = res.data.todos.som(function (item) {
+      return item.content == add_item.trim();
+    });
+    if (check) {
+      inputText.value = '';
+      addTodos_alert_txt.textContent = '此代辦已輸入過嘍!!';
+      addTodosModal.show();
+      return;
+    } else {
+      addTodo(add_item);
+    }
+  });
+}
+//------------------
+
 //新增代碼
 if (enterBtn) {
   enterBtn.addEventListener('click', addTodo);
