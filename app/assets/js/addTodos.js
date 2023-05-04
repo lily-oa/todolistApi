@@ -109,6 +109,38 @@ function getTodo() {
 }
 
 //----------------------------------------------------新增
+
+//----------------
+//檢查重覆 
+function check_same(add_item){
+  const addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
+  axios.get(`${apiUrl}/todos`, {
+    headers:{
+      Authorization: sessionStorage.getItem('token')
+    }
+  })
+  .then(
+    res => {
+      const check = res.data.todos.som(item => {
+        return item.content == add_item.trim();
+      })
+      if(check){
+        inputText.value = '';
+        addTodos_alert_txt.textContent = '此代辦已輸入過嘍!!';
+        addTodosModal.show();
+        return;
+      }esle{
+        addTodo(add_item);
+      }
+    }
+  )
+}
+//------------------
+
+
+
+
+
 //新增代碼
 if(enterBtn) {
   enterBtn.addEventListener('click', addTodo);
