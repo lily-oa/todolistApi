@@ -129,7 +129,7 @@ function check_same(add_item){
         addTodos_alert_txt.textContent = '此代辦已輸入過嘍!!';
         addTodosModal.show();
         return;
-      }esle{
+      }else{
         addTodo(add_item);
       }
     }
