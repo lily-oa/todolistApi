@@ -86,7 +86,6 @@ function getTodo() {
 
 //----------------------------------------------------新增
 
-//----------------
 //檢查重覆 
 function check_same(add_item) {
   var addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
@@ -108,7 +107,6 @@ function check_same(add_item) {
     }
   });
 }
-//------------------
 
 //新增代碼
 if (enterBtn) {
