@@ -120,7 +120,7 @@ function check_same(add_item){
   })
   .then(
     res => {
-      const check = res.data.todos.som(item => {
+      const check = res.data.todos.some(item => {
         return item.content == add_item.trim();
       })
       if(check){
@@ -142,6 +142,10 @@ if(enterBtn) {
 }
 
 function addTodo() {
+  const addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
+  const check = res.data.todos.some(item =>{
+    return item.content == inputText.value.trim();
+  })
   if (inputText.value === '') {
     Swal.fire(
       `請輸入代辨事項`,
@@ -149,7 +153,12 @@ function addTodo() {
       "warning"
     )
     return;
-  }
+  }else if(check){
+    inputText.value = '';
+    addTodos_alert_txt.textContent = '此代辦你已輸入過了，請重新輸入';
+    addTodosModal.show();
+    return;
+  }else{}
   return axios.post(`${apiUrl}/todos`, {
       todo: {
         content: inputText.value,
