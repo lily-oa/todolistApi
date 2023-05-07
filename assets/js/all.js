@@ -94,7 +94,7 @@ function check_same(add_item) {
       Authorization: sessionStorage.getItem('token')
     }
   }).then(function (res) {
-    var check = res.data.todos.som(function (item) {
+    var check = res.data.todos.some(function (item) {
       return item.content == add_item.trim();
     });
     if (check) {
@@ -113,10 +113,19 @@ if (enterBtn) {
   enterBtn.addEventListener('click', addTodo);
 }
 function addTodo() {
+  var addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
+  var check = res.data.todos.some(function (item) {
+    return item.content == inputText.value.trim();
+  });
   if (inputText.value === '') {
     Swal.fire("\u8ACB\u8F38\u5165\u4EE3\u8FA8\u4E8B\u9805", "你忘記輸入事項了喔!!", "warning");
     return;
-  }
+  } else if (check) {
+    inputText.value = '';
+    addTodos_alert_txt.textContent = '此代辦你已輸入過了，請重新輸入';
+    addTodosModal.show();
+    return;
+  } else {}
   return axios.post("".concat(apiUrl, "/todos"), {
     todo: {
       content: inputText.value
