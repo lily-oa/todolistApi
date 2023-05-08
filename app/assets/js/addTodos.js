@@ -86,7 +86,7 @@ function removeAll() {
   }
 }
 
-function getTodo() {
+function getTodo(add_item) {
   return axios.get(`${apiUrl}/todos`, {
       headers: {
         Authorization: sessionStorage.getItem('token')
@@ -96,7 +96,20 @@ function getTodo() {
       // 推入陣列前做清空，避免重複寫入出現渲柒問題
       //data.splice(0, data.length);
       data = res.data.todos;
-      console.log(data);
+      //-----------------------------------
+      const check = data.some(item => {
+        return item.content == add_item.trim();
+      })
+      if(check){
+        inputText.value = '';
+        Swal.fire(
+          `重複輸入`,
+          "這個項目你已經輸入過了喔!!", 
+          "warning"
+          )
+        return;
+      }
+      //------------------------------------
       updateList();
     })
     .catch((err) =>
@@ -143,6 +156,7 @@ function addTodo() {
       updateList();
     })
     .catch((err) => console.log(err.response));
+
 }
 
 // 按鈕輸入
