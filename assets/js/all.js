@@ -68,7 +68,7 @@ function removeAll() {
     nonList.removeAttribute('class', 'd-none');
   }
 }
-function getTodo(add_item) {
+function getTodo() {
   return axios.get("".concat(apiUrl, "/todos"), {
     headers: {
       Authorization: sessionStorage.getItem('token')
@@ -77,18 +77,7 @@ function getTodo(add_item) {
     // 推入陣列前做清空，避免重複寫入出現渲柒問題
     //data.splice(0, data.length);
     data = res.data.todos;
-    //-----------------------------------
-    // const check = data.some(item => {
-    //   return item.content == add_item.trim();
-    // })
-    // if(check){
-    //   inputText.value = '';
-    //   console.log('重複了!');
-    //   return;
-    // }else{
-    //   addTodo();
-    // }
-    //------------------------------------
+    console.log(data);
     updateList();
   })["catch"](function (err) {
     return Swal.fire("".concat(err.response), '出現了一些錯誤', 'warning');
@@ -96,18 +85,39 @@ function getTodo(add_item) {
 }
 
 //----------------------------------------------------新增
-//新增代碼
+//滑鼠事件檢查重複
 if (enterBtn) {
-  enterBtn.addEventListener('click', addTodo);
+  enterBtn.addEventListener('click', function () {
+    before_addTods_checkSame();
+  });
 }
-function addTodo() {
-  if (inputText.value === '') {
+
+//鍵盤事件檢查重複
+if (inputBlock) {
+  inputBlock.addEventListener("keypress", function (event) {
+    if (event.which == 13) {
+      before_addTods_checkSame();
+    }
+  });
+}
+
+//函式-新增代碼之前檢查重複
+function before_addTods_checkSame() {
+  if (inputText.value !== '') {
+    var add_item = inputText.value;
+    //檢查有無重複
+    check_same(add_item);
+  } else {
     Swal.fire("\u8ACB\u8F38\u5165\u4EE3\u8FA8\u4E8B\u9805", "你忘記輸入事項了喔!!", "warning");
     return;
   }
-  return axios.post("".concat(apiUrl, "/todos"), {
+}
+
+// 新增
+function addTodo(item) {
+  axios.post("".concat(apiUrl, "/todos"), {
     todo: {
-      content: inputText.value
+      content: item
     }
   }, {
     headers: {
@@ -119,7 +129,6 @@ function addTodo() {
     obj.content = inputText.value;
     obj.check = '';
     data.unshift(obj);
-    //console.log(inputText.value);
     inputText.value = '';
     updateList();
   })["catch"](function (err) {
@@ -127,11 +136,22 @@ function addTodo() {
   });
 }
 
-// 按鈕輸入
-if (inputBlock) {
-  inputBlock.addEventListener("keyup", function (e) {
-    if (e.key === "Enter") {
-      addTodo();
+// 檢查重複
+function check_same(add_item) {
+  axios.get("".concat(apiUrl, "/todos"), {
+    headers: {
+      Authorization: sessionStorage.getItem('token')
+    }
+  }).then(function (res) {
+    var check = res.data.todos.some(function (item) {
+      return item.content == add_item.trim();
+    });
+    if (check) {
+      inputText.value = '';
+      Swal.fire("\u91CD\u8907\u4E86\u5594!!", "這個事項你已輸入過了!", "warning");
+      return;
+    } else {
+      addTodo(add_item);
     }
   });
 }
