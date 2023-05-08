@@ -68,7 +68,7 @@ function removeAll() {
     nonList.removeAttribute('class', 'd-none');
   }
 }
-function getTodo() {
+function getTodo(add_item) {
   return axios.get("".concat(apiUrl, "/todos"), {
     headers: {
       Authorization: sessionStorage.getItem('token')
@@ -77,7 +77,16 @@ function getTodo() {
     // 推入陣列前做清空，避免重複寫入出現渲柒問題
     //data.splice(0, data.length);
     data = res.data.todos;
-    console.log(data);
+    //-----------------------------------
+    var check = data.some(function (item) {
+      return item.content == add_item.trim();
+    });
+    if (check) {
+      inputText.value = '';
+      Swal.fire("\u91CD\u8907\u8F38\u5165", "這個項目你已經輸入過了喔!!", "warning");
+      return;
+    }
+    //------------------------------------
     updateList();
   })["catch"](function (err) {
     return Swal.fire("".concat(err.response), '出現了一些錯誤', 'warning');
