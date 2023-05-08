@@ -78,14 +78,16 @@ function getTodo(add_item) {
     //data.splice(0, data.length);
     data = res.data.todos;
     //-----------------------------------
-    var check = data.some(function (item) {
-      return item.content == add_item.trim();
-    });
-    if (check) {
-      inputText.value = '';
-      Swal.fire("\u91CD\u8907\u8F38\u5165", "這個項目你已經輸入過了喔!!", "warning");
-      return;
-    }
+    // const check = data.some(item => {
+    //   return item.content == add_item.trim();
+    // })
+    // if(check){
+    //   inputText.value = '';
+    //   console.log('重複了!');
+    //   return;
+    // }else{
+    //   addTodo();
+    // }
     //------------------------------------
     updateList();
   })["catch"](function (err) {
