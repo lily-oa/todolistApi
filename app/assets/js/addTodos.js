@@ -86,6 +86,7 @@ function removeAll() {
   }
 }
 
+//----------------------------------------------------取得
 function getTodo() {
   return axios.get(`${apiUrl}/todos`, {
       headers: {
@@ -96,7 +97,6 @@ function getTodo() {
       // 推入陣列前做清空，避免重複寫入出現渲柒問題
       //data.splice(0, data.length);
       data = res.data.todos;
-      console.log(data);
       updateList();
     })
     .catch((err) =>
@@ -106,6 +106,28 @@ function getTodo() {
         'warning'
       )
     );
+}
+
+let undoNum = document.querySelector('.undo-num');
+function updateList(){
+  
+  let showData = [];
+
+  if(tabStatus === 'all'){
+    showData = data;
+
+  }else if(tabStatus === 'undo'){
+    showData = data.filter((i) => i.completed_at === null);
+
+  }else if(tabStatus === 'done'){
+    showData = data.filter((i) => i.completed_at !== null);
+  }
+
+  let todoLength = data.filter((i) => i.completed_at === null);
+  let str = `${todoLength.length} 個待完成項目`;
+  undoNum.innerHTML = str;
+
+  renderData(showData);
 }
 
 
@@ -206,25 +228,3 @@ if(tab){
   });
 }
 
-let undoNum = document.querySelector('.undo-num');
-
-function updateList(){
-  
-  let showData = [];
-
-  if(tabStatus === 'all'){
-    showData = data;
-
-  }else if(tabStatus === 'undo'){
-    showData = data.filter((i) => i.completed_at === null);
-
-  }else if(tabStatus === 'done'){
-    showData = data.filter((i) => i.completed_at !== null);
-  }
-
-  let todoLength = data.filter((i) => i.completed_at === null);
-  let str = `${todoLength.length} 個待完成項目`;
-  undoNum.innerHTML = str;
-
-  renderData(showData);
-}
