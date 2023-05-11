@@ -16654,6 +16654,10 @@ body {
   color: #333333;
 }
 
+.tabs-active {
+  border-bottom: 2px solid #333333;
+}
+
 .card_content {
   padding: 12px 20px 12px 12px;
 }

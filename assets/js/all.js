@@ -84,27 +84,6 @@ function getTodo() {
     return Swal.fire("".concat(err.response), '出現了一些錯誤', 'warning');
   });
 }
-var undoNum = document.querySelector('.undo-num');
-function updateList() {
-  var showData = [];
-  if (tabStatus === 'all') {
-    showData = data;
-  } else if (tabStatus === 'undo') {
-    showData = data.filter(function (i) {
-      return i.completed_at === null;
-    });
-  } else if (tabStatus === 'done') {
-    showData = data.filter(function (i) {
-      return i.completed_at !== null;
-    });
-  }
-  var todoLength = data.filter(function (i) {
-    return i.completed_at === null;
-  });
-  var str = "".concat(todoLength.length, " \u500B\u5F85\u5B8C\u6210\u9805\u76EE");
-  undoNum.innerHTML = str;
-  renderData(showData);
-}
 
 //----------------------------------------------------新增
 //滑鼠事件檢查重複
@@ -135,6 +114,26 @@ function before_addTods_checkSame() {
   }
 }
 
+// 檢查重複
+function check_same(add_item) {
+  axios.get("".concat(apiUrl, "/todos"), {
+    headers: {
+      Authorization: sessionStorage.getItem('token')
+    }
+  }).then(function (res) {
+    var check = res.data.todos.some(function (item) {
+      return item.content == add_item.trim();
+    });
+    if (check) {
+      inputText.value = '';
+      Swal.fire("\u91CD\u8907\u4E86\u5594!!", "這個事項你已輸入過了!", "warning");
+      return;
+    } else {
+      addTodo(add_item);
+    }
+  });
+}
+
 // 新增
 function addTodo(item) {
   axios.post("".concat(apiUrl, "/todos"), {
@@ -158,26 +157,6 @@ function addTodo(item) {
   });
 }
 
-// 檢查重複
-function check_same(add_item) {
-  axios.get("".concat(apiUrl, "/todos"), {
-    headers: {
-      Authorization: sessionStorage.getItem('token')
-    }
-  }).then(function (res) {
-    var check = res.data.todos.some(function (item) {
-      return item.content == add_item.trim();
-    });
-    if (check) {
-      inputText.value = '';
-      Swal.fire("\u91CD\u8907\u4E86\u5594!!", "這個事項你已輸入過了!", "warning");
-      return;
-    } else {
-      addTodo(add_item);
-    }
-  });
-}
-
 //--------------------------------------------------------更新
 //切換畫面
 var tab = document.querySelector('.tab');
@@ -185,13 +164,34 @@ var tabStatus = 'all';
 if (tab) {
   tab.addEventListener('click', function (e) {
     tabStatus = e.target.dataset.status;
-    var tabs = document.querySelectorAll('.tab li');
+    var tabs = document.querySelectorAll(".tab li");
     tabs.forEach(function (i) {
       i.classList.remove('tabs-active');
     });
     e.target.classList.add('tabs-active');
     updateList();
   });
+}
+var undoNum = document.querySelector('.undo-num');
+function updateList() {
+  var showData = [];
+  if (tabStatus === 'all') {
+    showData = data;
+  } else if (tabStatus === 'undo') {
+    showData = data.filter(function (i) {
+      return i.completed_at === null;
+    });
+  } else if (tabStatus === 'done') {
+    showData = data.filter(function (i) {
+      return i.completed_at !== null;
+    });
+  }
+  var todoLength = data.filter(function (i) {
+    return i.completed_at === null;
+  });
+  var str = "".concat(todoLength.length, " \u500B\u5F85\u5B8C\u6210\u9805\u76EE");
+  undoNum.innerHTML = str;
+  renderData(showData);
 }
 "use strict";
 
