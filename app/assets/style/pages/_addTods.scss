@@ -36,6 +36,10 @@
   }
 }
 
+.tabs-active{
+  border-bottom:2px solid $secondary;
+}
+
 .card_content{
   padding: 12px 20px 12px 12px;
   @include media-breakpoint-up(lg) {
@@ -169,3 +173,4 @@
 .bg-white{
   background-color: #fff;
 }
+

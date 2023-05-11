@@ -108,28 +108,6 @@ function getTodo() {
     );
 }
 
-let undoNum = document.querySelector('.undo-num');
-function updateList(){
-  
-  let showData = [];
-
-  if(tabStatus === 'all'){
-    showData = data;
-
-  }else if(tabStatus === 'undo'){
-    showData = data.filter((i) => i.completed_at === null);
-
-  }else if(tabStatus === 'done'){
-    showData = data.filter((i) => i.completed_at !== null);
-  }
-
-  let todoLength = data.filter((i) => i.completed_at === null);
-  let str = `${todoLength.length} 個待完成項目`;
-  undoNum.innerHTML = str;
-
-  renderData(showData);
-}
-
 
 //----------------------------------------------------新增
 //滑鼠事件檢查重複
@@ -164,29 +142,6 @@ function before_addTods_checkSame(){
   }
 }
 
-// 新增
-function addTodo(item) {
-    axios.post(`${apiUrl}/todos`, {
-      todo: {
-        content: item
-      },
-    }, {
-      headers: {
-        Authorization: sessionStorage.getItem('token')
-      }
-    })
-    .then((res) => {
-      getTodo();
-      let obj = {};
-      obj.content = inputText.value;
-      obj.check = '';
-      data.unshift(obj);
-      inputText.value = '';
-      updateList();
-    })
-    .catch((err) => console.log(err.response));
-}
-
 // 檢查重複
 function check_same(add_item) {
   axios.get(`${apiUrl}/todos`,{
@@ -212,6 +167,30 @@ function check_same(add_item) {
     })
 }
 
+
+// 新增
+function addTodo(item) {
+    axios.post(`${apiUrl}/todos`, {
+      todo: {
+        content: item
+      },
+    }, {
+      headers: {
+        Authorization: sessionStorage.getItem('token')
+      }
+    })
+    .then((res) => {
+      getTodo();
+      let obj = {};
+      obj.content = inputText.value;
+      obj.check = '';
+      data.unshift(obj);
+      inputText.value = '';
+      updateList();
+    })
+    .catch((err) => console.log(err.response));
+}
+
 //--------------------------------------------------------更新
 //切換畫面
 const tab = document.querySelector('.tab');
@@ -219,7 +198,7 @@ let tabStatus = 'all';
 if(tab){
   tab.addEventListener('click', function(e){
     tabStatus = e.target.dataset.status;
-    let tabs = document.querySelectorAll('.tab li');
+    let tabs = document.querySelectorAll(".tab li");
     tabs.forEach((i) => {
       i.classList.remove('tabs-active');
     });
@@ -228,3 +207,24 @@ if(tab){
   });
 }
 
+let undoNum = document.querySelector('.undo-num');
+function updateList(){
+  
+  let showData = [];
+
+  if(tabStatus === 'all'){
+    showData = data;
+
+  }else if(tabStatus === 'undo'){
+    showData = data.filter((i) => i.completed_at === null);
+
+  }else if(tabStatus === 'done'){
+    showData = data.filter((i) => i.completed_at !== null);
+  }
+
+  let todoLength = data.filter((i) => i.completed_at === null);
+  let str = `${todoLength.length} 個待完成項目`;
+  undoNum.innerHTML = str;
+
+  renderData(showData);
+}
