@@ -86,7 +86,7 @@ function removeAll() {
   }
 }
 
-//----------------------------------------------------取得
+//----------------------------------------------------取得 
 function getTodo() {
   return axios.get(`${apiUrl}/todos`, {
       headers: {
