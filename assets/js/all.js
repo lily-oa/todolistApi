@@ -193,6 +193,25 @@ function updateList() {
   undoNum.innerHTML = str;
   renderData(showData);
 }
+//----------------------------------------刪除&完成代辦
+if (list) {
+  list.addEventListener('click', function (e) {
+    var listId = e.target.closest('li').dataset.id;
+    var checkBtn = e.target.closest('input');
+    if (e.target.nodeName === 'A') {
+      e.preventDefault();
+      axios["delete"]("".concat(apiUrl, "/todos/").concat(listId), {
+        headers: {
+          Authorization: sessionStorage.token
+        }
+      }).then(function (res) {
+        console.log(res);
+      })["catch"](function (err) {
+        return console.log(err.response);
+      });
+    }
+  });
+}
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
