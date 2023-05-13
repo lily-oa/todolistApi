@@ -228,3 +228,25 @@ function updateList(){
 
   renderData(showData);
 }
+//----------------------------------------刪除&完成代辦
+if(list){
+  list.addEventListener('click', function(e){
+    let listId = e.target.closest('li').dataset.id;
+    let checkBtn = e.target.closest('input');
+    if(e.target.nodeName === 'A'){
+      e.preventDefault();
+
+      axios.delete(`${apiUrl}/todos/${listId}`, {
+        headers: {
+          Authorization: sessionStorage.token, 
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err.response));
+      
+      
+    }
+  });
+}
