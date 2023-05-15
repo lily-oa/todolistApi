@@ -16654,7 +16654,7 @@ body {
   color: #333333;
 }
 
-.tabs-active {
+.card_content .tab .tabs-active {
   border-bottom: 2px solid #333333;
 }
 

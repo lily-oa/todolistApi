@@ -209,6 +209,30 @@ if (list) {
       })["catch"](function (err) {
         return console.log(err.response);
       });
+      var index = data.findIndex(function (item) {
+        item.id === listId;
+      });
+      data.splice(index, 1);
+      updateList();
+    } else {
+      data.forEach(function (i) {
+        if (i.id === listId) {
+          axios.patch("".concat(apiUrl, "/todos/").concat(listId, "/toggle"), {}, {
+            headers: {
+              Authorization: sessionStorage.token
+            }
+          }).then(function (res) {
+            data.forEach(function (item, index) {
+              if (item.id === res.data.id) {
+                data[index].completed_at = res.data.completed_at;
+              }
+            });
+            updateList();
+          })["catch"](function (err) {
+            return console.log(err);
+          });
+        }
+      });
     }
   });
 }
