@@ -53,7 +53,7 @@ if (logoutBtn) {
 function renderData(arr) {
   var str = '';
   arr.forEach(function (item) {
-    str += "<li data-id=\"".concat(item.id, "\">\n    <label class=\"checkbox\">\n      <input type=\"checkbox\" class=\"form-check-input\"\n      ").concat(item.completed_at === null ? "" : "checked", "\n    >\n      <span class=\"ps-4\">").concat(item.content, "</span>\n    </label>\n    <a href=\"#\" class=\"delete\"></a>\n  </li>");
+    str += "<li data-id=\"".concat(item.id, "\">\n              <label class=\"checkbox\">\n              <input type=\"checkbox\" class=\"form-check-input\"\n              ").concat(item.completed_at === null ? "" : "checked", "\n            >\n              <span class=\"ps-4\">").concat(item.content, "</span>\n              </label>\n              <a href=\"#\" class=\"delete\"></a>\n            </li>");
   });
   nonList.setAttribute("class", "d-none");
   listBlock.setAttribute('class', 'd-block');
@@ -193,6 +193,7 @@ function updateList() {
   undoNum.innerHTML = str;
   renderData(showData);
 }
+
 //----------------------------------------刪除&完成代辦
 if (list) {
   list.addEventListener('click', function (e) {
@@ -235,6 +236,8 @@ if (list) {
     }
   });
 }
+
+// 清除完成項目
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
