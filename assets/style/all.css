@@ -16656,6 +16656,7 @@ body {
 
 .card_content .tab .tabs-active {
   border-bottom: 2px solid #333333;
+  color: #333333;
 }
 
 .card_content {
