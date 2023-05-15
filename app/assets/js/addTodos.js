@@ -275,3 +275,28 @@ if (list) {
 
 
 // 清除完成項目
+const clearAll = document.querySelector('.clear-all');
+if(clearAll){
+  clearAll.addEventListener('click', function(e) {
+    e.preventDefault();
+    let deleteData = data.filter((i) => i.completed_at !== null);
+    deleteData.forEach((i) => {
+      axios.delete(`${apiUrl}/todos/${i.id}`, {
+        headers:{
+          Authorization: sessionStorage.token,
+        },
+      })
+      .then((res) => {
+        Swal.fire(
+          `${res.data.message}`,
+          "已清除所有代辦",
+          "success"
+        )
+      })
+      .catch((err) => console.log(err));
+    })
+
+    data = data.filter((i) => i.completed_at === null);
+    updateList();
+  });
+}
