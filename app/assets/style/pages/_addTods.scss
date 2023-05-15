@@ -41,6 +41,10 @@
   color: $secondary;
 }
 
+.list-shadow{
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.15);
+}
+
 .card_content{
   padding: 12px 20px 12px 12px;
   @include media-breakpoint-up(lg) {

@@ -60,16 +60,16 @@ function renderData(arr) {
   let str = '';
   arr.forEach((item) => {
     str += `<li data-id="${item.id}">
-    <label class="checkbox">
-      <input type="checkbox" class="form-check-input"
-      ${
-        item.completed_at === null ? "" : "checked"
-      }
-    >
-      <span class="ps-4">${item.content}</span>
-    </label>
-    <a href="#" class="delete"></a>
-  </li>`;
+              <label class="checkbox">
+              <input type="checkbox" class="form-check-input"
+              ${
+                item.completed_at === null ? "" : "checked"
+                }
+            >
+              <span class="ps-4">${item.content}</span>
+              </label>
+              <a href="#" class="delete"></a>
+            </li>`;
   });
   nonList.setAttribute("class", "d-none");
   listBlock.setAttribute('class', 'd-block');
@@ -228,6 +228,7 @@ function updateList(){
 
   renderData(showData);
 }
+
 //----------------------------------------刪除&完成代辦
 if (list) {
   list.addEventListener('click', function (e) {
@@ -269,4 +270,8 @@ if (list) {
       });
     }
   });
+
 }
+
+
+// 清除完成項目
