@@ -238,6 +238,30 @@ if (list) {
 }
 
 // 清除完成項目
+var clearAll = document.querySelector('.clear-all');
+if (clearAll) {
+  clearAll.addEventListener('click', function (e) {
+    e.preventDefault();
+    var deleteData = data.filter(function (i) {
+      return i.completed_at !== null;
+    });
+    deleteData.forEach(function (i) {
+      axios["delete"]("".concat(apiUrl, "/todos/").concat(i.id), {
+        headers: {
+          Authorization: sessionStorage.token
+        }
+      }).then(function (res) {
+        Swal.fire("".concat(res.data.message), "已清除所有代辦", "success");
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    });
+    data = data.filter(function (i) {
+      return i.completed_at === null;
+    });
+    updateList();
+  });
+}
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
