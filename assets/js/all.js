@@ -196,9 +196,8 @@ function updateList() {
 //----------------------------------------刪除&完成代辦
 if (list) {
   list.addEventListener('click', function (e) {
-    var listId = e.target.closest('li').dataset.id;
-    var checkBtn = e.target.closest('input');
-    if (e.target.nodeName === 'A') {
+    var listId = e.target.closest("li").dataset.id;
+    if (e.target.nodeName === "A") {
       e.preventDefault();
       axios["delete"]("".concat(apiUrl, "/todos/").concat(listId), {
         headers: {
@@ -210,7 +209,7 @@ if (list) {
         return console.log(err.response);
       });
       var index = data.findIndex(function (item) {
-        item.id === listId;
+        return item.id === listId;
       });
       data.splice(index, 1);
       updateList();
