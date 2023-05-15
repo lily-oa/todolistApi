@@ -229,47 +229,44 @@ function updateList(){
   renderData(showData);
 }
 //----------------------------------------刪除&完成代辦
-if(list){
-  list.addEventListener('click', function(e){
-    let listId = e.target.closest('li').dataset.id;
-    let checkBtn = e.target.closest('input');
-    if(e.target.nodeName === 'A'){
+if (list) {
+  list.addEventListener('click', function (e) {
+    let listId = e.target.closest("li").dataset.id;
+    if (e.target.nodeName === "A") {
       e.preventDefault();
 
       axios.delete(`${apiUrl}/todos/${listId}`, {
-        headers: {
-          Authorization: sessionStorage.token, 
-        },
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log(err.response));
-      
-      let index = data.findIndex((item) => { item.id === listId});
+          headers: {
+            Authorization: sessionStorage.token,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => console.log(err.response));
+
+      let index = data.findIndex((item) => item.id === listId)
       data.splice(index, 1);
       updateList();
     } else {
       data.forEach((i) => {
-        if(i.id === listId){
-          axios.patch(`${apiUrl}/todos/${listId}/toggle`,
-            {},
-            {
-              headers:{
-                Authorization: sessionStorage.token, 
+        if (i.id === listId) {
+          axios.patch(`${apiUrl}/todos/${listId}/toggle`, {}, {
+              headers: {
+                Authorization: sessionStorage.token,
               },
             })
             .then((res) => {
               data.forEach((item, index) => {
-                if(item.id === res.data.id){
+                if (item.id === res.data.id) {
                   data[index].completed_at = res.data.completed_at;
                 }
               });
-                updateList();
+              updateList();
             })
             .catch((err) => console.log(err));
         }
-      })
+      });
     }
   });
 }
