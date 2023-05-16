@@ -239,7 +239,9 @@ if (list) {
 
 // 清除完成項目
 var clearAll = document.querySelector('.clear-all');
+var addTodos_alert_txt = document.querySelector('.addTodos_alert_txt');
 if (clearAll) {
+  var addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
   clearAll.addEventListener('click', function (e) {
     e.preventDefault();
     var deleteData = data.filter(function (i) {
@@ -251,7 +253,10 @@ if (clearAll) {
           Authorization: sessionStorage.token
         }
       }).then(function (res) {
-        Swal.fire("".concat(res.data.message), "已清除所有代辦", "success");
+        setTimeout(function () {
+          addTodos_alert_txt.innerHTML = "\u522A\u9664\u6210\u529F!".concat(res.data);
+          addTodosModal.show();
+        });
       })["catch"](function (err) {
         return console.log(err);
       });
