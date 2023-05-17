@@ -278,15 +278,25 @@ if (list) {
 const clearAll = document.querySelector('.clear-all');
 const addTodos_alert_txt = document.querySelector('.addTodos_alert_txt');
 //const addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
+let deleteData = data.filter((i) => i.completed_at !== null);
+
 
 if(clearAll){
   clearAll.addEventListener('click', function(e){
     e.preventDefault();
-    let deleteData = data.filter((i) => i.completed_at !== null);
     if(deleteData.value.trim() != ''){
       return;
     }
   })
+
+  clearAll.addEventListener('click', () => {
+    const clearAll_check_ok = clearAllCheck();
+  })
+
+
+
+
+
   clearAll.addEventListener('click', function(e) {
     e.preventDefault();
     let deleteData = data.filter((i) => i.completed_at !== null);
@@ -311,4 +321,10 @@ if(clearAll){
     data = data.filter((i) => i.completed_at === null);
     updateList();
   });
+}
+
+function clearAllCheck(){
+  const addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
+  let isnull = false;
+  for (const item of )
 }
