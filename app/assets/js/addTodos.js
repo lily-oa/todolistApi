@@ -277,11 +277,11 @@ if (list) {
 // 清除完成項目
 const clearAll = document.querySelector('.clear-all');
 const addTodos_alert_txt = document.querySelector('.addTodos_alert_txt');
-//const addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
+
 
 
 if(clearAll){
-  
+  const addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
   clearAll.addEventListener('click', function(e) {
     e.preventDefault();
     let deleteData = data.filter((i) => i.completed_at !== null);
