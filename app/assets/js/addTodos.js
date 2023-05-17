@@ -294,10 +294,11 @@ if(clearAll){
       })
       .then((res) => {
         //-------------------燈箱效果
+        addTodosModal.show();
         setTimeout(() => {
           addTodos_alert_txt.innerHTML = `刪除成功!${res.data}`;
-          addTodosModal.show();
-        })
+          
+        },1000)
         //--------------------
       })
       .catch((err) => console.log(err));
