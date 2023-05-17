@@ -323,8 +323,8 @@ if(clearAll){
   });
 }
 
-function clearAllCheck(){
-  const addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
-  let isnull = false;
-  for (const item of )
-}
+// function clearAllCheck(){
+//   const addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
+//   let isnull = false;
+//   for (const item of )
+// }
