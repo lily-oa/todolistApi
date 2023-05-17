@@ -240,10 +240,9 @@ if (list) {
 // 清除完成項目
 var clearAll = document.querySelector('.clear-all');
 var addTodos_alert_txt = document.querySelector('.addTodos_alert_txt');
+//const addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
 if (clearAll) {
-  //------------------------燈箱
-  var addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
-  //-------------------------
+  clearAll.addEventListener('click', function (e) {});
   clearAll.addEventListener('click', function (e) {
     e.preventDefault();
     var deleteData = data.filter(function (i) {
