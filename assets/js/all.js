@@ -241,8 +241,17 @@ if (list) {
 var clearAll = document.querySelector('.clear-all');
 var addTodos_alert_txt = document.querySelector('.addTodos_alert_txt');
 //const addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
+
 if (clearAll) {
-  clearAll.addEventListener('click', function (e) {});
+  clearAll.addEventListener('click', function (e) {
+    e.preventDefault();
+    var deleteData = data.filter(function (i) {
+      return i.completed_at !== null;
+    });
+    if (deleteData.value.trim() != '') {
+      return;
+    }
+  });
   clearAll.addEventListener('click', function (e) {
     e.preventDefault();
     var deleteData = data.filter(function (i) {
