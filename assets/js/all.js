@@ -239,9 +239,7 @@ if (list) {
 
 // 清除完成項目
 var clearAll = document.querySelector('.clear-all');
-//-------------------------燈箱
 var addTodos_alert_txt = document.querySelector('.addTodos_alert_txt');
-//-------------------------
 if (clearAll) {
   //------------------------燈箱
   var addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
