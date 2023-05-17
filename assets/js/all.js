@@ -258,10 +258,10 @@ if (clearAll) {
         }
       }).then(function (res) {
         //-------------------燈箱效果
+        addTodosModal.show();
         setTimeout(function () {
           addTodos_alert_txt.innerHTML = "\u522A\u9664\u6210\u529F!".concat(res.data);
-          addTodosModal.show();
-        });
+        }, 1000);
         //--------------------
       })["catch"](function (err) {
         return console.log(err);
