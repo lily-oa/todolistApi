@@ -276,9 +276,8 @@ if (list) {
 
 // 清除完成項目
 const clearAll = document.querySelector('.clear-all');
-//-------------------------燈箱
 const addTodos_alert_txt = document.querySelector('.addTodos_alert_txt');
-//-------------------------
+
 if(clearAll){
   //------------------------燈箱
   const addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
