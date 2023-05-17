@@ -241,16 +241,18 @@ if (list) {
 var clearAll = document.querySelector('.clear-all');
 var addTodos_alert_txt = document.querySelector('.addTodos_alert_txt');
 //const addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
-
+var deleteData = data.filter(function (i) {
+  return i.completed_at !== null;
+});
 if (clearAll) {
   clearAll.addEventListener('click', function (e) {
     e.preventDefault();
-    var deleteData = data.filter(function (i) {
-      return i.completed_at !== null;
-    });
     if (deleteData.value.trim() != '') {
       return;
     }
+  });
+  clearAll.addEventListener('click', function () {
+    var clearAll_check_ok = clearAllCheck();
   });
   clearAll.addEventListener('click', function (e) {
     e.preventDefault();
@@ -279,6 +281,12 @@ if (clearAll) {
     updateList();
   });
 }
+
+// function clearAllCheck(){
+//   const addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
+//   let isnull = false;
+//   for (const item of )
+// }
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
