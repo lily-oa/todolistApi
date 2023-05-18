@@ -260,7 +260,7 @@ if (clearAll) {
         addTodosModal.show();
         setTimeout(function () {
           addTodos_alert_txt.innerHTML = "\u5168\u90E8\u522A\u9664\u6210\u529F!";
-        }, 2000);
+        });
         //--------------------
       })["catch"](function (err) {
         return console.log(err);
