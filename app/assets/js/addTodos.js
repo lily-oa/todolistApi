@@ -299,8 +299,7 @@ if(clearAll){
         //-------------------燈箱效果
         addTodosModal.show();
         setTimeout(() => {
-          addTodos_alert_txt.innerHTML = `全部刪除成功!${res.data}`;
-          
+          addTodos_alert_txt.innerHTML = `全部刪除成功!`;
         },2000)
         //--------------------
       })
