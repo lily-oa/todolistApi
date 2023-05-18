@@ -300,7 +300,7 @@ if(clearAll){
         addTodosModal.show();
         setTimeout(() => {
           addTodos_alert_txt.innerHTML = `全部刪除成功!`;
-        },2000)
+        })
         //--------------------
       })
       .catch((err) => console.log(err));
