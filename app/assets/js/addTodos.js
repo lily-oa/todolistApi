@@ -301,7 +301,7 @@ if(clearAll){
         setTimeout(() => {
           addTodos_alert_txt.innerHTML = `全部刪除成功!${res.data}`;
           
-        },1000)
+        },2000)
         //--------------------
       })
       .catch((err) => console.log(err));
