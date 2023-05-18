@@ -1,5 +1,3 @@
-
-const apiUrl = 'https://todoo.5xcamp.us';
 //login-------------------------------------
 const loginInput = document.querySelectorAll('.login-input');
 const login_btn = document.querySelector('#login_btn');

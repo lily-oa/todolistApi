@@ -1,3 +1,7 @@
+//在此宣告的原因
+//因為 apiUrl 宣告的位置是在 all.js ，所以編譯後 apiUrl 變數位置會在 addTodos.js 的後面
+const apiUrl = 'https://todoo.5xcamp.us';
+
 const list = document.querySelector('.list');
 const inputBlock = document.querySelector('.input-block')
 const user = document.querySelector('.username');
