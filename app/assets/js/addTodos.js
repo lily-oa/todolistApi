@@ -283,7 +283,6 @@ const clearAll = document.querySelector('.clear-all');
 const addTodos_alert_txt = document.querySelector('.addTodos_alert_txt');
 
 
-
 if(clearAll){
   const addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
   clearAll.addEventListener('click', function(e) {
