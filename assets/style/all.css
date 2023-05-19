@@ -16604,6 +16604,11 @@ body {
   background: #FCD370;
 }
 
+.login_hint {
+  color: #D87355;
+  font-size: 13px;
+}
+
 .addTodos {
   background: #FCD370;
 }
