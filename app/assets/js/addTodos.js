@@ -28,7 +28,7 @@ let data = [];
     <span class="d-none d-lg-block me-7 username">${user_name}的代辦事項</span>
     <a href="#" class="text-dark fs-7 fs-lg-6 logoutBtn">登出</a>
     `
-    //一開始先載入之前有儲存項目的畫面
+    //初始畫面
     getTodo();
       } else {
         return;
