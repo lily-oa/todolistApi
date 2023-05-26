@@ -271,7 +271,17 @@ if (clearAll) {
     data = data.filter(function (i) {
       return i.completed_at === null;
     });
-    updateList();
+    tabStatus = 'all';
+    //判斷tab並篩選要渲染的內容(含tab樣式)，宣告const tabArea = document.querySelector(".card_content .tab");
+    //待辦清單狀態 tabArea.childNodes[0]為全部(<li class="tabs-active">全部</li>)、tabArea.childNodes[1]為待完成、tabArea.childNodes[2]為已完成。
+    var tabArea = document.querySelector('.card_content .tab');
+    tabArea.childNodes.forEach(function (i) {
+      if (i.nodeName === "LI") {
+        i.classList.remove('tabs-active');
+        tabArea.children[0].classList.add('tabs-active');
+      }
+    });
+    updateList(data);
   });
 }
 "use strict";
