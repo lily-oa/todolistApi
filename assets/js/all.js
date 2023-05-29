@@ -58,7 +58,7 @@ if (logoutBtn) {
 function renderData(arr) {
   var str = '';
   arr.forEach(function (item) {
-    str += "<li data-id=\"".concat(item.id, "\">\n              <label class=\"checkbox\">\n              <input type=\"checkbox\" class=\"form-check-input\"\n              ").concat(item.completed_at === null ? "" : "checked", "\n            >\n              <span class=\"ps-4\">").concat(item.content, "</span>\n              </label>\n              <a href=\"#\" class =\"update\">\u7DE8\u8F2F</a>\n              <a href=\"#\" class=\"delete\"></a>\n            </li>");
+    str += "<li data-id=\"".concat(item.id, "\">\n              <label class=\"checkbox\" for=\"").concat(item.id, "\">\n              <input type=\"checkbox\" class=\"form-check-input\" id=\"").concat(item.id, "\"\n              ").concat(item.completed_at === null ? "" : "checked", "\n            >\n                <span class=\"ps-4\" id=\"item.id\">").concat(item.content, "</span>\n              </label>\n              <a href=\"#\" class =\"update\">\u7DE8\u8F2F</a>\n              <a href=\"#\" class=\"delete\"></a>\n            </li>");
   });
   nonList.setAttribute("class", "d-none");
   listBlock.setAttribute('class', 'd-block');
@@ -199,7 +199,7 @@ function updateList() {
   renderData(showData);
 }
 
-//----------------------------------------刪除&完成代辦
+//----------------------------------------刪除&完成代辦&單筆更新
 if (list) {
   list.addEventListener('click', function (e) {
     var listId = e.target.closest("li").dataset.id;
@@ -242,6 +242,18 @@ if (list) {
   });
 }
 
+// 單筆更新
+// const update = document.querySelector('.update');
+// let index = '';
+// if(update){
+//   update.addEventListener('click', function(e)){
+//     e.preventDefault();
+//     if(e.target.classList.contains("update")){
+//       index = data.findIndex(i => i.id === e.target.previousSibling.htmlFor);
+
+//     }
+//   }
+// }
 // 清除完成項目
 var clearAll = document.querySelector('.clear-all');
 var addTodos_alert_txt = document.querySelector('.addTodos_alert_txt');
