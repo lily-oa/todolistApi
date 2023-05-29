@@ -16825,4 +16825,17 @@ body {
   background-color: #fff;
 }
 
+.list .updater {
+  background: pink;
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 48px;
+  height: 40px;
+  padding: 0 7px;
+}
+
 /*# sourceMappingURL=all.css.map */

@@ -58,7 +58,7 @@ if (logoutBtn) {
 function renderData(arr) {
   var str = '';
   arr.forEach(function (item) {
-    str += "<li data-id=\"".concat(item.id, "\">\n              <label class=\"checkbox\">\n              <input type=\"checkbox\" class=\"form-check-input\"\n              ").concat(item.completed_at === null ? "" : "checked", "\n            >\n              <span class=\"ps-4\">").concat(item.content, "</span>\n              </label>\n              <a href=\"#\" class=\"delete\"></a>\n            </li>");
+    str += "<li data-id=\"".concat(item.id, "\">\n              <label class=\"checkbox\">\n              <input type=\"checkbox\" class=\"form-check-input\"\n              ").concat(item.completed_at === null ? "" : "checked", "\n            >\n              <span class=\"ps-4\">").concat(item.content, "</span>\n              </label>\n              <a href=\"#\" class =\"update\">\u7DE8\u8F2F</a>\n              <a href=\"#\" class=\"delete\"></a>\n            </li>");
   });
   nonList.setAttribute("class", "d-none");
   listBlock.setAttribute('class', 'd-block');
