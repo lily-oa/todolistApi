@@ -289,10 +289,10 @@ if (list) {
 }
 
 //修改單筆資料
-let updateBtn = document.querySelector('.update');
-updateBtn.addEventListener('click', updateOneData);
+let updateBtns = document.querySelectorAll('.update');
+let listId = e.target.closest("li").dataset.id;
+updateBtns.addEventListener('click', updateOneData);
 function updateOneData(todo, todoId){
-  let listId = e.target.closest("li").dataset.id;
   if(e.target.nodeName === 'BUTTON'){
     e.preventDefault();
 
