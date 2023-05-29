@@ -247,21 +247,23 @@ if (list) {
 
 //修改單筆資料
 var updateBtns = document.querySelectorAll('.update');
-var listId = e.target.closest("li").dataset.id;
-updateBtns.addEventListener('click', updateOneData);
-function updateOneData(todo, todoId) {
-  if (e.target.nodeName === 'BUTTON') {
-    e.preventDefault();
-    axious.put("".concat(apiUrl, "/todos/").concat(listId), {
-      "todo": {
-        "content": todo
-      }
-    }, {
-      headers: {
-        Authorization: sessionStorage.token
-      }
-    });
-  }
+if (updateBtns) {
+  var updateOneData = function updateOneData(todo, todoId) {
+    var listId = e.target.closest("li").dataset.id;
+    if (e.target.nodeName === 'BUTTON') {
+      e.preventDefault();
+      axious.put("".concat(apiUrl, "/todos/").concat(listId), {
+        "todo": {
+          "content": todo
+        }
+      }, {
+        headers: {
+          Authorization: sessionStorage.token
+        }
+      });
+    }
+  };
+  updateBtns.addEventListener('click', updateOneData);
 }
 
 // 清除完成項目
