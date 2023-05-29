@@ -10,7 +10,7 @@ const inputText = document.querySelector('.input-text');
 const enterBtn = document.querySelector('.enter-btn');
 const nonList = document.querySelector('.none-list');
 const listBlock = document.querySelector('.list-block');
-
+let APIData = {};
 let data = [];
 
 // 登入成功後顯示使用者名稱
@@ -237,6 +237,11 @@ function updateList(){
   renderData(showData);
 }
 
+
+
+
+
+
 //----------------------------------------刪除&完成代辦&單筆更新
 if (list) {
   list.addEventListener('click', function (e) {
@@ -257,6 +262,20 @@ if (list) {
       let index = data.findIndex((item) => item.id === listId)
       data.splice(index, 1);
       updateList();
+      
+    } else if (e.target.nodeName === "BUTTON"){
+      e.preventDefault();
+      
+      axious.put(`${apiUrl}/todos/${listId}`,{
+        "todo": {
+          "content": todo
+        }
+      }, {
+        headers: {
+          Authorization: sessionStorage.token,
+        },
+      })
+
     } else {
       data.forEach((i) => {
         if (i.id === listId) {
@@ -280,11 +299,6 @@ if (list) {
   });
 
 }
-
-
-
-
-
 
 
 // 清除完成項目
