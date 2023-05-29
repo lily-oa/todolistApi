@@ -243,6 +243,7 @@ function updateList(){
 
 
 //----------------------------------------刪除&完成代辦&單筆更新
+
 if (list) {
   list.addEventListener('click', function (e) {
     let listId = e.target.closest("li").dataset.id;
@@ -263,19 +264,6 @@ if (list) {
       data.splice(index, 1);
       updateList();
       
-    } else if (e.target.nodeName === "BUTTON"){
-      e.preventDefault();
-      
-      axious.put(`${apiUrl}/todos/${listId}`,{
-        "todo": {
-          "content": todo
-        }
-      }, {
-        headers: {
-          Authorization: sessionStorage.token,
-        },
-      })
-
     } else {
       data.forEach((i) => {
         if (i.id === listId) {
