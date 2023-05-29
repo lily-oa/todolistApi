@@ -179,3 +179,15 @@
   background-color: #fff;
 }
 
+//-----------------新增更新鈕的設定
+.list .updater {
+  background: pink;
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 40px;
+  padding: 0 7px;
+
+}
