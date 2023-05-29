@@ -282,21 +282,21 @@ if (list) {
 }
 
 // 單筆更新
-const update = document.querySelector('.update');
-let index = '';
-if(update){
-  update.addEventListener('click', function(e)){
-    e.preventDefault();
-    if(e.target.classList.contains("update")){
-      index = data.findIndex(i => i.id === e.target.previousSibling.htmlFor);
+// const update = document.querySelector('.update');
+// let index = '';
+// if(update){
+//   update.addEventListener('click', function(e)){
+//     e.preventDefault();
+//     if(e.target.classList.contains("update")){
+//       index = data.findIndex(i => i.id === e.target.previousSibling.htmlFor);
 
 
 
 
 
-    }
-  }
-}
+//     }
+//   }
+// }
 // 清除完成項目
 const clearAll = document.querySelector('.clear-all');
 const addTodos_alert_txt = document.querySelector('.addTodos_alert_txt');
