@@ -11,6 +11,8 @@ var inputText = document.querySelector('.input-text');
 var enterBtn = document.querySelector('.enter-btn');
 var nonList = document.querySelector('.none-list');
 var listBlock = document.querySelector('.list-block');
+//單筆資料更新(編輯修改)
+var listContent = document.querySelector('.listContent .list');
 var APIData = {};
 var data = [];
 
@@ -246,30 +248,35 @@ if (list) {
 }
 
 //修改單筆資料
-var updateBtns = document.querySelectorAll('.update');
-var i = 0;
-var _loop = function _loop() {
-  updateBtns[i].addEventListener('click', updateOneData);
-  function updateOneData(todo, todoId) {
-    var listId = e.target.closest("li").dataset.id;
-    if (e.target.nodeName === 'BUTTON') {
-      e.preventDefault();
-      axious.put("".concat(apiUrl, "/todos/").concat(listId), {
-        "todo": {
-          "content": todo
-        }
-      }, {
-        headers: {
-          Authorization: sessionStorage.token
-        }
-      });
-    }
-  }
-  i++;
-};
-while (i < updateBtns.length) {
-  _loop();
-}
+// const updateBtns = document.querySelectorAll('.update');
+// let i = 0;
+// while(i < updateBtns.length){
+//   updateBtns[i].addEventListener('click', updateOneData);
+
+//   function updateOneData(todo, todoId) {
+//     let listId = e.target.closest("li").dataset.id;
+//     if (e.target.nodeName === 'BUTTON') {
+//       e.preventDefault();
+
+//       axious.put(`${apiUrl}/todos/${listId}`, {
+//         "todo": {
+//           "content": todo
+//         }
+//       }, {
+//         headers: {
+//           Authorization: sessionStorage.token,
+//         },
+//       })
+//       .then(res => console.log(res))
+//       .catch(err => console.log(err.response))
+//     }
+//   }
+//   i++;
+// }
+
+// if(e.target.classList.contains('.update')){
+//   updateIndex = data.findexIndex(i => i.id ) 
+// }
 
 // 清除完成項目
 var clearAll = document.querySelector('.clear-all');
