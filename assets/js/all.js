@@ -201,6 +201,7 @@ function updateList() {
 }
 
 //----------------------------------------刪除&完成代辦&單筆更新
+
 if (list) {
   list.addEventListener('click', function (e) {
     var listId = e.target.closest("li").dataset.id;
@@ -220,17 +221,6 @@ if (list) {
       });
       data.splice(index, 1);
       updateList();
-    } else if (e.target.nodeName === "BUTTON") {
-      e.preventDefault();
-      axious.put("".concat(apiUrl, "/todos/").concat(listId), {
-        "todo": {
-          "content": todo
-        }
-      }, {
-        headers: {
-          Authorization: sessionStorage.token
-        }
-      });
     } else {
       data.forEach(function (i) {
         if (i.id === listId) {
