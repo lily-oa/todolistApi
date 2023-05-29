@@ -247,8 +247,10 @@ if (list) {
 
 //修改單筆資料
 var updateBtns = document.querySelectorAll('.update');
-if (updateBtns) {
-  var updateOneData = function updateOneData(todo, todoId) {
+var i = 0;
+var _loop = function _loop() {
+  updateBtns[i].addEventListener('click', updateOneData);
+  function updateOneData(todo, todoId) {
     var listId = e.target.closest("li").dataset.id;
     if (e.target.nodeName === 'BUTTON') {
       e.preventDefault();
@@ -262,8 +264,11 @@ if (updateBtns) {
         }
       });
     }
-  };
-  updateBtns.addEventListener('click', updateOneData);
+  }
+  i++;
+};
+while (i < updateBtns.length) {
+  _loop();
 }
 
 // 清除完成項目
