@@ -91,6 +91,7 @@ function getTodo() {
   })["catch"](function (err) {
     return Swal.fire("".concat(err.response), '出現了一些錯誤', 'warning');
   });
+  listContent.addEventListener('click', updateItemStatus);
 }
 
 //----------------------------------------------------新增
@@ -274,9 +275,18 @@ if (list) {
 //   i++;
 // }
 
-// if(e.target.classList.contains('.update')){
-//   updateIndex = data.findexIndex(i => i.id ) 
-// }
+function updateItemStatus(e) {
+  var findeIndex = '';
+  if (e.target.classList.contains('.update')) {
+    findeIndex = data.findexIndex(function (i) {
+      return i.id === e.target.previousSibling.htmlFor;
+    });
+    var updateData = document.querySelectorAll('span')[findeIndex];
+    var updateText = "<input name=\"updateTextOk\" class=\"input_ok\" type=\"input\" value=\"".concat(data[findeIndex], "\"><button type=\"button\" class=\"update_ok\">\u9001\u51FA</button>");
+    updateData.innerHTML = updateText;
+    document.querySelectorAll('.list .update')[findeIndex].classList.toggle('button_none');
+  }
+}
 
 // 清除完成項目
 var clearAll = document.querySelector('.clear-all');
