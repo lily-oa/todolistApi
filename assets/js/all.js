@@ -11,6 +11,7 @@ var inputText = document.querySelector('.input-text');
 var enterBtn = document.querySelector('.enter-btn');
 var nonList = document.querySelector('.none-list');
 var listBlock = document.querySelector('.list-block');
+var APIData = {};
 var data = [];
 
 // 登入成功後顯示使用者名稱
@@ -219,6 +220,17 @@ if (list) {
       });
       data.splice(index, 1);
       updateList();
+    } else if (e.target.nodeName === "BUTTON") {
+      e.preventDefault();
+      axious.put("".concat(apiUrl, "/todos/").concat(listId), {
+        "todo": {
+          "content": todo
+        }
+      }, {
+        headers: {
+          Authorization: sessionStorage.token
+        }
+      });
     } else {
       data.forEach(function (i) {
         if (i.id === listId) {
