@@ -115,6 +115,7 @@ function getTodo() {
         'warning'
       )
     );
+    listContent.addEventListener('click', updateItemStatus);
 }
 
 
@@ -314,11 +315,25 @@ if (list) {
 // }
 
 
+function updateItemStatus(e){
+  let findeIndex = '';
+
+  if(e.target.classList.contains('.update')){
+    findeIndex = data.findexIndex(i => i.id === e.target.previousSibling.htmlFor);
+
+    const updateData = document.querySelectorAll('span')[findeIndex];
+
+    let updateText = `<input name="updateTextOk" class="input_ok" type="input" value="${data[findeIndex]}"><button type="button" class="update_ok">送出</button>`;
+
+    updateData.innerHTML = updateText;
+
+    document.querySelectorAll('.list .update')[findeIndex].classList.toggle('button_none');
+    
+  }
+  
+}
 
 
-// if(e.target.classList.contains('.update')){
-//   updateIndex = data.findexIndex(i => i.id ) 
-// }
 
 
 
