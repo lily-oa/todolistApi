@@ -66,13 +66,13 @@ function renderData(arr) {
   let str = '';
   arr.forEach((item) => {
     str += `<li data-id="${item.id}">
-              <label class="checkbox">
-              <input type="checkbox" class="form-check-input"
+              <label class="checkbox" for="${item.id}">
+              <input type="checkbox" class="form-check-input" id="${item.id}"
               ${
                 item.completed_at === null ? "" : "checked"
                 }
             >
-              <span class="ps-4">${item.content}</span>
+                <span class="ps-4" id="item.id">${item.content}</span>
               </label>
               <a href="#" class ="update">編輯</a>
               <a href="#" class="delete"></a>
@@ -237,7 +237,7 @@ function updateList(){
   renderData(showData);
 }
 
-//----------------------------------------刪除&完成代辦
+//----------------------------------------刪除&完成代辦&單筆更新
 if (list) {
   list.addEventListener('click', function (e) {
     let listId = e.target.closest("li").dataset.id;
@@ -280,6 +280,20 @@ if (list) {
   });
 
 }
+
+// 單筆更新
+const update = document.querySelector('.update');
+let index = '';
+if(update){
+  update.addEventListener('click', function(e){
+    e.preventDefault();
+    if(e.target.classList.contains("update")){
+      index = data.findIndex(i => i.id === e.target.previousSibling.htmlFor);
+
+
+
+
+
 
 
 // 清除完成項目

@@ -180,14 +180,18 @@
 }
 
 //-----------------新增更新鈕的設定
-.list .updater {
-  background: pink;
+.list .update {
+  background: gray;
   position: absolute;
   top: 50%;
-  right: 10%;
+  right: 6%;
   transform: translateY(-50%);
   width: 48px;
   height: 40px;
-  padding: 0 7px;
-
+  padding: 6px 7px;
+  border-radius: 10px;
+  opacity: 0.3;
+  &:hover{
+    opacity: 1;
+  }
 }
