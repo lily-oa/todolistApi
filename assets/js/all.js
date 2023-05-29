@@ -204,6 +204,7 @@ function updateList() {
 
 if (list) {
   list.addEventListener('click', function (e) {
+    console.log(e.target.nodeName);
     var listId = e.target.closest("li").dataset.id;
     if (e.target.nodeName === "A") {
       e.preventDefault();
@@ -242,6 +243,25 @@ if (list) {
       });
     }
   });
+}
+
+//修改單筆資料
+var updateBtn = document.querySelector('.update');
+updateBtn.addEventListener('click', updateOneData);
+function updateOneData(todo, todoId) {
+  var listId = e.target.closest("li").dataset.id;
+  if (e.target.nodeName === 'BUTTON') {
+    e.preventDefault();
+    axious.put("".concat(apiUrl, "/todos/").concat(listId), {
+      "todo": {
+        "content": todo
+      }
+    }, {
+      headers: {
+        Authorization: sessionStorage.token
+      }
+    });
+  }
 }
 
 // 清除完成項目
