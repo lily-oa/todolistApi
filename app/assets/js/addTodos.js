@@ -289,10 +289,12 @@ if (list) {
 }
 
 //修改單筆資料
-let updateBtns = document.querySelectorAll('.update');
-let listId = e.target.closest("li").dataset.id;
-updateBtns.addEventListener('click', updateOneData);
-function updateOneData(todo, todoId){
+const updateBtns = document.querySelectorAll('.update');
+
+if(updateBtns){
+  updateBtns.addEventListener('click', updateOneData);
+  function updateOneData(todo, todoId){
+  let listId = e.target.closest("li").dataset.id;
   if(e.target.nodeName === 'BUTTON'){
     e.preventDefault();
 
@@ -306,9 +308,8 @@ function updateOneData(todo, todoId){
       },
     })
   }
-}
-
-
+ }
+} 
 
 
 
