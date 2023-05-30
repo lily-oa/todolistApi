@@ -275,6 +275,7 @@ if (list) {
 //   i++;
 // }
 
+//----------------------------------修改單筆資料
 function updateItemStatus(e) {
   var updateIndex = '';
   if (e.target.classList.contains('.update')) {
@@ -309,6 +310,7 @@ function updateItemStatus(e) {
     });
   }
 }
+//-------------------------------
 
 // 清除完成項目
 var clearAll = document.querySelector('.clear-all');
