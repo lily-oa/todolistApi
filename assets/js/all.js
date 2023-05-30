@@ -33,6 +33,7 @@ function init_token_render() {
   } else {
     return;
   }
+  //單筆資料更新(編輯修改)設定
   listContent.addEventListener('click', updateItemStatus);
 }
 
@@ -282,16 +283,26 @@ function updateItemStatus(e) {
     updateIndex = data.findeIndex(function (i) {
       return i.id === e.target.previousSibling.htmlFor;
     });
+
+    // querySelectorAll("span")[index] 取得<span> 索引值「第n個」符合條件的元素
     var updateData = document.querySelectorAll('span')[updateIndex];
+
+    //宣告updateText，組出新增todo的html結構。updateData.innerHTML再動態覆蓋至<span>該索引值
     var updateText = "<input name=\"updateTextOk\" class=\"input_ok\" type=\"input\" value=\"".concat(data[updateIndex], "\"><button type=\"button\" class=\"update_Ok\">\u9001\u51FA</button>");
     updateData.innerHTML = updateText;
+
+    // 編輯鈕因有多個，需使用索引值來對應 切換成"隱藏"(進而顯示送出button)
     document.querySelectorAll('.list .update')[updateIndex].classList.toggle('button_none');
   }
+
+  //單筆資料更新_編輯(修改)todo > 編輯送出
   if (e.target.classList.contains('update_Ok')) {
     updateIndex = data.findIndex(function (i) {
       return i.id === e.target.parentNode.parentNode.htmlFor;
     });
     var todoId = data[updateIndex].id;
+
+    // 透過DOM選取到"編輯todo input"，再將值賦予給todo待辦事項
     var todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
     axios.put("".concat(apiUrl, "/todos/").concat(todoId), {
       "todo": {
@@ -302,6 +313,7 @@ function updateItemStatus(e) {
         Authorization: sessionStorage.token
       }
     }).then(function (res) {
+      // 將新增後的todo，把值更新給data[updateIndex].content(對應todo內容)。
       data[updateIndex].content = todo;
       renderData(data);
     })["catch"](function (err) {
