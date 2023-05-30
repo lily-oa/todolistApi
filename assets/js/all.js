@@ -234,6 +234,7 @@ if (list) {
         updateData.innerHTML = updateText;
         document.querySelectorAll('.list .update')[_index].classList.toggle('button_none');
       }
+
       //單筆資料更新_編輯(修改)todo > 編輯送出
       if (e.target.classList.contains('update_Ok')) {}
       axious.put("".concat(apiUrl, "/todos/").concat(listId), {
