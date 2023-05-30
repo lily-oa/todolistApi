@@ -33,6 +33,7 @@ function init_token_render() {
   } else {
     return;
   }
+  listContent.addEventListener('click', updateItemStatus);
 }
 
 //---------------------------------------------------- 登出
@@ -61,7 +62,7 @@ if (logoutBtn) {
 function renderData(arr) {
   var str = '';
   arr.forEach(function (item) {
-    str += "<li data-id=\"".concat(item.id, "\">\n              <label class=\"checkbox\" for=\"").concat(item.id, "\">\n              <input type=\"checkbox\" class=\"form-check-input\" id=\"").concat(item.id, "\"\n              ").concat(item.completed_at === null ? "" : "checked", "\n            >\n                <span class=\"ps-4\" id=\"item.id\">").concat(item.content, "</span>\n              </label>\n              <botton href=\"#\" class =\"update\">\u7DE8\u8F2F</botton>\n              <a href=\"#\" class=\"delete\"></a>\n            </li>");
+    str += "<li data-id=\"".concat(item.id, "\">\n              <label class=\"checkbox\" for=\"").concat(item.id, "\">\n              <input type=\"checkbox\" class=\"form-check-input\" id=\"").concat(item.id, "\"\n              ").concat(item.completed_at === null ? "" : "checked", "\n            >\n                  <span class=\"ps-4\" id=\"item.id\">").concat(item.content, "</span>\n              </label>\n              <botton href=\"#\" class =\"update\">\u7DE8\u8F2F</botton>\n              <a href=\"#\" class=\"delete\"></a>\n            </li>");
   });
   nonList.setAttribute("class", "d-none");
   listBlock.setAttribute('class', 'd-block');
@@ -91,7 +92,6 @@ function getTodo() {
   })["catch"](function (err) {
     return Swal.fire("".concat(err.response), '出現了一些錯誤', 'warning');
   });
-  listContent.addEventListener('click', updateItemStatus);
 }
 
 //----------------------------------------------------新增
@@ -276,15 +276,37 @@ if (list) {
 // }
 
 function updateItemStatus(e) {
-  var findeIndex = '';
+  var updateIndex = '';
   if (e.target.classList.contains('.update')) {
-    findeIndex = data.findexIndex(function (i) {
+    updateIndex = data.findeIndex(function (i) {
       return i.id === e.target.previousSibling.htmlFor;
     });
-    var updateData = document.querySelectorAll('span')[findeIndex];
-    var updateText = "<input name=\"updateTextOk\" class=\"input_ok\" type=\"input\" value=\"".concat(data[findeIndex], "\"><button type=\"button\" class=\"update_ok\">\u9001\u51FA</button>");
+    var updateData = document.querySelectorAll('span')[updateIndex];
+    var updateText = "<input name=\"updateTextOk\" class=\"input_ok\" type=\"input\" value=\"".concat(data[updateIndex], "\"><button type=\"button\" class=\"update_Ok\">\u9001\u51FA</button>");
     updateData.innerHTML = updateText;
-    document.querySelectorAll('.list .update')[findeIndex].classList.toggle('button_none');
+    document.querySelectorAll('.list .update')[updateIndex].classList.toggle('button_none');
+  }
+  if (e.target.classList.contains('update_Ok')) {
+    updateIndex = data.findIndex(function (i) {
+      return i.id === e.target.parentNode.parentNode.htmlFor;
+    });
+    var todoId = data[updateIndex].id;
+    var todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
+    axios.put("".concat(apiUrl, "/todos/").concat(todoId), {
+      "todo": {
+        "content": todo
+      }
+    }, {
+      headers: {
+        Authorization: sessionStorage.token
+      }
+    }).then(function (res) {
+      data[updateIndex].content = todo;
+      renderData(data);
+    })["catch"](function (err) {
+      var reason = err.response.data.err ? err.response.data.err : "";
+      alert(err.response.data.message + "" + reason);
+    });
   }
 }
 
