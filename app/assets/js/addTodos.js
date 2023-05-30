@@ -316,7 +316,7 @@ if (list) {
 //   i++;
 // }
 
-
+//----------------------------------修改單筆資料
 function updateItemStatus(e){
   let updateIndex = '';
 
@@ -359,16 +359,7 @@ function updateItemStatus(e){
     });
   }
 }
-
-
-
-
-
-
-
-
-
-
+//-------------------------------
 
 
 // 清除完成項目
