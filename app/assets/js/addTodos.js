@@ -264,23 +264,23 @@ if (list) {
       let index = data.findIndex((item) => item.id === listId);
       data.splice(index, 1);
       updateList();
-      
-    } else if(e.target.nodeName === "BUTTON"){
+
+    } else if (e.target.nodeName === "BUTTON") {
       e.preventDefault();
       let index = data.findIndex((item) => item.id === listId);
 
-      if(e.target.classList.contains('update')){
+      if (e.target.classList.contains('update')) {
         const updateData = document.querySelectorAll('span')[index];
         let updateText = `<input name="updateTextOk" class="input_ok" type="input" value="${data[index]}"><button type="button" class="update_Ok">送出</button>`;
         updateData.innerHTML = updateText;
         document.querySelectorAll('.list .update')[index].classList.toggle('button_none');
       }
-      
+
       //單筆資料更新_編輯(修改)todo > 編輯送出
-      if(e.target.classList.contains('update_Ok')){
+      if (e.target.classList.contains('update_Ok')) {
 
       }
-      
+
 
 
 
