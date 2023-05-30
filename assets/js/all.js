@@ -225,6 +225,17 @@ if (list) {
       updateList();
     } else if (e.target.nodeName === "BUTTON") {
       e.preventDefault();
+      var _index = data.findIndex(function (item) {
+        return item.id === listId;
+      });
+      if (e.target.classList.contains('update')) {
+        var updateData = document.querySelectorAll('span')[_index];
+        var updateText = "<input name=\"updateTextOk\" class=\"input_ok\" type=\"input\" value=\"".concat(data[_index], "\"><button type=\"button\" class=\"update_Ok\">\u9001\u51FA</button>");
+        updateData.innerHTML = updateText;
+        document.querySelectorAll('.list .update')[_index].classList.toggle('button_none');
+      }
+      //單筆資料更新_編輯(修改)todo > 編輯送出
+      if (e.target.classList.contains('update_Ok')) {}
       axious.put("".concat(apiUrl, "/todos/").concat(listId), {
         "todo": {
           "content": todo
