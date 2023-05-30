@@ -11,8 +11,6 @@ var inputText = document.querySelector('.input-text');
 var enterBtn = document.querySelector('.enter-btn');
 var nonList = document.querySelector('.none-list');
 var listBlock = document.querySelector('.list-block');
-//單筆資料更新(編輯修改)
-var listContent = document.querySelector('.listContent .list');
 var APIData = {};
 var data = [];
 
@@ -33,8 +31,6 @@ function init_token_render() {
   } else {
     return;
   }
-  //單筆資料更新(編輯修改)設定
-  listContent.addEventListener('click', updateItemStatus);
 }
 
 //---------------------------------------------------- 登出
@@ -63,7 +59,7 @@ if (logoutBtn) {
 function renderData(arr) {
   var str = '';
   arr.forEach(function (item) {
-    str += "<li data-id=\"".concat(item.id, "\">\n              <label class=\"checkbox\" for=\"").concat(item.id, "\">\n              <input type=\"checkbox\" class=\"form-check-input\" id=\"").concat(item.id, "\"\n              ").concat(item.completed_at === null ? "" : "checked", "\n            >\n                  <span class=\"ps-4\" id=\"item.id\">").concat(item.content, "</span>\n              </label>\n              <botton href=\"#\" class =\"update\">\u7DE8\u8F2F</botton>\n              <a href=\"#\" class=\"delete\"></a>\n            </li>");
+    str += "<li data-id=\"".concat(item.id, "\">\n              <label class=\"checkbox\" for=\"").concat(item.id, "\">\n              <input type=\"checkbox\" class=\"form-check-input\" id=\"").concat(item.id, "\"\n              ").concat(item.completed_at === null ? "" : "checked", "\n            >\n                  <span class=\"ps-4\" id=\"item.id\">").concat(item.content, "</span>\n              </label>\n              <button href=\"#\" class =\"update\">\u7DE8\u8F2F</button>\n              <a href=\"#\" class=\"delete\"></a>\n            </li>");
   });
   nonList.setAttribute("class", "d-none");
   listBlock.setAttribute('class', 'd-block');
@@ -210,6 +206,7 @@ if (list) {
   list.addEventListener('click', function (e) {
     console.log(e.target.nodeName);
     var listId = e.target.closest("li").dataset.id;
+    var todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
     if (e.target.nodeName === "A") {
       e.preventDefault();
       axios["delete"]("".concat(apiUrl, "/todos/").concat(listId), {
@@ -226,6 +223,17 @@ if (list) {
       });
       data.splice(index, 1);
       updateList();
+    } else if (e.target.nodeName === "BUTTON") {
+      e.preventDefault();
+      axious.put("".concat(apiUrl, "/todos/").concat(listId), {
+        "todo": {
+          "content": todo
+        }
+      }, {
+        headers: {
+          Authorization: sessionStorage.token
+        }
+      });
     } else {
       data.forEach(function (i) {
         if (i.id === listId) {
@@ -275,54 +283,6 @@ if (list) {
 //   }
 //   i++;
 // }
-
-//----------------------------------修改單筆資料
-function updateItemStatus(e) {
-  var updateIndex = '';
-  if (e.target.classList.contains('.update')) {
-    updateIndex = data.findeIndex(function (i) {
-      return i.id === e.target.previousSibling.htmlFor;
-    });
-
-    // querySelectorAll("span")[index] 取得<span> 索引值「第n個」符合條件的元素
-    var updateData = document.querySelectorAll('span')[updateIndex];
-
-    //宣告updateText，組出新增todo的html結構。updateData.innerHTML再動態覆蓋至<span>該索引值
-    var updateText = "<input name=\"updateTextOk\" class=\"input_ok\" type=\"input\" value=\"".concat(data[updateIndex], "\"><button type=\"button\" class=\"update_Ok\">\u9001\u51FA</button>");
-    updateData.innerHTML = updateText;
-
-    // 編輯鈕因有多個，需使用索引值來對應 切換成"隱藏"(進而顯示送出button)
-    document.querySelectorAll('.list .update')[updateIndex].classList.toggle('button_none');
-  }
-
-  //單筆資料更新_編輯(修改)todo > 編輯送出
-  if (e.target.classList.contains('update_Ok')) {
-    updateIndex = data.findIndex(function (i) {
-      return i.id === e.target.parentNode.parentNode.htmlFor;
-    });
-    var todoId = data[updateIndex].id;
-
-    // 透過DOM選取到"編輯todo input"，再將值賦予給todo待辦事項
-    var todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
-    axios.put("".concat(apiUrl, "/todos/").concat(todoId), {
-      "todo": {
-        "content": todo
-      }
-    }, {
-      headers: {
-        Authorization: sessionStorage.token
-      }
-    }).then(function (res) {
-      // 將新增後的todo，把值更新給data[updateIndex].content(對應todo內容)。
-      data[updateIndex].content = todo;
-      renderData(data);
-    })["catch"](function (err) {
-      var reason = err.response.data.err ? err.response.data.err : "";
-      alert(err.response.data.message + "" + reason);
-    });
-  }
-}
-//-------------------------------
 
 // 清除完成項目
 var clearAll = document.querySelector('.clear-all');

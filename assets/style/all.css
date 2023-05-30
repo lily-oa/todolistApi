@@ -16838,6 +16838,7 @@ body {
   padding: 6px 7px;
   border-radius: 10px;
   opacity: 0.3;
+  border: none;
 }
 
 .list .update:hover {
