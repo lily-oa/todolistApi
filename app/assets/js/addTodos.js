@@ -10,8 +10,6 @@ const inputText = document.querySelector('.input-text');
 const enterBtn = document.querySelector('.enter-btn');
 const nonList = document.querySelector('.none-list');
 const listBlock = document.querySelector('.list-block');
-//單筆資料更新(編輯修改)
-const listContent = document.querySelector('.listContent .list');
 
 let APIData = {};
 let data = [];
@@ -36,8 +34,6 @@ let data = [];
       } else {
         return;
       }
-    //單筆資料更新(編輯修改)設定
-      listContent.addEventListener('click', updateItemStatus);
     }
 
     //---------------------------------------------------- 登出
@@ -79,7 +75,7 @@ function renderData(arr) {
             >
                   <span class="ps-4" id="item.id">${item.content}</span>
               </label>
-              <botton href="#" class ="update">編輯</botton>
+              <button href="#" class ="update">編輯</button>
               <a href="#" class="delete"></a>
             </li>`;
   });
@@ -250,6 +246,8 @@ if (list) {
   list.addEventListener('click', function (e) {
     console.log(e.target.nodeName);
     let listId = e.target.closest("li").dataset.id;
+    const todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
+
     if (e.target.nodeName === "A") {
       e.preventDefault();
 
@@ -267,6 +265,19 @@ if (list) {
       data.splice(index, 1);
       updateList();
       
+    } else if(e.target.nodeName === "BUTTON"){
+      e.preventDefault();
+
+      axious.put(`${apiUrl}/todos/${listId}`, {
+        "todo": {
+          "content": todo
+        },
+      }, {
+        headers: {
+          Authorization: sessionStorage.token,
+        },
+      })
+
     } else {
       data.forEach((i) => {
         if (i.id === listId) {
@@ -289,6 +300,10 @@ if (list) {
     }
   });
 }
+
+
+
+
 
 //修改單筆資料
 // const updateBtns = document.querySelectorAll('.update');
@@ -317,56 +332,7 @@ if (list) {
 //   i++;
 // }
 
-//----------------------------------修改單筆資料
-function updateItemStatus(e){
-  let updateIndex = '';
 
-  if(e.target.classList.contains('.update')){
-    updateIndex = data.findeIndex(i => i.id === e.target.previousSibling.htmlFor);
-
-    // querySelectorAll("span")[index] 取得<span> 索引值「第n個」符合條件的元素
-    const updateData = document.querySelectorAll('span')[updateIndex];
-
-    //宣告updateText，組出新增todo的html結構。updateData.innerHTML再動態覆蓋至<span>該索引值
-    let updateText = `<input name="updateTextOk" class="input_ok" type="input" value="${data[updateIndex]}"><button type="button" class="update_Ok">送出</button>`;
-
-    updateData.innerHTML = updateText;
-
-    // 編輯鈕因有多個，需使用索引值來對應 切換成"隱藏"(進而顯示送出button)
-    document.querySelectorAll('.list .update')[updateIndex].classList.toggle('button_none');
-    
-  }
-
-  //單筆資料更新_編輯(修改)todo > 編輯送出
-  if(e.target.classList.contains('update_Ok')){
-    updateIndex = data.findIndex(i => i.id === e.target.parentNode.parentNode.htmlFor);
-
-    const todoId = data[updateIndex].id;
-
-     // 透過DOM選取到"編輯todo input"，再將值賦予給todo待辦事項
-    const todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
-
-    axios.put(`${apiUrl}/todos/${todoId}`, {
-      "todo": {
-        "content": todo
-      },
-    }, {
-      headers: {
-        Authorization: sessionStorage.token,
-      },
-    })
-    .then((res) => {
-      // 將新增後的todo，把值更新給data[updateIndex].content(對應todo內容)。
-      data[updateIndex].content = todo;
-      renderData(data);
-    })
-    .catch((err) => {
-      let reason = err.response.data.err ? err.response.data.err : "";
-      alert(err.response.data.message + "" + reason)
-    });
-  }
-}
-//-------------------------------
 
 
 // 清除完成項目
