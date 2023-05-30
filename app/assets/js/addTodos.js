@@ -35,6 +35,8 @@ let data = [];
       } else {
         return;
       }
+
+      listContent.addEventListener('click', updateItemStatus);
     }
 
     //---------------------------------------------------- 登出
@@ -74,7 +76,7 @@ function renderData(arr) {
                 item.completed_at === null ? "" : "checked"
                 }
             >
-                <span class="ps-4" id="item.id">${item.content}</span>
+                  <span class="ps-4" id="item.id">${item.content}</span>
               </label>
               <botton href="#" class ="update">編輯</botton>
               <a href="#" class="delete"></a>
@@ -115,7 +117,7 @@ function getTodo() {
         'warning'
       )
     );
-    listContent.addEventListener('click', updateItemStatus);
+    
 }
 
 
@@ -316,21 +318,46 @@ if (list) {
 
 
 function updateItemStatus(e){
-  let findeIndex = '';
+  let updateIndex = '';
 
   if(e.target.classList.contains('.update')){
-    findeIndex = data.findexIndex(i => i.id === e.target.previousSibling.htmlFor);
+    updateIndex = data.findeIndex(i => i.id === e.target.previousSibling.htmlFor);
 
-    const updateData = document.querySelectorAll('span')[findeIndex];
+    const updateData = document.querySelectorAll('span')[updateIndex];
 
-    let updateText = `<input name="updateTextOk" class="input_ok" type="input" value="${data[findeIndex]}"><button type="button" class="update_ok">送出</button>`;
+    let updateText = `<input name="updateTextOk" class="input_ok" type="input" value="${data[updateIndex]}"><button type="button" class="update_Ok">送出</button>`;
 
     updateData.innerHTML = updateText;
 
-    document.querySelectorAll('.list .update')[findeIndex].classList.toggle('button_none');
+    document.querySelectorAll('.list .update')[updateIndex].classList.toggle('button_none');
     
   }
-  
+
+  if(e.target.classList.contains('update_Ok')){
+    updateIndex = data.findIndex(i => i.id === e.target.parentNode.parentNode.htmlFor);
+
+    const todoId = data[updateIndex].id;
+
+    const todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
+
+    axios.put(`${apiUrl}/todos/${todoId}`, {
+      "todo": {
+        "content": todo
+      },
+    }, {
+      headers: {
+        Authorization: sessionStorage.token,
+      },
+    })
+    .then((res) => {
+      data[updateIndex].content = todo;
+      renderData(data);
+    })
+    .catch((err) => {
+      let reason = err.response.data.err ? err.response.data.err : "";
+      alert(err.response.data.message + "" + reason)
+    });
+  }
 }
 
 
