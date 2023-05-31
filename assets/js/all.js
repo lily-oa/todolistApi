@@ -206,7 +206,6 @@ if (list) {
   list.addEventListener('click', function (e) {
     console.log(e.target.nodeName);
     var listId = e.target.closest("li").dataset.id;
-    var todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
     if (e.target.nodeName === "A") {
       e.preventDefault();
       axios["delete"]("".concat(apiUrl, "/todos/").concat(listId), {
@@ -236,7 +235,9 @@ if (list) {
       }
 
       //單筆資料更新_編輯(修改)todo > 編輯送出
-      if (e.target.classList.contains('update_Ok')) {}
+      if (e.target.classList.contains('update_Ok')) {
+        var _todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
+      }
       axious.put("".concat(apiUrl, "/todos/").concat(listId), {
         "todo": {
           "content": todo
