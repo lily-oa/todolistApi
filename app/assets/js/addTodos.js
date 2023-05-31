@@ -246,7 +246,7 @@ if (list) {
   list.addEventListener('click', function (e) {
     console.log(e.target.nodeName);
     let listId = e.target.closest("li").dataset.id;
-    const todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
+    
 
     if (e.target.nodeName === "A") {
       e.preventDefault();
@@ -268,8 +268,10 @@ if (list) {
     } else if (e.target.nodeName === "BUTTON") {
       e.preventDefault();
       let index = data.findIndex((item) => item.id === listId);
+      
 
       if (e.target.classList.contains('update')) {
+        
         const updateData = document.querySelectorAll('span')[index];
         let updateText = `<input name="updateTextOk" class="input_ok" type="input" value="${data[index]}"><button type="button" class="update_Ok">送出</button>`;
         updateData.innerHTML = updateText;
@@ -278,7 +280,7 @@ if (list) {
 
       //單筆資料更新_編輯(修改)todo > 編輯送出
       if (e.target.classList.contains('update_Ok')) {
-
+        const todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
       }
 
 
