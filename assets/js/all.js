@@ -251,6 +251,7 @@ if (list) {
           Authorization: sessionStorage.token
         }
       });
+      git;
     } else {
       data.forEach(function (i) {
         if (i.id === listId) {
