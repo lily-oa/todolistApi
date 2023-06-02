@@ -241,7 +241,7 @@ function updateList(){
 
 
 //----------------------------------------刪除&完成代辦&單筆更新
-
+let updateText = `<input name="updateTextOk" class="input_ok" type="input" value="${data[index]}"><button type="button" class="update_Ok">送出</button>`;
 if (list) {
   list.addEventListener('click', function (e) {
     console.log(e.target.nodeName);
@@ -269,11 +269,10 @@ if (list) {
       e.preventDefault();
       let index = data.findIndex((item) => item.id === listId);
       
-
       if (e.target.classList.contains('update')) {
         
         const updateData = document.querySelectorAll('span')[index];
-        let updateText = `<input name="updateTextOk" class="input_ok" type="input" value="${data[index]}"><button type="button" class="update_Ok">送出</button>`;
+        
         updateData.innerHTML = updateText;
         document.querySelectorAll('.list .update')[index].classList.toggle('button_none');
       }
