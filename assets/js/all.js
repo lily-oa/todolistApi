@@ -201,7 +201,7 @@ function updateList() {
 }
 
 //----------------------------------------刪除&完成代辦&單筆更新
-
+var updateText = "<input name=\"updateTextOk\" class=\"input_ok\" type=\"input\" value=\"".concat(data[index], "\"><button type=\"button\" class=\"update_Ok\">\u9001\u51FA</button>");
 if (list) {
   list.addEventListener('click', function (e) {
     console.log(e.target.nodeName);
@@ -217,21 +217,20 @@ if (list) {
       })["catch"](function (err) {
         return console.log(err.response);
       });
-      var index = data.findIndex(function (item) {
-        return item.id === listId;
-      });
-      data.splice(index, 1);
-      updateList();
-    } else if (e.target.nodeName === "BUTTON") {
-      e.preventDefault();
       var _index = data.findIndex(function (item) {
         return item.id === listId;
       });
+      data.splice(_index, 1);
+      updateList();
+    } else if (e.target.nodeName === "BUTTON") {
+      e.preventDefault();
+      var _index2 = data.findIndex(function (item) {
+        return item.id === listId;
+      });
       if (e.target.classList.contains('update')) {
-        var updateData = document.querySelectorAll('span')[_index];
-        var updateText = "<input name=\"updateTextOk\" class=\"input_ok\" type=\"input\" value=\"".concat(data[_index], "\"><button type=\"button\" class=\"update_Ok\">\u9001\u51FA</button>");
+        var updateData = document.querySelectorAll('span')[_index2];
         updateData.innerHTML = updateText;
-        document.querySelectorAll('.list .update')[_index].classList.toggle('button_none');
+        document.querySelectorAll('.list .update')[_index2].classList.toggle('button_none');
       }
 
       //單筆資料更新_編輯(修改)todo > 編輯送出
