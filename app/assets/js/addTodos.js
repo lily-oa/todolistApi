@@ -73,7 +73,7 @@ function renderData(arr) {
                 item.completed_at === null ? "" : "checked"
                 }
             >
-                  <span class="ps-4" id="item.id">${item.content}</span>
+                  <span class="ps-4" id="${item.id}">${item.content}</span>
               </label>
               <button href="#" class ="update">編輯</button>
               <a href="#" class="delete"></a>
@@ -241,9 +241,11 @@ function updateList(){
 
 
 //----------------------------------------刪除&完成代辦&單筆更新
-let updateText = `<input name="updateTextOk" class="input_ok" type="input" value="${data[index]}"><button type="button" class="update_Ok">送出</button>`;
+
 if (list) {
   list.addEventListener('click', function (e) {
+    let index = '';
+    let updateText = `<input name="updateTextOk" class="input_ok" type="input" value="${data[index]}"><button type="button" class="update_Ok">送出</button>`;
     console.log(e.target.nodeName);
     let listId = e.target.closest("li").dataset.id;
     
@@ -267,10 +269,10 @@ if (list) {
 
     } else if (e.target.nodeName === "BUTTON") {
       e.preventDefault();
-      let index = data.findIndex((item) => item.id === listId);
+      
       
       if (e.target.classList.contains('update')) {
-        
+        index = data.findIndex((item) => item.id === e.target.previousElementSibling.htmlFor);
         const updateData = document.querySelectorAll('span')[index];
         
         updateData.innerHTML = updateText;
@@ -279,6 +281,7 @@ if (list) {
 
       //單筆資料更新_編輯(修改)todo > 編輯送出
       if (e.target.classList.contains('update_Ok')) {
+        index = data.findIndex((item) => item.id === e.target.parentNode.parentNode.htmlFor)
         const todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
       }
 
