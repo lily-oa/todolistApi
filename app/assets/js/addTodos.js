@@ -298,7 +298,7 @@ if (list) {
           Authorization: sessionStorage.token,
         },
       })
-
+git 
     } else {
       data.forEach((i) => {
         if (i.id === listId) {
