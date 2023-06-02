@@ -59,7 +59,7 @@ if (logoutBtn) {
 function renderData(arr) {
   var str = '';
   arr.forEach(function (item) {
-    str += "<li data-id=\"".concat(item.id, "\">\n              <label class=\"checkbox\" for=\"").concat(item.id, "\">\n              <input type=\"checkbox\" class=\"form-check-input\" id=\"").concat(item.id, "\"\n              ").concat(item.completed_at === null ? "" : "checked", "\n            >\n                  <span class=\"ps-4\" id=\"item.id\">").concat(item.content, "</span>\n              </label>\n              <button href=\"#\" class =\"update\">\u7DE8\u8F2F</button>\n              <a href=\"#\" class=\"delete\"></a>\n            </li>");
+    str += "<li data-id=\"".concat(item.id, "\">\n              <label class=\"checkbox\" for=\"").concat(item.id, "\">\n              <input type=\"checkbox\" class=\"form-check-input\" id=\"").concat(item.id, "\"\n              ").concat(item.completed_at === null ? "" : "checked", "\n            >\n                  <span class=\"ps-4\" id=\"").concat(item.id, "\">").concat(item.content, "</span>\n              </label>\n              <button href=\"#\" class =\"update\">\u7DE8\u8F2F</button>\n              <a href=\"#\" class=\"delete\"></a>\n            </li>");
   });
   nonList.setAttribute("class", "d-none");
   listBlock.setAttribute('class', 'd-block');
@@ -201,9 +201,11 @@ function updateList() {
 }
 
 //----------------------------------------刪除&完成代辦&單筆更新
-var updateText = "<input name=\"updateTextOk\" class=\"input_ok\" type=\"input\" value=\"".concat(data[index], "\"><button type=\"button\" class=\"update_Ok\">\u9001\u51FA</button>");
+
 if (list) {
   list.addEventListener('click', function (e) {
+    var index = '';
+    var updateText = "<input name=\"updateTextOk\" class=\"input_ok\" type=\"input\" value=\"".concat(data[index], "\"><button type=\"button\" class=\"update_Ok\">\u9001\u51FA</button>");
     console.log(e.target.nodeName);
     var listId = e.target.closest("li").dataset.id;
     if (e.target.nodeName === "A") {
@@ -224,17 +226,20 @@ if (list) {
       updateList();
     } else if (e.target.nodeName === "BUTTON") {
       e.preventDefault();
-      var _index2 = data.findIndex(function (item) {
-        return item.id === listId;
-      });
       if (e.target.classList.contains('update')) {
-        var updateData = document.querySelectorAll('span')[_index2];
+        index = data.findIndex(function (item) {
+          return item.id === e.target.previousElementSibling.htmlFor;
+        });
+        var updateData = document.querySelectorAll('span')[index];
         updateData.innerHTML = updateText;
-        document.querySelectorAll('.list .update')[_index2].classList.toggle('button_none');
+        document.querySelectorAll('.list .update')[index].classList.toggle('button_none');
       }
 
       //單筆資料更新_編輯(修改)todo > 編輯送出
       if (e.target.classList.contains('update_Ok')) {
+        index = data.findIndex(function (item) {
+          return item.id === e.target.parentNode.parentNode.htmlFor;
+        });
         var _todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
       }
       axious.put("".concat(apiUrl, "/todos/").concat(listId), {
