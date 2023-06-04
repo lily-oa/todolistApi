@@ -25,7 +25,7 @@ if (header_logout) {
 function init_token_render() {
   if (sessionStorage.getItem('token')) {
     var user_name = sessionStorage.getItem('name');
-    header_logout.innerHTML = "\n    <span class=\"d-none d-lg-block me-7 username\">".concat(user_name, "\u7684\u4EE3\u8FA6\u4E8B\u9805</span>\n    <a href=\"#\" class=\"text-dark fs-7 fs-lg-6 logoutBtn\">\u767B\u51FA</a>\n    ");
+    header_logout.innerHTML = "\n    <div class=\"d-none d-lg-block me-7 username\">".concat(user_name, "\u7684\u4EE3\u8FA6\u4E8B\u9805</div>\n    <a href=\"#\" class=\"text-dark fs-7 fs-lg-6 logoutBtn\">\u767B\u51FA</a>\n    ");
     //初始畫面
     getTodo();
   } else {
@@ -205,7 +205,6 @@ function updateList() {
 if (list) {
   list.addEventListener('click', function (e) {
     var index = '';
-    var updateText = "<input name=\"updateTextOk\" class=\"input_ok\" type=\"input\" value=\"".concat(data[index], "\"><button type=\"button\" class=\"update_Ok\">\u9001\u51FA</button>");
     console.log(e.target.nodeName);
     var listId = e.target.closest("li").dataset.id;
     if (e.target.nodeName === "A") {
@@ -230,6 +229,8 @@ if (list) {
         index = data.findIndex(function (item) {
           return item.id === e.target.previousElementSibling.htmlFor;
         });
+        //console.log(index);
+        var updateText = "<input name=\"updateTextOk\" class=\"input_ok\" type=\"input\" value=\"".concat(data[index].content, "\"><button type=\"button\" class=\"update_Ok\">\u9001\u51FA</button>");
         var updateData = document.querySelectorAll('span')[index];
         updateData.innerHTML = updateText;
         document.querySelectorAll('.list .update')[index].classList.toggle('button_none');
