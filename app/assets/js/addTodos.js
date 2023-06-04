@@ -73,6 +73,7 @@ function renderData(arr) {
                 item.completed_at === null ? "" : "checked"
                 }
             >
+            
                   <span class="ps-4" id="${item.id}">${item.content}</span>
               </label>
               <button href="#" class ="update">編輯</button>
