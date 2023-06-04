@@ -59,7 +59,7 @@ if (logoutBtn) {
 function renderData(arr) {
   var str = '';
   arr.forEach(function (item) {
-    str += "<li data-id=\"".concat(item.id, "\">\n              <label class=\"checkbox\" for=\"").concat(item.id, "\">\n              <input type=\"checkbox\" class=\"form-check-input\" id=\"").concat(item.id, "\"\n              ").concat(item.completed_at === null ? "" : "checked", "\n            >\n                  <span class=\"ps-4\" id=\"").concat(item.id, "\">").concat(item.content, "</span>\n              </label>\n              <button href=\"#\" class =\"update\">\u7DE8\u8F2F</button>\n              <a href=\"#\" class=\"delete\"></a>\n            </li>");
+    str += "<li data-id=\"".concat(item.id, "\">\n              <label class=\"checkbox\" for=\"").concat(item.id, "\">\n              <input type=\"checkbox\" class=\"form-check-input\" id=\"").concat(item.id, "\"\n              ").concat(item.completed_at === null ? "" : "checked", "\n            >\n            \n                  <span class=\"ps-4\" id=\"").concat(item.id, "\">").concat(item.content, "</span>\n              </label>\n              <button href=\"#\" class =\"update\">\u7DE8\u8F2F</button>\n              <a href=\"#\" class=\"delete\"></a>\n            </li>");
   });
   nonList.setAttribute("class", "d-none");
   listBlock.setAttribute('class', 'd-block');
