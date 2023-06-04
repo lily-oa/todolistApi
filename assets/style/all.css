@@ -16739,10 +16739,6 @@ body {
 }
 
 .checkbox input {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
   cursor: pointer;
   display: block;
   height: 100%;
@@ -16845,8 +16841,52 @@ body {
   opacity: 1;
 }
 
-.button_nonne {
+.button_none {
   display: none;
+}
+
+.listContent label .input_ok {
+  display: inline-block;
+  outline: 3px solid #FCD370;
+  border-radius: 10px;
+  padding: 10px 10px;
+  height: 47px;
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 700;
+  width: calc(100% - 30px);
+}
+
+.listContent label .update_ok {
+  background: #FFAE00;
+  position: absolute;
+  top: 50%;
+  right: -9px;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 48px;
+  height: 40px;
+  padding: 0 7px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+button {
+  display: block;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.listContent label span {
+  width: calc(100% - 150px);
+  display: inline-block;
+  line-height: 24px;
+  vertical-align: middle;
+  word-wrap: break-word;
 }
 
 /*# sourceMappingURL=all.css.map */
