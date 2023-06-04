@@ -76,6 +76,7 @@ function renderData(arr) {
             
                   <span class="ps-4" id="${item.id}">${item.content}</span>
               </label>
+              
               <button href="#" class ="update">編輯</button>
               <a href="#" class="delete"></a>
             </li>`;
