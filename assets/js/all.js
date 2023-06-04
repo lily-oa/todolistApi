@@ -230,7 +230,7 @@ if (list) {
           return item.id === e.target.previousElementSibling.htmlFor;
         });
         //console.log(index);
-        var updateText = "<input name=\"updateTextOk\" class=\"input_ok\" type=\"input\" value=\"".concat(data[index].content, "\"><button type=\"button\" class=\"update_Ok\">\u9001\u51FA</button>");
+        var updateText = "<input name=\"updateTextOk\" class=\"input_ok border border-danger\" type=\"input\" value=\"".concat(data[index].content, "\"><button type=\"button\" class=\"update_ok\">\u9001\u51FA</button>");
         var updateData = document.querySelectorAll('span')[index];
         updateData.innerHTML = updateText;
         document.querySelectorAll('.list .update')[index].classList.toggle('button_none');
