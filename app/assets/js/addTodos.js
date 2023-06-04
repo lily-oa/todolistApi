@@ -26,7 +26,7 @@ let data = [];
       if (sessionStorage.getItem('token')) {
         const user_name = sessionStorage.getItem('name')
         header_logout.innerHTML = `
-    <span class="d-none d-lg-block me-7 username">${user_name}的代辦事項</span>
+    <div class="d-none d-lg-block me-7 username">${user_name}的代辦事項</div>
     <a href="#" class="text-dark fs-7 fs-lg-6 logoutBtn">登出</a>
     `
     //初始畫面
@@ -245,7 +245,7 @@ function updateList(){
 if (list) {
   list.addEventListener('click', function (e) {
     let index = '';
-    let updateText = `<input name="updateTextOk" class="input_ok" type="input" value="${data[index]}"><button type="button" class="update_Ok">送出</button>`;
+    
     console.log(e.target.nodeName);
     let listId = e.target.closest("li").dataset.id;
     
@@ -273,6 +273,8 @@ if (list) {
       
       if (e.target.classList.contains('update')) {
         index = data.findIndex((item) => item.id === e.target.previousElementSibling.htmlFor);
+      //console.log(index);
+        let updateText = `<input name="updateTextOk" class="input_ok" type="input" value="${data[index].content}"><button type="button" class="update_Ok">送出</button>`;
         const updateData = document.querySelectorAll('span')[index];
         
         updateData.innerHTML = updateText;
