@@ -91,7 +91,7 @@
   height: 100%;
   margin: 0;
   opacity: 0;
-  pointer-events: none;
+  pointer-events: none;  //可讓滑鼠穿牆，不再被上層元素給遮住! 直接點選到下層的元素
   cursor: pointer;
 
   span {
@@ -106,10 +106,10 @@
   }
 
   input {
-    //position: absolute;
-    //top: 0;
-    //left: 0;
-    //opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
     cursor: pointer;
     display: block;
     height: 100%;
@@ -117,8 +117,9 @@
     margin: 0;
   }
 
+
   // li 核取方框的設定位置
-  span::before {
+  label::before {
     content: '';
     position: absolute;
     left: 8px;
@@ -132,7 +133,7 @@
     transition: 0.3s ease;
   }
   //用 css 2D 做出打勾的動態圖案
-  span::after{
+  label::after{
     content: '';
     position: absolute;
     left: 14px;
@@ -147,6 +148,15 @@
     opacity: 0;
     transition: 0.3s ease;
   }
+}
+
+.listContent label{
+  line-height: 52px;
+  cursor: pointer;
+}
+
+label{
+  display: block;
 }
 
 .checkbox input:checked ~ span{
