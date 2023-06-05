@@ -16743,6 +16743,10 @@ body {
 }
 
 .listContent input[type=checkbox] input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
   cursor: pointer;
   display: block;
   height: 100%;
@@ -16750,7 +16754,7 @@ body {
   margin: 0;
 }
 
-.listContent input[type=checkbox] span::before {
+.listContent input[type=checkbox] label::before {
   content: '';
   position: absolute;
   left: 8px;
@@ -16768,7 +16772,7 @@ body {
   transition: 0.3s ease;
 }
 
-.listContent input[type=checkbox] span::after {
+.listContent input[type=checkbox] label::after {
   content: '';
   position: absolute;
   left: 14px;
@@ -16786,6 +16790,15 @@ body {
   -webkit-transition: 0.3s ease;
   -o-transition: 0.3s ease;
   transition: 0.3s ease;
+}
+
+.listContent label {
+  line-height: 52px;
+  cursor: pointer;
+}
+
+label {
+  display: block;
 }
 
 .checkbox input:checked ~ span {
