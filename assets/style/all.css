@@ -16718,7 +16718,18 @@ body {
   }
 }
 
-.listContent input[type=checkbox] {
+.checkbox {
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  width: 100%;
+  display: block;
+  cursor: pointer;
+}
+
+.listContent .list input[type=checkbox] {
   display: inline-block;
   position: absolute;
   -webkit-user-select: none;
@@ -16734,7 +16745,7 @@ body {
   cursor: pointer;
 }
 
-.listContent input[type=checkbox] span {
+.listContent .list input[type=checkbox] span {
   display: block;
   padding: 16px 0;
   border-bottom: 1px solid #eee;
@@ -16742,12 +16753,12 @@ body {
 }
 
 @media (min-width: 992px) {
-  .listContent input[type=checkbox] span {
+  .listContent .list input[type=checkbox] span {
     padding-right: 0;
   }
 }
 
-.listContent input[type=checkbox] input {
+.listContent .list input[type=checkbox] input {
   position: absolute;
   top: 0;
   left: 0;
@@ -16759,7 +16770,7 @@ body {
   margin: 0;
 }
 
-.listContent input[type=checkbox] .listContent label::before {
+.listContent .list input[type=checkbox] .listContent label::before {
   content: '';
   position: absolute;
   left: 8px;
@@ -16777,7 +16788,7 @@ body {
   transition: 0.3s ease;
 }
 
-.listContent input[type=checkbox] .listContent label::after {
+.listContent .list input[type=checkbox] .listContent label::after {
   content: '';
   position: absolute;
   left: 14px;
