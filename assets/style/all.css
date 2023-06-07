@@ -16679,13 +16679,18 @@ body {
   }
 }
 
-.list li {
+.listContent .list {
+  padding: 0px 48px 0px 24px;
+}
+
+.listContent .list li {
   position: relative;
   padding-right: 0;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 @media (min-width: 992px) {
-  .list li {
+  .listContent .list li {
     padding-right: 32px;
   }
 }
@@ -16754,7 +16759,7 @@ body {
   margin: 0;
 }
 
-.listContent input[type=checkbox] label::before {
+.listContent input[type=checkbox] .listContent label::before {
   content: '';
   position: absolute;
   left: 8px;
@@ -16772,7 +16777,7 @@ body {
   transition: 0.3s ease;
 }
 
-.listContent input[type=checkbox] label::after {
+.listContent input[type=checkbox] .listContent label::after {
   content: '';
   position: absolute;
   left: 14px;
