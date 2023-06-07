@@ -53,13 +53,17 @@
 }
 
 //代辦事項內容
-.list li{
-  position: relative;
-  padding-right: 0;
-  @include media-breakpoint-up(lg) {
-    padding-right: 32px;
+.listContent .list{
+  padding: 0px 48px 0px 24px;
+  li{
+    position: relative;
+    padding-right: 0;
+    border-bottom: 1px solid #e5e5e5;
+    @include media-breakpoint-up(lg) {
+      padding-right: 32px;
+    }
   }
-}
+} 
 
 //delete 樣式設定
 .list li a.delete{
@@ -119,7 +123,7 @@
 
 
   // li 核取方框的設定位置
-  label::before {
+  .listContent label::before {
     content: '';
     position: absolute;
     left: 8px;
@@ -133,7 +137,7 @@
     transition: 0.3s ease;
   }
   //用 css 2D 做出打勾的動態圖案
-  label::after{
+  .listContent label::after{
     content: '';
     position: absolute;
     left: 14px;

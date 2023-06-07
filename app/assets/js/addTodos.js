@@ -67,17 +67,16 @@ function renderData(arr) {
   let str = '';
   arr.forEach((item) => {
     str += `<li data-id="${item.id}">
-              
               <input type="checkbox" class="form-check-input" id="${item.id}"
               ${
                 item.completed_at === null ? "" : "checked"
                 }
             >
-              <label class="checkbox" for="${item.id}">
+              <label for="${item.id}">
                   <span class="ps-4" id="${item.id}">${item.content}</span>
               </label>
               
-              <button href="#" class ="update">編輯</button>
+              <button href="#" class ="update me-2">編輯</button>
               <a href="#" class="delete"></a>
             </li>`;
   });
