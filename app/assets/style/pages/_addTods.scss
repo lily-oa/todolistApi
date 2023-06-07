@@ -86,7 +86,15 @@
   }
 }
 
-.listContent input[type=checkbox] {
+.checkbox{
+  position: relative;
+  user-select: none;
+  width: 100%;
+  display: block;
+  cursor: pointer;
+}
+
+.listContent .list input[type=checkbox] {
   display: inline-block;
   position: absolute;
   user-select: none; //禁止用戶選中

@@ -72,7 +72,7 @@ function renderData(arr) {
                 item.completed_at === null ? "" : "checked"
                 }
             >
-              <label for="${item.id}">
+              <label for="${item.id}" class="checkbox">
                   <span class="ps-4" id="${item.id}">${item.content}</span>
               </label>
               
