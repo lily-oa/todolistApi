@@ -16770,14 +16770,14 @@ body {
   margin: 0;
 }
 
-.listContent .list input[type=checkbox] .listContent label::before {
+.listContent label::before {
   content: '';
   position: absolute;
-  left: 8px;
+  left: -20px;
   top: 50%;
-  -webkit-transform: translateY(-50%) scale(1);
-      -ms-transform: translateY(-50%) scale(1);
-          transform: translateY(-50%) scale(1);
+  -webkit-transform: translateY(-40%) scale(1);
+      -ms-transform: translateY(-40%) scale(1);
+          transform: translateY(-40%) scale(1);
   height: 20px;
   width: 20px;
   border-radius: 5px;
@@ -16788,7 +16788,7 @@ body {
   transition: 0.3s ease;
 }
 
-.listContent .list input[type=checkbox] .listContent label::after {
+.listContent label::after {
   content: '';
   position: absolute;
   left: 14px;
