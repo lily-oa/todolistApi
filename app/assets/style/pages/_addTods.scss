@@ -143,13 +143,14 @@
   border: 1px solid $secondary;
   pointer-events: none;
   transition: 0.3s ease;
+  cursor: pointer;
 }
 
 //用 css 2D 做出打勾的動態圖案
 .listContent label::after{
   content: '';
   position: absolute;
-  left: 14px;
+  left: -14px;
   top: 35%;  //黃色勾勾的位置
   transform: rotate(45deg);
   height: 15px;
@@ -160,6 +161,7 @@
   pointer-events: none;
   opacity: 0;
   transition: 0.3s ease;
+  cursor: pointer;
 }
 
 .listContent label{
@@ -169,18 +171,18 @@
 }
 
 
-.checkbox input:checked ~ span{
+.tick input:checked ~ .checkbox span{
   color: $gray;
   text-decoration: line-through;
 }
 
 // 在還沒checked之前，打勾圖案呈現透明，checked之後會呈現出來
-.checkbox input:checked ~ span::before{
+.tick input:checked ~ label::before{
   border-color: transparent; //透明
   transform: translateY(-50%) scale(0);
 }
 
-.checkbox input:checked ~ span::after{
+.tick input:checked ~ label::after{
   opacity: 1;
 }
 

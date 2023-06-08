@@ -66,7 +66,7 @@ let data = [];
 function renderData(arr) {
   let str = '';
   arr.forEach((item) => {
-    str += `<li data-id="${item.id}">
+    str += `<li data-id="${item.id}" class="tick">
               <input type="checkbox" class="form-check-input" id="${item.id}"
               ${
                 item.completed_at === null ? "" : "checked"
