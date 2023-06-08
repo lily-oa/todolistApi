@@ -165,11 +165,9 @@
 .listContent label{
   line-height: 52px;
   cursor: pointer;
-}
-
-label{
   display: block;
 }
+
 
 .checkbox input:checked ~ span{
   color: $gray;
