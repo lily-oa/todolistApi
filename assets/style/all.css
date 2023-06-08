@@ -16680,7 +16680,7 @@ body {
 }
 
 .listContent .list {
-  padding: 0px 48px 0px 24px;
+  padding: 0px 38px 0px 18px;
 }
 
 .listContent .list li {
@@ -16698,7 +16698,7 @@ body {
 .list li a.delete {
   position: absolute;
   opacity: 1;
-  right: 0;
+  right: -35px;
   top: 50%;
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
@@ -16857,7 +16857,7 @@ body {
   background: #FCD370;
   position: absolute;
   top: 50%;
-  right: 6%;
+  right: -10px;
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
