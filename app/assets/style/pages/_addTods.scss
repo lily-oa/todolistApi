@@ -128,38 +128,38 @@
     width: 100%;
     margin: 0;
   }
+}
 
+// li 核取方框的設定位置
+.listContent label::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-40%) scale(1);
+  height: 20px;
+  width: 20px;
+  border-radius: 5px;
+  border: 1px solid $secondary;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
 
-  // li 核取方框的設定位置
-  .listContent label::before {
-    content: '';
-    position: absolute;
-    left: 8px;
-    top: 50%;
-    transform: translateY(-50%) scale(1);
-    height: 20px;
-    width: 20px;
-    border-radius: 5px;
-    border: 1px solid $secondary;
-    pointer-events: none;
-    transition: 0.3s ease;
-  }
-  //用 css 2D 做出打勾的動態圖案
-  .listContent label::after{
-    content: '';
-    position: absolute;
-    left: 14px;
-    top: 35%;  //黃色勾勾的位置
-    transform: rotate(45deg);
-    height: 15px;
-    width: 8px;
-    border-radius: 1px;
-    border-bottom: 3px solid $primary;
-    border-right: 3px solid $primary;
-    pointer-events: none;
-    opacity: 0;
-    transition: 0.3s ease;
-  }
+//用 css 2D 做出打勾的動態圖案
+.listContent label::after{
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 35%;  //黃色勾勾的位置
+  transform: rotate(45deg);
+  height: 15px;
+  width: 8px;
+  border-radius: 1px;
+  border-bottom: 3px solid $primary;
+  border-right: 3px solid $primary;
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.3s ease;
 }
 
 .listContent label{
