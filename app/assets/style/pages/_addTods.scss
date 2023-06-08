@@ -54,7 +54,7 @@
 
 //代辦事項內容
 .listContent .list{
-  padding: 0px 48px 0px 24px;
+  padding: 0px 38px 0px 18px;
   li{
     position: relative;
     padding-right: 0;
@@ -69,7 +69,7 @@
 .list li a.delete{
   position: absolute;
   opacity: 1;
-  right: 0;
+  right: -35px;
   top: 50%;
   transform: translateY(-50%);  //垂直置中對齊用
   //text-decoration: none;  //超連結的底線去除
@@ -205,12 +205,12 @@
   background-color: #fff;
 }
 
-//-----------------新增更新鈕的設定
+//-----------------編輯鈕的設定
 .list .update {
   background: $primary;
   position: absolute;
   top: 50%;
-  right: 6%;
+  right: -10px;
   transform: translateY(-50%);
   width: 48px;
   height: 40px;
