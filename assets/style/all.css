@@ -16811,9 +16811,6 @@ body {
 .listContent label {
   line-height: 52px;
   cursor: pointer;
-}
-
-label {
   display: block;
 }
 
