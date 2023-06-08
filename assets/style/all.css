@@ -16786,12 +16786,13 @@ body {
   -webkit-transition: 0.3s ease;
   -o-transition: 0.3s ease;
   transition: 0.3s ease;
+  cursor: pointer;
 }
 
 .listContent label::after {
   content: '';
   position: absolute;
-  left: 14px;
+  left: -14px;
   top: 35%;
   -webkit-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
@@ -16806,6 +16807,7 @@ body {
   -webkit-transition: 0.3s ease;
   -o-transition: 0.3s ease;
   transition: 0.3s ease;
+  cursor: pointer;
 }
 
 .listContent label {
@@ -16814,19 +16816,19 @@ body {
   display: block;
 }
 
-.checkbox input:checked ~ span {
+.tick input:checked ~ .checkbox span {
   color: #9F9A91;
   text-decoration: line-through;
 }
 
-.checkbox input:checked ~ span::before {
+.tick input:checked ~ label::before {
   border-color: transparent;
   -webkit-transform: translateY(-50%) scale(0);
       -ms-transform: translateY(-50%) scale(0);
           transform: translateY(-50%) scale(0);
 }
 
-.checkbox input:checked ~ span::after {
+.tick input:checked ~ label::after {
   opacity: 1;
 }
 
