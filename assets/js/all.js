@@ -218,10 +218,10 @@ if (list) {
       })["catch"](function (err) {
         return console.log(err.response);
       });
-      var _index = data.findIndex(function (item) {
+      index = data.findIndex(function (item) {
         return item.id === listId;
       });
-      data.splice(_index, 1);
+      data.splice(index, 1);
       updateList();
     } else if (e.target.nodeName === "BUTTON") {
       e.preventDefault();
