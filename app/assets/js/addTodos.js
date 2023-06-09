@@ -264,7 +264,7 @@ if (list) {
         })
         .catch((err) => console.log(err.response));
 
-      let index = data.findIndex((item) => item.id === listId);
+      index = data.findIndex((item) => item.id === listId);
       data.splice(index, 1);
       updateList();
 
