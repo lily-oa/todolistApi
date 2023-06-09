@@ -8908,7 +8908,7 @@ fieldset:disabled .btn {
   border-width: 5px !important;
 }
 
-.border-s 6 {
+.border-6 {
   border-width: 6px !important;
 }
 
@@ -16773,7 +16773,7 @@ body {
 .listContent label::before {
   content: '';
   position: absolute;
-  left: -20px;
+  left: 2px;
   top: 50%;
   -webkit-transform: translateY(-40%) scale(1);
       -ms-transform: translateY(-40%) scale(1);
@@ -16792,7 +16792,7 @@ body {
 .listContent label::after {
   content: '';
   position: absolute;
-  left: -14px;
+  left: 10px;
   top: 35%;
   -webkit-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
