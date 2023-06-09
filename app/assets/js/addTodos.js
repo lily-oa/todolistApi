@@ -73,7 +73,7 @@ function renderData(arr) {
                 }
             >
               <label for="${item.id}" class="checkbox">
-                  <span class="ps-4" id="${item.id}">${item.content}</span>
+                  <span class="ps-9" id="${item.id}">${item.content}</span>
               </label>
               
               <button href="#" class ="update me-2">編輯</button>
