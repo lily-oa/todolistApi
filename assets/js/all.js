@@ -264,6 +264,7 @@ if (list) {
           alert(error.response.data.message + "" + reason);
         });
       }
+      //------------------有問題，待解決
       if (e.target.nodeName === "LABEL") {
         index = data.findIndex(function (item) {
           item.id === e.target.htmlFor;
