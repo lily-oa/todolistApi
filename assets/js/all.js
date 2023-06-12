@@ -225,6 +225,8 @@ if (list) {
       updateList();
     } else if (e.target.nodeName === "BUTTON") {
       e.preventDefault();
+
+      // 單筆資料更新_編輯(修改)todo
       if (e.target.classList.contains('update')) {
         index = data.findIndex(function (item) {
           return item.id === e.target.previousElementSibling.htmlFor;
@@ -252,7 +254,6 @@ if (list) {
           Authorization: sessionStorage.token
         }
       });
-      git;
     } else {
       data.forEach(function (i) {
         if (i.id === listId) {
