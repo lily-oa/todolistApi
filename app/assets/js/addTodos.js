@@ -311,7 +311,7 @@ if (list) {
           alert(error.response.data.message + "" +reason)
         });
       }
-    
+    //------------------有問題，待解決
       if(e.target.nodeName === "LABEL"){
         index = data.findIndex((item) => {
           item.id === e.target.htmlFor
@@ -338,6 +338,8 @@ if (list) {
                 let reason = error.response.data.error ? error.response.data.error : "";
                 alert(error.response.data.message + "" + reason) 
               });
+
+              
           }
         });
       }
