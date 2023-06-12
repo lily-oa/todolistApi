@@ -229,7 +229,7 @@
 
 
 
-
+//輸入框
 .listContent label .input_ok {
   display: inline-block;
   outline: 3px solid $primary;
@@ -241,6 +241,7 @@
   width: calc(100% - 30px);
 }
 
+//按鈕
 .listContent label .update_ok {
   background: #FFAE00;
   position: absolute;

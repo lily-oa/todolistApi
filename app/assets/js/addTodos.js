@@ -279,82 +279,75 @@ if (list) {
         const updateData = document.querySelectorAll('span')[index];
         
         updateData.innerHTML = updateText;
+
+        //todo編輯鈕(因有多個，需使用索引值來對應) 切換成"隱藏"(進而顯示送出button)
         document.querySelectorAll('.list .update')[index].classList.toggle('button_none');
       }
 
       //單筆資料更新_編輯(修改)todo > 編輯送出
-      if (e.target.classList.contains('update_Ok')) {
+      if (e.target.classList.contains('update_ok')) {
         index = data.findIndex((item) => item.id === e.target.parentNode.parentNode.htmlFor)
+      
         const todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
+
+
+        axious.put(`${apiUrl}/todos/${listId}`, {
+          "todo": {
+            "content": todo
+          },
+        }, {
+          headers: {
+            Authorization: sessionStorage.token,
+          },
+        })
+        .then((res) => {
+          // 將新增後的todo，把值更新給data[index].content(對應todo內容)。
+          data[index].content = todo;
+          renderData(data);
+        })
+        .catch((error) => {
+          console.log("updateTodo", error.response);
+          let reason = error.response.data.error ? error.response.data.error : "";
+          alert(error.response.data.message + "" +reason)
+        });
+      }
+    
+      if(e.target.nodeName === "LABEL"){
+        index = data.findIndex((item) => {
+          item.id === e.target.htmlFor
+        })
+        data[index].completed_at = (data[index].completed_at === null) ? "checked_but_not_synced" : null;
+        data.forEach((i) => {
+          if (i.id === e.target.htmlFor) {
+            axios.patch(`${apiUrl}/todos/${e.target.htmlFor}/toggle`, {}, {
+                headers: {
+                  Authorization: sessionStorage.token,
+                },
+              })
+              .then((res) => {
+                data.forEach((item, index) => {
+                  if (item.id === res.data.id) {
+                    // 將已完成todo勾選時間，更新至listData
+                    data[index].completed_at = res.data.completed_at;
+                    renderData(data);
+                  }
+                });
+                updateList();
+              })
+              .catch((error) => {
+                let reason = error.response.data.error ? error.response.data.error : "";
+                alert(error.response.data.message + "" + reason) 
+              });
+          }
+        });
       }
 
-
-
-
-
-      axious.put(`${apiUrl}/todos/${listId}`, {
-        "todo": {
-          "content": todo
-        },
-      }, {
-        headers: {
-          Authorization: sessionStorage.token,
-        },
-      })
-
-    } else {
-      data.forEach((i) => {
-        if (i.id === listId) {
-          axios.patch(`${apiUrl}/todos/${listId}/toggle`, {}, {
-              headers: {
-                Authorization: sessionStorage.token,
-              },
-            })
-            .then((res) => {
-              data.forEach((item, index) => {
-                if (item.id === res.data.id) {
-                  data[index].completed_at = res.data.completed_at;
-                }
-              });
-              updateList();
-            })
-            .catch((err) => console.log(err));
-        }
-      });
+    } else if(e.target.nodeName === "SPAN") {
+      
     }
+
   });
 }
-
-
-
-
-
-//修改單筆資料
-// const updateBtns = document.querySelectorAll('.update');
-// let i = 0;
-// while(i < updateBtns.length){
-//   updateBtns[i].addEventListener('click', updateOneData);
-
-//   function updateOneData(todo, todoId) {
-//     let listId = e.target.closest("li").dataset.id;
-//     if (e.target.nodeName === 'BUTTON') {
-//       e.preventDefault();
-
-//       axious.put(`${apiUrl}/todos/${listId}`, {
-//         "todo": {
-//           "content": todo
-//         }
-//       }, {
-//         headers: {
-//           Authorization: sessionStorage.token,
-//         },
-//       })
-//       .then(res => console.log(res))
-//       .catch(err => console.log(err.response))
-//     }
-//   }
-//   i++;
-// }
 
 
 
