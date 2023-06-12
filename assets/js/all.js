@@ -235,74 +235,65 @@ if (list) {
         var updateText = "<input name=\"updateTextOk\" class=\"input_ok border border-danger\" type=\"input\" value=\"".concat(data[index].content, "\"><button type=\"button\" class=\"update_ok\">\u9001\u51FA</button>");
         var updateData = document.querySelectorAll('span')[index];
         updateData.innerHTML = updateText;
+
+        //todo編輯鈕(因有多個，需使用索引值來對應) 切換成"隱藏"(進而顯示送出button)
         document.querySelectorAll('.list .update')[index].classList.toggle('button_none');
       }
 
       //單筆資料更新_編輯(修改)todo > 編輯送出
-      if (e.target.classList.contains('update_Ok')) {
+      if (e.target.classList.contains('update_ok')) {
         index = data.findIndex(function (item) {
           return item.id === e.target.parentNode.parentNode.htmlFor;
         });
-        var _todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
+        var todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
+        axious.put("".concat(apiUrl, "/todos/").concat(listId), {
+          "todo": {
+            "content": todo
+          }
+        }, {
+          headers: {
+            Authorization: sessionStorage.token
+          }
+        }).then(function (res) {
+          // 將新增後的todo，把值更新給data[index].content(對應todo內容)。
+          data[index].content = todo;
+          renderData(data);
+        })["catch"](function (error) {
+          console.log("updateTodo", error.response);
+          var reason = error.response.data.error ? error.response.data.error : "";
+          alert(error.response.data.message + "" + reason);
+        });
       }
-      axious.put("".concat(apiUrl, "/todos/").concat(listId), {
-        "todo": {
-          "content": todo
-        }
-      }, {
-        headers: {
-          Authorization: sessionStorage.token
-        }
-      });
-    } else {
-      data.forEach(function (i) {
-        if (i.id === listId) {
-          axios.patch("".concat(apiUrl, "/todos/").concat(listId, "/toggle"), {}, {
-            headers: {
-              Authorization: sessionStorage.token
-            }
-          }).then(function (res) {
-            data.forEach(function (item, index) {
-              if (item.id === res.data.id) {
-                data[index].completed_at = res.data.completed_at;
+      if (e.target.nodeName === "LABEL") {
+        index = data.findIndex(function (item) {
+          item.id === e.target.htmlFor;
+        });
+        data[index].completed_at = data[index].completed_at === null ? "checked_but_not_synced" : null;
+        data.forEach(function (i) {
+          if (i.id === e.target.htmlFor) {
+            axios.patch("".concat(apiUrl, "/todos/").concat(e.target.htmlFor, "/toggle"), {}, {
+              headers: {
+                Authorization: sessionStorage.token
               }
+            }).then(function (res) {
+              data.forEach(function (item, index) {
+                if (item.id === res.data.id) {
+                  // 將已完成todo勾選時間，更新至listData
+                  data[index].completed_at = res.data.completed_at;
+                  renderData(data);
+                }
+              });
+              updateList();
+            })["catch"](function (error) {
+              var reason = error.response.data.error ? error.response.data.error : "";
+              alert(error.response.data.message + "" + reason);
             });
-            updateList();
-          })["catch"](function (err) {
-            return console.log(err);
-          });
-        }
-      });
-    }
+          }
+        });
+      }
+    } else if (e.target.nodeName === "SPAN") {}
   });
 }
-
-//修改單筆資料
-// const updateBtns = document.querySelectorAll('.update');
-// let i = 0;
-// while(i < updateBtns.length){
-//   updateBtns[i].addEventListener('click', updateOneData);
-
-//   function updateOneData(todo, todoId) {
-//     let listId = e.target.closest("li").dataset.id;
-//     if (e.target.nodeName === 'BUTTON') {
-//       e.preventDefault();
-
-//       axious.put(`${apiUrl}/todos/${listId}`, {
-//         "todo": {
-//           "content": todo
-//         }
-//       }, {
-//         headers: {
-//           Authorization: sessionStorage.token,
-//         },
-//       })
-//       .then(res => console.log(res))
-//       .catch(err => console.log(err.response))
-//     }
-//   }
-//   i++;
-// }
 
 // 清除完成項目
 var clearAll = document.querySelector('.clear-all');
