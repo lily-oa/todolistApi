@@ -353,6 +353,8 @@ if (list) {
         alert(error.response.data.message + "" + reason)
       })
     }
+  }
+}
 
 
 
