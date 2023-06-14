@@ -354,10 +354,51 @@ if (list) {
       })
     }
   }
-}
 
 
 
+
+// 清除完成項目
+// const clearAll = document.querySelector('.clear-all');
+// const addTodos_alert_txt = document.querySelector('.addTodos_alert_txt');
+
+
+// if(clearAll){
+//   const addTodosModal = new bootstrap.Modal('.js-addTodos-modal');
+//   clearAll.addEventListener('click', function(e) {
+//     e.preventDefault();
+//     let deleteData = data.filter((i) => i.completed_at !== null);
+//     deleteData.forEach((i) => {
+//       axios.delete(`${apiUrl}/todos/${i.id}`, {
+//         headers:{
+//           Authorization: sessionStorage.token,
+//         },
+//       })
+//       .then((res) => {
+//         //-------------------燈箱效果
+//         addTodosModal.show();
+//         setTimeout(() => {
+//           addTodos_alert_txt.innerHTML = `全部刪除成功!`;
+//         })
+//         //--------------------
+//       })
+//       .catch((err) => console.log(err));
+//     })
+
+//     data = data.filter((i) => i.completed_at === null);
+//     tabStatus = 'all';
+//   //判斷tab並篩選要渲染的內容(含tab樣式)，宣告const tabArea = document.querySelector(".card_content .tab");
+//   //待辦清單狀態 tabArea.childNodes[0]為全部(<li class="tabs-active">全部</li>)、tabArea.childNodes[1]為待完成、tabArea.childNodes[2]為已完成。
+//     const tabArea = document.querySelector('.card_content .tab');  
+//     tabArea.childNodes.forEach((i) => {
+//         if(i.nodeName === "LI"){
+//           i.classList.remove('tabs-active');
+//           tabArea.children[0].classList.add('tabs-active');
+//         }
+//       })
+//       updateList(data);
+//     });
+// }
 
 // 清除完成項目
 const clearAll = document.querySelector('.clear-all');
