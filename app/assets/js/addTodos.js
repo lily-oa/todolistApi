@@ -242,7 +242,6 @@ function updateList(){
 
 
 //----------------------------------------刪除&完成代辦&單筆更新
-
 if (list) {
   list.addEventListener('click', function (e) {
     let index = '';
@@ -264,14 +263,14 @@ if (list) {
         })
         .catch((err) => console.log(err.response));
 
-      index = data.findIndex((item) => item.id === listId);
+      let index = data.findIndex((item) => item.id === listId);
       data.splice(index, 1);
       updateList();
 
     } else if (e.target.nodeName === "BUTTON") {
       e.preventDefault();
       
-      // 單筆資料更新_編輯(修改)todo
+      
       if (e.target.classList.contains('update')) {
         index = data.findIndex((item) => item.id === e.target.previousElementSibling.htmlFor);
       //console.log(index);
@@ -279,81 +278,51 @@ if (list) {
         const updateData = document.querySelectorAll('span')[index];
         
         updateData.innerHTML = updateText;
-
-        //todo編輯鈕(因有多個，需使用索引值來對應) 切換成"隱藏"(進而顯示送出button)
         document.querySelectorAll('.list .update')[index].classList.toggle('button_none');
       }
 
       //單筆資料更新_編輯(修改)todo > 編輯送出
-      if (e.target.classList.contains('update_ok')) {
+      if (e.target.classList.contains('update_Ok')) {
         index = data.findIndex((item) => item.id === e.target.parentNode.parentNode.htmlFor)
-      
         const todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
-
-
-        axious.put(`${apiUrl}/todos/${listId}`, {
-          "todo": {
-            "content": todo
-          },
-        }, {
-          headers: {
-            Authorization: sessionStorage.token,
-          },
-        })
-        .then((res) => {
-          // 將新增後的todo，把值更新給data[index].content(對應todo內容)。
-          data[index].content = todo;
-          renderData(data);
-        })
-        .catch((error) => {
-          console.log("updateTodo", error.response);
-          let reason = error.response.data.error ? error.response.data.error : "";
-          alert(error.response.data.message + "" +reason)
-        });
       }
-    //單筆資料更新_切換狀態
-      if(e.target.nodeName === "LABEL"){
-        index = data.findIndex((item) => { item.id === e.target.htmlFor });
-        data[index].completed_at = (data[index].completed_at === null) ? "checked_but_not_synced" : null;
 
-            //因patch本身預設要帶data進去，但此api不用帶值，所以必須帶一個空物件。
-            axios.patch(`${apiUrl}/todos/${e.target.htmlFor}/toggle`, {}, {
-                headers: {
-                  Authorization: sessionStorage.token,
-                },
-              })
-              .then((res) => {
-                    // 將已完成todo勾選時間，更新至listData
-                    data[index].completed_at = res.data.completed_at;
-                    renderData(data);
-              })
-              .catch((error) => {
-                let reason = error.response.data.error ? error.response.data.error : "";
-                alert(error.response.data.message + "" + reason) 
-              });
-    } 
-    else if(e.target.nodeName === "SPAN") {
-      index = data.findIndex(i => i.id === e.target.parentNode.htmlFor);
-      data[index].completed_at = (data[index].completed_at === null) ? "checked_but_not_synced" : null;
 
-      axios.patch(`${apiUrl}/todos/${e.target.htmlFor}/toggle`, {}, {
+
+
+
+      axious.put(`${apiUrl}/todos/${listId}`, {
+        "todo": {
+          "content": todo
+        },
+      }, {
         headers: {
           Authorization: sessionStorage.token,
         },
-      })
-      .then((res) => {
-        // 更改狀態，不特別跳窗顯示通知使用者
-        // console.log("itemStatus_toggle", res);
-        // 將已完成todo勾選時間，更新至listData
-        data[index].completed_at = res.data.completed_at;
-        renderData(data);
-      })
-      .catch((error) => {
-        let reason = error.response.data.error ? error.response.data.error : "";
-        alert(error.response.data.message + "" + reason)
-      })
+      }) 
+    } else {
+      data.forEach((i) => {
+        if (i.id === listId) {
+          axios.patch(`${apiUrl}/todos/${listId}/toggle`, {}, {
+              headers: {
+                Authorization: sessionStorage.token,
+              },
+            })
+            .then((res) => {
+              data.forEach((item, index) => {
+                if (item.id === res.data.id) {
+                  data[index].completed_at = res.data.completed_at;
+                }
+              });
+              updateList();
+            })
+            .catch((err) => console.log(err));
+        }
+      });
     }
-  }
+  });
+}
+
 
 
 
