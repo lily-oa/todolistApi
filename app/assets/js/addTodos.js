@@ -311,45 +311,48 @@ if (list) {
           alert(error.response.data.message + "" +reason)
         });
       }
-    //------------------有問題，待解決
+    //單筆資料更新_切換狀態
       if(e.target.nodeName === "LABEL"){
-        index = data.findIndex((item) => {
-          item.id === e.target.htmlFor
-        })
+        index = data.findIndex((item) => { item.id === e.target.htmlFor });
         data[index].completed_at = (data[index].completed_at === null) ? "checked_but_not_synced" : null;
-        data.forEach((i) => {
-          if (i.id === e.target.htmlFor) {
+
+            //因patch本身預設要帶data進去，但此api不用帶值，所以必須帶一個空物件。
             axios.patch(`${apiUrl}/todos/${e.target.htmlFor}/toggle`, {}, {
                 headers: {
                   Authorization: sessionStorage.token,
                 },
               })
               .then((res) => {
-                data.forEach((item, index) => {
-                  if (item.id === res.data.id) {
                     // 將已完成todo勾選時間，更新至listData
                     data[index].completed_at = res.data.completed_at;
                     renderData(data);
-                  }
-                });
-                updateList();
               })
               .catch((error) => {
                 let reason = error.response.data.error ? error.response.data.error : "";
                 alert(error.response.data.message + "" + reason) 
               });
+    } 
+    else if(e.target.nodeName === "SPAN") {
+      index = data.findIndex(i => i.id === e.target.parentNode.htmlFor);
+      data[index].completed_at = (data[index].completed_at === null) ? "checked_but_not_synced" : null;
 
-              
-          }
-        });
-      }
-
-    } else if(e.target.nodeName === "SPAN") {
-      
+      axios.patch(`${apiUrl}/todos/${e.target.htmlFor}/toggle`, {}, {
+        headers: {
+          Authorization: sessionStorage.token,
+        },
+      })
+      .then((res) => {
+        // 更改狀態，不特別跳窗顯示通知使用者
+        // console.log("itemStatus_toggle", res);
+        // 將已完成todo勾選時間，更新至listData
+        data[index].completed_at = res.data.completed_at;
+        renderData(data);
+      })
+      .catch((error) => {
+        let reason = error.response.data.error ? error.response.data.error : "";
+        alert(error.response.data.message + "" + reason)
+      })
     }
-
-  });
-}
 
 
 
