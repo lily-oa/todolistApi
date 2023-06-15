@@ -241,7 +241,7 @@ function updateList(){
 }
 
 
-//----------------------------------------刪除&完成代辦&單筆更新
+//----------------------------------------刪除 & 完成代辦 & 單筆更新
 if (list) {
   list.addEventListener('click', function (e) {
     let index = '';
@@ -270,7 +270,7 @@ if (list) {
     } else if (e.target.nodeName === "BUTTON") {
       e.preventDefault();
       
-      
+      // 單筆資料更新_編輯(修改)todo
       if (e.target.classList.contains('update')) {
         index = data.findIndex((item) => item.id === e.target.previousElementSibling.htmlFor);
       //console.log(index);
@@ -278,6 +278,7 @@ if (list) {
         const updateData = document.querySelectorAll('span')[index];
         
         updateData.innerHTML = updateText;
+        //todo編輯鈕(因有多個，需使用索引值來對應) 切換成"隱藏"(進而顯示送出button)
         document.querySelectorAll('.list .update')[index].classList.toggle('button_none');
       }
 
@@ -287,10 +288,6 @@ if (list) {
         const todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
       }
 
-
-
-
-
       axious.put(`${apiUrl}/todos/${listId}`, {
         "todo": {
           "content": todo
@@ -299,7 +296,17 @@ if (list) {
         headers: {
           Authorization: sessionStorage.token,
         },
-      }) 
+      })
+      .then((res) => {
+        // 將新增後的todo，把值更新給data[index].content(對應todo內容)。
+        data[index].content = todo;
+        renderData(data);
+      })
+      .catch((error) => {
+        let reason = error.response.data.error ? error.response.data.error : "";
+        alert(error.response.data.message + "" + reason) 
+      });
+
     } else {
       data.forEach((i) => {
         if (i.id === listId) {
