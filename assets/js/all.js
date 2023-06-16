@@ -200,7 +200,7 @@ function updateList() {
   renderData(showData);
 }
 
-//----------------------------------------刪除&完成代辦&單筆更新
+//----------------------------------------刪除 & 完成代辦 & 單筆更新
 if (list) {
   list.addEventListener('click', function (e) {
     var index = '';
@@ -224,6 +224,8 @@ if (list) {
       updateList();
     } else if (e.target.nodeName === "BUTTON") {
       e.preventDefault();
+
+      // 單筆資料更新_編輯(修改)todo
       if (e.target.classList.contains('update')) {
         index = data.findIndex(function (item) {
           return item.id === e.target.previousElementSibling.htmlFor;
@@ -232,6 +234,7 @@ if (list) {
         var updateText = "<input name=\"updateTextOk\" class=\"input_ok border border-danger\" type=\"input\" value=\"".concat(data[index].content, "\"><button type=\"button\" class=\"update_ok\">\u9001\u51FA</button>");
         var updateData = document.querySelectorAll('span')[index];
         updateData.innerHTML = updateText;
+        //todo編輯鈕(因有多個，需使用索引值來對應) 切換成"隱藏"(進而顯示送出button)
         document.querySelectorAll('.list .update')[index].classList.toggle('button_none');
       }
 
@@ -240,17 +243,24 @@ if (list) {
         index = data.findIndex(function (item) {
           return item.id === e.target.parentNode.parentNode.htmlFor;
         });
-        var _todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
+        var todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
+        axios.put("".concat(apiUrl, "/todos/").concat(listId), {
+          "todo": {
+            "content": todo
+          }
+        }, {
+          headers: {
+            Authorization: sessionStorage.token
+          }
+        }).then(function (res) {
+          // 將新增後的todo，把值更新給data[index].content(對應todo內容)。
+          data[index].content = todo;
+          renderData(data);
+        })["catch"](function (error) {
+          var reason = error.response.data.error ? error.response.data.error : "";
+          alert(error.response.data.message + "" + reason);
+        });
       }
-      axious.put("".concat(apiUrl, "/todos/").concat(listId), {
-        "todo": {
-          "content": todo
-        }
-      }, {
-        headers: {
-          Authorization: sessionStorage.token
-        }
-      });
     } else {
       data.forEach(function (i) {
         if (i.id === listId) {
