@@ -287,8 +287,7 @@ if (list) {
       if (e.target.classList.contains('update_Ok')) {
         index = data.findIndex((item) => item.id === e.target.parentNode.parentNode.htmlFor)
         const todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
-
-
+        
         axios.put(`${apiUrl}/todos/${listId}`, {
             "todo": {
               "content": todo
