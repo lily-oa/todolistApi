@@ -245,10 +245,11 @@ function updateList(){
 if (list) {
   list.addEventListener('click', function (e) {
     let index = '';
-    
+
     console.log(e.target.nodeName);
+
     let listId = e.target.closest("li").dataset.id;
-    
+
 
     if (e.target.nodeName === "A") {
       e.preventDefault();
@@ -269,14 +270,14 @@ if (list) {
 
     } else if (e.target.nodeName === "BUTTON") {
       e.preventDefault();
-      
+
       // 單筆資料更新_編輯(修改)todo
       if (e.target.classList.contains('update')) {
         index = data.findIndex((item) => item.id === e.target.previousElementSibling.htmlFor);
-      //console.log(index);
+        //console.log(index);
         let updateText = `<input name="updateTextOk" class="input_ok border border-danger" type="input" value="${data[index].content}"><button type="button" class="update_ok">送出</button>`;
         const updateData = document.querySelectorAll('span')[index];
-        
+
         updateData.innerHTML = updateText;
         //todo編輯鈕(因有多個，需使用索引值來對應) 切換成"隱藏"(進而顯示送出button)
         document.querySelectorAll('.list .update')[index].classList.toggle('button_none');
@@ -286,27 +287,27 @@ if (list) {
       if (e.target.classList.contains('update_Ok')) {
         index = data.findIndex((item) => item.id === e.target.parentNode.parentNode.htmlFor)
         const todo = document.querySelector(".listContent input[name='updateTextOk']").value.trim();
+
+
+        axios.put(`${apiUrl}/todos/${listId}`, {
+            "todo": {
+              "content": todo
+            },
+          }, {
+            headers: {
+              Authorization: sessionStorage.token,
+            },
+          })
+          .then((res) => {
+            // 將新增後的todo，把值更新給data[index].content(對應todo內容)。
+            data[index].content = todo;
+            renderData(data);
+          })
+          .catch((error) => {
+            let reason = error.response.data.error ? error.response.data.error : "";
+            alert(error.response.data.message + "" + reason)
+          });
       }
-
-      axious.put(`${apiUrl}/todos/${listId}`, {
-        "todo": {
-          "content": todo
-        },
-      }, {
-        headers: {
-          Authorization: sessionStorage.token,
-        },
-      })
-      .then((res) => {
-        // 將新增後的todo，把值更新給data[index].content(對應todo內容)。
-        data[index].content = todo;
-        renderData(data);
-      })
-      .catch((error) => {
-        let reason = error.response.data.error ? error.response.data.error : "";
-        alert(error.response.data.message + "" + reason) 
-      });
-
     } else {
       data.forEach((i) => {
         if (i.id === listId) {
