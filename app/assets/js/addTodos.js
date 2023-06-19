@@ -250,7 +250,6 @@ if (list) {
 
     let listId = e.target.closest("li").dataset.id;
 
-
     if (e.target.nodeName === "A") {
       e.preventDefault();
 
@@ -318,6 +317,7 @@ if (list) {
             .then((res) => {
               data.forEach((item, index) => {
                 if (item.id === res.data.id) {
+                  // 將已完成todo勾選時間，更新至listData
                   data[index].completed_at = res.data.completed_at;
                 }
               });
@@ -329,8 +329,6 @@ if (list) {
     }
   });
 }
-
-
 
 
 
