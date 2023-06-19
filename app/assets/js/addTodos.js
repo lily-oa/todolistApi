@@ -275,7 +275,7 @@ if (list) {
       if (e.target.classList.contains('update')) {
         index = data.findIndex((item) => item.id === e.target.previousElementSibling.htmlFor);
         //console.log(index);
-        let updateText = `<input name="updateTextOk" class="input_ok border border-danger" type="input" value="${data[index].content}"><button type="button" class="update_ok">送出</button>`;
+        let updateText = `<input name="updateTextOk" class="input_ok border border-danger" type="text" value="${data[index].content}"><button type="button" class="update_ok">送出</button>`;
         const updateData = document.querySelectorAll('span')[index];
 
         updateData.innerHTML = updateText;
