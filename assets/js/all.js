@@ -271,6 +271,7 @@ if (list) {
           }).then(function (res) {
             data.forEach(function (item, index) {
               if (item.id === res.data.id) {
+                // 將已完成todo勾選時間，更新至listData
                 data[index].completed_at = res.data.completed_at;
               }
             });
