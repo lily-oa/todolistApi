@@ -239,7 +239,7 @@ if (list) {
       }
 
       //單筆資料更新_編輯(修改)todo > 編輯送出
-      if (e.target.classList.contains('update_Ok')) {
+      if (e.target.classList.contains('update_ok')) {
         index = data.findIndex(function (item) {
           return item.id === e.target.parentNode.parentNode.htmlFor;
         });
@@ -261,7 +261,7 @@ if (list) {
           alert(error.response.data.message + "" + reason);
         });
       }
-    } else {
+    } else if (e.target.getAttribute('type') === "checkbox" && e.target.nodeName === "INPUT") {
       data.forEach(function (i) {
         if (i.id === listId) {
           axios.patch("".concat(apiUrl, "/todos/").concat(listId, "/toggle"), {}, {
