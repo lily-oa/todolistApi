@@ -231,7 +231,7 @@ if (list) {
           return item.id === e.target.previousElementSibling.htmlFor;
         });
         //console.log(index);
-        var updateText = "<input name=\"updateTextOk\" class=\"input_ok border border-danger\" type=\"input\" value=\"".concat(data[index].content, "\"><button type=\"button\" class=\"update_ok\">\u9001\u51FA</button>");
+        var updateText = "<input name=\"updateTextOk\" class=\"input_ok border border-danger\" type=\"text\" value=\"".concat(data[index].content, "\"><button type=\"button\" class=\"update_ok\">\u9001\u51FA</button>");
         var updateData = document.querySelectorAll('span')[index];
         updateData.innerHTML = updateText;
         //todo編輯鈕(因有多個，需使用索引值來對應) 切換成"隱藏"(進而顯示送出button)
