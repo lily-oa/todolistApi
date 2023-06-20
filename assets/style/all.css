@@ -16885,14 +16885,20 @@ body {
   height: 47px;
   font-family: "Noto Sans TC", sans-serif;
   font-weight: 700;
-  width: calc(100% - 30px);
+  width: calc(100% - -30px);
+}
+
+@media (min-width: 992px) {
+  .listContent label .input_ok {
+    width: calc(100% - 30px);
+  }
 }
 
 .listContent label .update_ok {
   background: #FFAE00;
   position: absolute;
   top: 50%;
-  right: -34px;
+  right: -2px;
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
@@ -16901,6 +16907,12 @@ body {
   padding: 0 7px;
   cursor: pointer;
   font-weight: 500;
+}
+
+@media (min-width: 992px) {
+  .listContent label .update_ok {
+    right: -34px;
+  }
 }
 
 button {
