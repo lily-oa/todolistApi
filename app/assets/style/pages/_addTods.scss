@@ -238,7 +238,10 @@
   height: 47px;
   font-family: "Noto Sans TC", sans-serif;
   font-weight: 700;
-  width: calc(100% - 30px);
+  width: calc(100% - -30px);
+  @include media-breakpoint-up(lg) {
+    width: calc(100% - 30px);
+  }
 }
 
 //按鈕
@@ -246,13 +249,17 @@
   background: #FFAE00;
   position: absolute;
   top: 50%;
-  right: -34px;
+  right: -2px;
   transform: translateY(-50%);
   width: 48px;
   height: 40px;
   padding: 0 7px;
   cursor: pointer;
   font-weight: 500;
+
+  @include media-breakpoint-up(lg) {
+    right: -34px;
+  }
 }
 
 button {
