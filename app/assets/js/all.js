@@ -2,10 +2,10 @@
 const loginInput = document.querySelectorAll('.login-input');
 const login_btn = document.querySelector('#login_btn');
 const loginEmail = document.querySelector('#login-email');
+
 const loginPassword = document.querySelector('#login-password');
 const login_alert_txt = document.querySelector('.login_alert_txt');  //在 loginModal 上
 const login_status_txt = document.querySelector('.login_status_txt');
-
 
 //login 設定------------------------------
 if (login_btn) {
@@ -93,4 +93,25 @@ function loginCheck(){
 function loginReset(){
   loginEmail.value = '';
   loginPassword.value = '';
+}
+
+
+//密碼輸入確認
+function checkPWD(){
+  // 正規式 至少六個字符，含數字或字母(大小寫)之字串。
+  let PWD = /[0-9A-Za-z]{6,}/;
+  const notice = document.querySelector("for p.PWD");
+  // this(指的是密碼<input>欄位)
+  if(this.value === ''){
+    notice.textContent = '此欄位必填'
+  }
+  //欄位已填入資料，且將"match符合時會印出的結果"，使用!將結果反向(即match為null。無符合匹配)。
+  //(*將密碼input裡面的value透過match方法查詢，沒有找到匹配返回 null。反之會印出匹配結果。)
+  else if(!this.value.match(PWD)){
+    notice.textContent = `格式不符，至少需再填入${6 - this.value.length}字元`;
+  }
+  // 如密碼欄位內有值且格式正確，將提示文字 "通過 "
+  else{
+    notice.textContent = '密碼通過';
+  }
 }
