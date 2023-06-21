@@ -8,9 +8,6 @@ const signUpPassword2 = document.querySelector('#signUpPassword2');
 const signup_alert_txt = document.querySelector('.signup_alert_txt');
 const signup_status_txt = document.querySelector('.signup_status_txt');
 
-//密碼驗證確認
-const PWD = document.querySelector('.PWD');
-
 //-----------------------------------
 
 if (signUpBtn) {
@@ -49,14 +46,6 @@ function signup(signUpEmail, signUpNickname, signUpPassword) {
       setTimeout(() => {
         signup_alert_txt.innerHTML = `註冊成功 ! 歡迎${res.data.nickname}光臨本網站 <br><br> 頁面即將在3秒後跳轉至登入畫面 ...`;
         signupModal.show();
-
-
-        
-        //輸入密碼驗證監聽
-        PWD.addEventListener('keyup', checkPWD);
-
-
-
         signupReset();
         setTimeout(() => {
           document.location.href = './index.html'

@@ -87,6 +87,9 @@ function loginCheck(){
     loginReset();
     return;
   }
+  if(loginPassword.value.length < 6){
+    checkPWD();
+  }
   return true;
 }
 
@@ -94,6 +97,7 @@ function loginReset(){
   loginEmail.value = '';
   loginPassword.value = '';
 }
+
 
 
 //密碼輸入確認
