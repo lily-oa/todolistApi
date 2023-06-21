@@ -3,6 +3,8 @@
 //在此宣告的原因
 //因為 apiUrl 宣告的位置是在 all.js ，所以編譯後 apiUrl 變數位置會在 addTodos.js 的後面
 var apiUrl = 'https://todoo.5xcamp.us';
+//密碼驗證確認
+var PWD = document.querySelector('.PWD');
 var list = document.querySelector('.list');
 var inputBlock = document.querySelector('.input-block');
 var user = document.querySelector('.username');
@@ -13,6 +15,9 @@ var nonList = document.querySelector('.none-list');
 var listBlock = document.querySelector('.list-block');
 var APIData = {};
 var data = [];
+
+//尚未解決0621
+//PWD.addEventListener('keyup', checkPWD);
 
 // 登入成功後顯示使用者名稱
 // 檢查.header_logout 是否有值，若有才執行init_token_render
@@ -448,6 +453,9 @@ function loginCheck() {
     loginReset();
     return;
   }
+  if (loginPassword.value.length < 6) {
+    checkPWD();
+  }
   return true;
 }
 function loginReset() {
@@ -489,9 +497,6 @@ var signUpPassword2 = document.querySelector('#signUpPassword2');
 var signup_alert_txt = document.querySelector('.signup_alert_txt');
 var signup_status_txt = document.querySelector('.signup_status_txt');
 
-//密碼驗證確認
-var PWD = document.querySelector('.PWD');
-
 //-----------------------------------
 
 if (signUpBtn) {
@@ -522,9 +527,6 @@ function signup(signUpEmail, signUpNickname, signUpPassword) {
     setTimeout(function () {
       signup_alert_txt.innerHTML = "\u8A3B\u518A\u6210\u529F ! \u6B61\u8FCE".concat(res.data.nickname, "\u5149\u81E8\u672C\u7DB2\u7AD9 <br><br> \u9801\u9762\u5373\u5C07\u57283\u79D2\u5F8C\u8DF3\u8F49\u81F3\u767B\u5165\u756B\u9762 ...");
       signupModal.show();
-
-      //輸入密碼驗證監聽
-      PWD.addEventListener('keyup', checkPWD);
       signupReset();
       setTimeout(function () {
         document.location.href = './index.html';
