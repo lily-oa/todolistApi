@@ -454,6 +454,26 @@ function loginReset() {
   loginEmail.value = '';
   loginPassword.value = '';
 }
+
+//密碼輸入確認
+function checkPWD() {
+  // 正規式 至少六個字符，含數字或字母(大小寫)之字串。
+  var PWD = /[0-9A-Za-z]{6,}/;
+  var notice = document.querySelector("for p.PWD");
+  // this(指的是密碼<input>欄位)
+  if (this.value === '') {
+    notice.textContent = '此欄位必填';
+  }
+  //欄位已填入資料，且將"match符合時會印出的結果"，使用!將結果反向(即match為null。無符合匹配)。
+  //(*將密碼input裡面的value透過match方法查詢，沒有找到匹配返回 null。反之會印出匹配結果。)
+  else if (!this.value.match(PWD)) {
+    notice.textContent = "\u683C\u5F0F\u4E0D\u7B26\uFF0C\u81F3\u5C11\u9700\u518D\u586B\u5165".concat(6 - this.value.length, "\u5B57\u5143");
+  }
+  // 如密碼欄位內有值且格式正確，將提示文字 "通過 "
+  else {
+    notice.textContent = '密碼通過';
+  }
+}
 "use strict";
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
@@ -468,6 +488,9 @@ var signUpPassword = document.querySelector('#signUpPassword');
 var signUpPassword2 = document.querySelector('#signUpPassword2');
 var signup_alert_txt = document.querySelector('.signup_alert_txt');
 var signup_status_txt = document.querySelector('.signup_status_txt');
+
+//密碼驗證確認
+var PWD = document.querySelector('.PWD');
 
 //-----------------------------------
 
@@ -499,6 +522,9 @@ function signup(signUpEmail, signUpNickname, signUpPassword) {
     setTimeout(function () {
       signup_alert_txt.innerHTML = "\u8A3B\u518A\u6210\u529F ! \u6B61\u8FCE".concat(res.data.nickname, "\u5149\u81E8\u672C\u7DB2\u7AD9 <br><br> \u9801\u9762\u5373\u5C07\u57283\u79D2\u5F8C\u8DF3\u8F49\u81F3\u767B\u5165\u756B\u9762 ...");
       signupModal.show();
+
+      //輸入密碼驗證監聽
+      PWD.addEventListener('keyup', checkPWD);
       signupReset();
       setTimeout(function () {
         document.location.href = './index.html';
