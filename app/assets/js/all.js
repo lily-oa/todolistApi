@@ -9,7 +9,6 @@ const login_status_txt = document.querySelector('.login_status_txt');
 let sitePath = window.location.pathname;
 //login 設定------------------------------
 
-//PWD.addEventListener('keyup', checkPWD);
 // 判斷頁面+監聽事件
 // 當前頁面為[登入頁](註冊頁同頁做切換)。 .includes()可回傳是否包含該元素的布林值
 if(sitePath.includes("index")){
