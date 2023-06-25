@@ -2,7 +2,7 @@
 //因為 apiUrl 宣告的位置是在 all.js ，所以編譯後 apiUrl 變數位置會在 addTodos.js 的後面
 const apiUrl = 'https://todoo.5xcamp.us';
 //密碼驗證確認
-const PWD = document.querySelector('.PWD');
+const PWD = document.querySelector('#login-password');
 
 const list = document.querySelector('.list');
 const inputBlock = document.querySelector('.input-block')
@@ -15,22 +15,6 @@ const listBlock = document.querySelector('.list-block');
 
 let APIData = {};
 let data = [];
-
-
-
-
-
-
-//尚未解決0621
-//PWD.addEventListener('keyup', checkPWD);
-
-
-
-
-
-
-
-
 
 
 // 登入成功後顯示使用者名稱

@@ -98,13 +98,13 @@ function loginReset(){
   loginPassword.value = '';
 }
 
-
+PWD.addEventListener('keyup', checkPWD);
 
 //密碼輸入確認
 function checkPWD(){
   // 正規式 至少六個字符，含數字或字母(大小寫)之字串。
   let PWD = /[0-9A-Za-z]{6,}/;
-  const notice = document.querySelector("for p.PWD");
+  const notice = document.querySelector("form p.PWD");
   // this(指的是密碼<input>欄位)
   if(this.value === ''){
     notice.textContent = '此欄位必填'
