@@ -4,7 +4,7 @@
 //因為 apiUrl 宣告的位置是在 all.js ，所以編譯後 apiUrl 變數位置會在 addTodos.js 的後面
 var apiUrl = 'https://todoo.5xcamp.us';
 //密碼驗證確認
-var PWD = document.querySelector('.PWD');
+var PWD = document.querySelector('#login-password');
 var list = document.querySelector('.list');
 var inputBlock = document.querySelector('.input-block');
 var user = document.querySelector('.username');
@@ -15,9 +15,6 @@ var nonList = document.querySelector('.none-list');
 var listBlock = document.querySelector('.list-block');
 var APIData = {};
 var data = [];
-
-//尚未解決0621
-//PWD.addEventListener('keyup', checkPWD);
 
 // 登入成功後顯示使用者名稱
 // 檢查.header_logout 是否有值，若有才執行init_token_render
@@ -462,12 +459,13 @@ function loginReset() {
   loginEmail.value = '';
   loginPassword.value = '';
 }
+PWD.addEventListener('keyup', checkPWD);
 
 //密碼輸入確認
 function checkPWD() {
   // 正規式 至少六個字符，含數字或字母(大小寫)之字串。
   var PWD = /[0-9A-Za-z]{6,}/;
-  var notice = document.querySelector("for p.PWD");
+  var notice = document.querySelector("form p.PWD");
   // this(指的是密碼<input>欄位)
   if (this.value === '') {
     notice.textContent = '此欄位必填';
