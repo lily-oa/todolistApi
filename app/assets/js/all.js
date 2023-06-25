@@ -6,8 +6,16 @@ const loginEmail = document.querySelector('#login-email');
 const loginPassword = document.querySelector('#login-password');
 const login_alert_txt = document.querySelector('.login_alert_txt');  //在 loginModal 上
 const login_status_txt = document.querySelector('.login_status_txt');
-
+let sitePath = window.location.pathname;
 //login 設定------------------------------
+
+//PWD.addEventListener('keyup', checkPWD);
+// 判斷頁面+監聽事件
+// 當前頁面為[登入頁](註冊頁同頁做切換)。 .includes()可回傳是否包含該元素的布林值
+if(sitePath.includes("index")){
+  PWD.addEventListener('keyup', checkPWD);
+}
+
 if (login_btn) {
   login_btn.addEventListener('click', function (e) {
     if (loginEmail.value.trim() == '' || loginPassword.value.trim() == '') {
@@ -87,9 +95,7 @@ function loginCheck(){
     loginReset();
     return;
   }
-  if(loginPassword.value.length < 6){
-    checkPWD();
-  }
+  
   return true;
 }
 
@@ -98,7 +104,7 @@ function loginReset(){
   loginPassword.value = '';
 }
 
-PWD.addEventListener('keyup', checkPWD);
+
 
 //密碼輸入確認
 function checkPWD(){
