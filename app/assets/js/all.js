@@ -6,7 +6,7 @@ const loginEmail = document.querySelector('#login-email');
 const loginPassword = document.querySelector('#login-password');
 const login_alert_txt = document.querySelector('.login_alert_txt');  //在 loginModal 上
 const login_status_txt = document.querySelector('.login_status_txt');
-let sitePath = window.location.pathname;
+
 //login 設定------------------------------
 
 // 判斷頁面+監聽事件

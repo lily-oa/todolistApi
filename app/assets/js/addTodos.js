@@ -3,6 +3,7 @@
 const apiUrl = 'https://todoo.5xcamp.us';
 //密碼驗證確認
 const PWD = document.querySelector('#login-password');
+let sitePath = window.location.pathname;
 
 const list = document.querySelector('.list');
 const inputBlock = document.querySelector('.input-block')
