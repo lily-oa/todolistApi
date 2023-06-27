@@ -5,6 +5,7 @@
 var apiUrl = 'https://todoo.5xcamp.us';
 //密碼驗證確認
 var PWD = document.querySelector('#login-password');
+var sitePath = window.location.pathname;
 var list = document.querySelector('.list');
 var inputBlock = document.querySelector('.input-block');
 var user = document.querySelector('.username');
@@ -345,7 +346,7 @@ var loginEmail = document.querySelector('#login-email');
 var loginPassword = document.querySelector('#login-password');
 var login_alert_txt = document.querySelector('.login_alert_txt'); //在 loginModal 上
 var login_status_txt = document.querySelector('.login_status_txt');
-var sitePath = window.location.pathname;
+
 //login 設定------------------------------
 
 // 判斷頁面+監聽事件
